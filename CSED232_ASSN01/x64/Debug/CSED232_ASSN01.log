@@ -1,0 +1,6 @@
+﻿  main.cpp
+v:\github\-csed232-oop\csed232_assn01\libkano.h(136): warning C4101: 'line': unreferenced local variable
+v:\github\-csed232-oop\csed232_assn01\libkano.h(136): warning C4101: 'col': unreferenced local variable
+v:\github\-csed232-oop\csed232_assn01\libkano.h(162): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+v:\github\-csed232-oop\csed232_assn01\libkano.h(267): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  CSED232_ASSN01.vcxproj -> V:\Github\-CSED232-OOP\x64\Debug\CSED232_ASSN01.exe
