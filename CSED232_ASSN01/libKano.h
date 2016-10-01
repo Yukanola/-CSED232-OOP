@@ -1,261 +1,399 @@
-﻿// ©Kanola 2016. Compatible for Windows and Unix-based OS.
+﻿// Copyright Kanola 2016. Compatible for Windows and Unix-based OS.
 
 #pragma once
 #pragma region Inclusions
 #include <iostream>
 #include <cstdio>
-#include <string>
-#include <cstring>
 #include <cstdlib>
+#include <cstring>
+#include <string>
+#include <typeinfo>
+#include <ctime>
 #pragma endregion
 
-using namespace std;
+#pragma region Usings
+using std::string;
+using std::cout;
+using std::to_string;
+#pragma endregion
 
-#pragma region Before-Processor-Block
-
-#define setc(a, b) printf("\x1b[" a "m" b "\x1b[0m");
-#define varn(a) printf(#a);
-#define bar_l "├---------------------------------------------------------\n"
+#pragma region Before-Block
 
 #ifdef _WIN32
 #define isWin true
+#define isLinux false
+
+#include <Windows.h>
 
 #ifdef _MSC_FULL_VER
 #pragma warning(disable:4996)
 #pragma warning(disable:4820)
 #endif
 
-#pragma region COLORS
 #define BLACK "0"
 #define BLUE "1"
 #define GREEN "2"
-#define TURQUOISE "3"
+#define CYAN "3"
 #define RED "4"
 #define PURPLE "5"
 #define YELLOW "6"
-#define LIGHTGRAY "7"
-#define GRAY "8"
-#define LIGHTBLUE "9"
-#define LIGHTGREEN "A"
-#define LIGHTTURQUOISE "B"
-#define LIGHTRED "C"
-#define LIGHTPURPLE "D"
-#define LIGHTYELLOW "E"
 #define WHITE "F"
-#pragma endregion
+#define DEFAULTFONT "7"
+#define DEFAULTBACK "0"
 
 #define cls() std::system("cls");
-#define color(a, b) std::system("color " a b);
-#define csize(a, b) std::system("mode con: cols=" a " lines=" b);
+#define color(a,b) std::system("color " a b);
+#define csize(a,b) std::system("mode " a "," b);
 
 #else
 #define isWin false
+#define isLinux true
 
-#pragma region COLORS
 #define BLACK "black"
 #define BLUE "blue"
 #define GREEN "green"
-#define TURQUOISE "cyan"
+#define CYAN "cyan"
 #define RED "red"
 #define PURPLE "magenta"
 #define YELLOW "yellow"
 #define WHITE "white"
-#pragma endregion
+#define DEFAULTFONT "white"
+#define DEFAULTBACK "black"
 
 #define cls() std::system("clear");
-#define color(a, b) std::system("setterm --term linux --background "a" --foreground "b);
+#define color(a,b) std::system("setterm --term linux --background "a" --foreground "b);
+#define csize(a,b);
 
 #endif
 
-#pragma endregion
+namespace _Kano {
 
-//Comprehensive Error Data: _KanoE
-namespace _KanoE {
+	static bool isDev = false;
 
-	class err {
+	const static class __errStruct {
 
 	public:
-		char* desc;
+
+		__errStruct(unsigned long code, string detail) { this->detail = detail; this->code = code; };
+
+		string detail;
 		unsigned long code;
 
-	};
+	} MEMORYLACK(0xE1000, "Failed to allocate memory")
+		, MEMFREEFAIL(0xE1001, "Failed to free memory")
+		, DATACOPYFAIL(0xE1010, "Failed to copy data")
+		, UNKNOWNARG(0xE2010, "Input argument isn\'t expected")
+		, OVERRANGE(0xE2020, "Input is over it\'s range");
 
-	err MEMORYLACK, MEMFREEFAIL, DATACOPYFAIL, UNKNOWNARG;
+	static class __con {
 
-	void setERROR() {
-
-		//* 0xE1XXX; MEMORY ERROR
-
-		MEMORYLACK.desc = "Failed to allocate memory.";
-		MEMORYLACK.code = 0xE1000;
-
-		MEMFREEFAIL.desc = "Failed to free memory.";
-		MEMFREEFAIL.code = 0xE1001;
-
-		DATACOPYFAIL.desc = "Failed to copy data.";
-		DATACOPYFAIL.code = 0xE1010;
-
-		//* 0xE2XXX; DATA ERROR
-
-		UNKNOWNARG.desc = "Input argument is not expected.";
-		UNKNOWNARG.code = 0xE2010;
-
-	};
-
-}
-using namespace _KanoE;
-
-//Comprehensive Base: _KanoB
-namespace _KanoB {
-
-	//* DEFAULT VARIABLE Definition
-
-	bool isDev = false;
-	static void** pub = (void**)calloc(1, sizeof(void*));
-
-	//* Function Origin Declaration
-
-	void end();
-
-	//* DEFAULT FUNCTION Definition
-
-
-
-	//* Classes
-
-	class _con {
+		int consolSize[2]; // [0] = ROWS / [1] = COLUMNS
 
 	public:
 
-		int* conSize(int cols, int lines) {
-
-			static int retVal[2];
+		__con() {
 
 			if (isWin) {
 
-				char *col, *line;
+				CONSOLE_SCREEN_BUFFER_INFO csBuffer;
+				GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csBuffer);
 
-				//sprintf(col, "%d", cols);
-				//sprintf(line, "%d", lines);
-
-				//std::system(strcat(strcat(strcat("mode con: cols=", col), " lines="), line));
-
-				retVal[0] = cols;
-				retVal[1] = lines;
+				this->consolSize[0] = csBuffer.srWindow.Bottom - csBuffer.srWindow.Top + 1;
+				this->consolSize[1] = csBuffer.srWindow.Right - csBuffer.srWindow.Left + 1;
 
 			}
 			else {
 
-				retVal[0] = std::system("echo $COLUMNS");
-				retVal[1] = std::system("echo $LINES");
+				this->consolSize[0] = std::system("echo $LINES");
+				this->consolSize[1] = std::system("echo $COLUMNS");
 
 			}
 
-			return retVal;
+		};
+
+		void setCS(int cols, int lines) {
+
+			this->consolSize[0] = lines;
+			this->consolSize[1] = cols;
 
 		};
 
-		void printWithSpace(char* saying, int cols) {
+		void csDelay(float time) {
 
-			printf("%s", saying);
+			time = time * 1000;
 
-			int sayingLength = strlen(saying);
+			clock_t beginningTime = clock();
 
-			for (int i = 0, times = cols - sayingLength; i < times; i++)
+			while (clock() - beginningTime < (int)time);
+
+		};
+
+		int* csSize(int cols, int lines) {
+
+			if (isWin) {
+
+				string command = "mode " + to_string(cols) + "," + to_string(lines);
+
+				std::system(command.c_str());
+
+				this->consolSize[0] = lines;
+				this->consolSize[1] = cols;
+
+			}
+
+			return this->consolSize;
+
+		};
+
+		void printSpace(char* sentence, int cols) {
+
+			std::printf(sentence);
+
+			cols -= (int)strlen(sentence);
+
+			for (int i = 0; i < cols; i++)
 				printf(" ");
 
 		};
+		void printSpace(char* sentence) { this->printSpace(sentence, this->consolSize[1]); };
+		void printSpace(string sentence, int cols) {
 
-		void boxLinePrint(char* saying, int cols) {
+			std::cout << sentence;
 
-			printf("│");
+			cols -= (int)sentence.length();
 
-			this->printWithSpace(saying, cols - 1);
+			for (int i = 0; i < cols; i++)
+				printf(" ");
 
-			printf("│\n");
+		};
+		void printSpace(string sentence) { this->printSpace(sentence, this->consolSize[1]); };
+		void printSpace(int cols) { this->printSpace("", cols); };
+		void printSpaceLeft(char* sentence, int cols) { this->printSpace(sentence, cols); };
+		void printSpaceLeft(char* sentence) { this->printSpace(sentence); };
+		void printSpaceLeft(string sentence, int cols) { this->printSpace(sentence, cols); };
+		void printSpaceLeft(string sentence) { this->printSpace(sentence); };
+		void printSpaceCenter(char* sentence, int cols) {
 
+			cols -= (int)strlen(sentence);
+
+			bool isOdd = cols % 2;
+
+			cols = cols / 2;
+
+			for (int i = (isOdd) ? -1 : 0; i < cols; i++)
+				printf(" ");
+
+			std::printf(sentence);
+
+			for (int i = 0; i < cols; i++)
+				printf(" ");
+
+		};
+		void printSpaceCenter(char* sentence) { this->printSpaceCenter(sentence, this->consolSize[1]); };
+		void printSpaceCenter(string sentence, int cols) {
+
+			cols -= (int)sentence.length();
+
+			bool isOdd = cols % 2;
+
+			cols = cols / 2;
+
+			for (int i = (isOdd) ? -1 : 0; i < cols; i++)
+				printf(" ");
+
+			std::cout << sentence;
+
+			for (int i = 0; i < cols; i++)
+				printf(" ");
+
+		};
+		void printSpaceCenter(string sentence) { this->printSpaceCenter(sentence, this->consolSize[1]); };
+		void printSpaceRight(char* sentence, int cols) {
+
+			cols -= (int)strlen(sentence);
+
+			for (int i = 0; i < cols; i++)
+				printf(" ");
+
+			std::printf(sentence);
+
+		};
+		void printSpaceRight(char* sentence) { this->printSpaceRight(sentence, this->consolSize[1]); };
+		void printSpaceRight(string sentence, int cols) {
+
+			cols -= (int)sentence.length();
+
+			for (int i = 0; i < cols; i++)
+				printf(" ");
+
+			std::cout << sentence;
+
+		};
+		void printSpaceRight(string sentence) { this->printSpaceRight(sentence, this->consolSize[1]); };
+		void printLine(int trigger) {
+
+			if (trigger >= 0) {
+
+				for (int i = 0; i < trigger / 2; i++)
+					printf("─");
+
+			}
+			else {
+
+				for (int i = 0, goal = this->consolSize[1] / 2 + trigger / 2; i < goal; i++)
+					printf("─");
+
+			}
+
+		};
+		void printLine() {
+			
+			for (int i = 0; i < this->consolSize[1] / 2; i++)
+				printf("─");
 
 		};
 
-		void openBox(int cols) {
+		void boxOpen() {
 
 			printf("┌");
 
-			for (int i = 0; i < (cols - 1) / 2; i++)
+			int cols = (this->consolSize[1] - 4) / 2;
+
+			for (int i = 0; i < cols; i++)
 				printf("─");
 
 			printf("┐\n");
 
 		};
-
-		void closeBox(int cols) {
+		void boxClose() {
 
 			printf("└");
 
-			for (int i = 0; i < (cols - 1) / 2; i++)
+			int cols = (this->consolSize[1] - 4) / 2;
+
+			for (int i = 0; i < cols; i++)
 				printf("─");
 
 			printf("┘\n");
 
 		};
+		void boxLine(char* sentence, int cols) {
 
-	};
-	_con *con = new _KanoB::_con;
+			printf("│");
 
-	class _err {
+			this->printSpace(sentence, cols - 4 - ((this->consolSize[1] % 2) ? 1 : 0));
+
+			printf("│\n");
+
+		};
+		void boxLine(char* sentence) { this->boxLine(sentence, this->consolSize[1]); };
+		void boxLine(string sentence, int cols) {
+
+			printf("│");
+
+			this->printSpace(sentence, cols - 4 - ((this->consolSize[1] % 2) ? 1 : 0));
+
+			printf("│\n");
+
+		};
+		void boxLine(string sentence) { this->boxLine(sentence, this->consolSize[1]); };
+		void boxLine(int cols) { this->boxLine("", this->consolSize[1]); };
+		void boxLine() { this->boxLine(""); };
+		void boxLineLeft(char* sentence, int cols) { this->boxLine(sentence, cols); };
+		void boxLineLeft(char*sentence) { this->boxLine(sentence); };
+		void boxLineLeft(string sentence, int cols) { this->boxLine(sentence, cols); };
+		void boxLineLeft(string sentence) { this->boxLine(sentence); };
+		void boxLineCenter(char* sentence, int cols) {
+
+			printf("│");
+
+			this->printSpaceCenter(sentence, cols - 4 - ((this->consolSize[1] % 2) ? 1 : 0));
+
+			printf("│\n");
+
+		};
+		void boxLineCenter(char* sentence) { this->boxLineCenter(sentence, this->consolSize[1]); };
+		void boxLineCenter(string sentence, int cols) {
+
+			printf("│");
+
+			this->printSpaceCenter(sentence, cols - 4 - ((this->consolSize[1] % 2) ? 1 : 0));
+
+			printf("│\n");
+
+		};
+		void boxLineCenter(string sentence) { this->boxLineCenter(sentence, this->consolSize[1]); };
+		void boxLineRight(char* sentence, int cols) {
+
+			printf("│");
+
+			this->printSpaceRight(sentence, cols - 4 - ((this->consolSize[1] % 2) ? 1 : 0));
+
+			printf("│\n");
+
+		};
+		void boxLineRight(char* sentence) { this->boxLineRight(sentence, this->consolSize[1]); };
+		void boxLineRight(string sentence, int cols) {
+
+			printf("│");
+
+			this->printSpaceRight(sentence, cols - 4 - ((this->consolSize[1] % 2) ? 1 : 0));
+
+			printf("│\n");
+
+		};
+		void boxLineRight(string sentence) { this->boxLineRight(sentence, this->consolSize[1]); };
+		void boxCutter() {
+
+			printf("├");
+
+			this->printLine(-4);
+
+			printf("┤\n");
+
+		};
+
+	} con;
+
+	static class __core {
 
 	public:
 
-		void E(char* func, char* file, int line, _KanoE::err error) {
+		void E(char* func, char* file, int line, _Kano::__errStruct error) {
 
 			cls();
-			color(TURQUOISE, WHITE);
+			color(CYAN, WHITE);
 
-			int* cons = _KanoB::con->conSize(60, 24);
-			csize("60", "24"); //for temp
-							   //CSIZE는 윈도우용 함수이다. 이 문제를 해결하자. WITH CONSIZE.
-			_KanoB::con->openBox(cons[0] = (cons[0] % 2) ? cons[0] - 4 : cons[0] - 3);
-
+			int* csSize = _Kano::con.csSize(60, 24);
 			char* bsPos = (strrchr(file, '\\')) + 1;
+			int csCols = (csSize[1] / 2) * 2;
 
-			_KanoB::con->boxLinePrint("[ERROR] Program is going to be terminated.", cons[0]);
-			_KanoB::con->boxLinePrint("", cons[0]);
-			_KanoB::con->boxLinePrint("Refer to error information below.", cons[0]);
-			_KanoB::con->boxLinePrint("", cons[0]);
+			_Kano::con.boxOpen();
+			_Kano::con.boxLine("[ERROR] Program is going to be terminated.");
+			_Kano::con.boxLine();
 			printf("│Code       : 0x%x", error.code);
-			_KanoB::con->printWithSpace("", cons[0] - 21);
+			_Kano::con.printSpace(csCols - 24);
 			printf("│\n│File       : ");
-			_KanoB::con->printWithSpace(bsPos, cons[0] - 14);
+			_Kano::con.printSpace(bsPos, csSize[1] - 17 - ((csSize[1] % 2) ? 1 : 0));
 			printf("│\n│Line       : %.5d", line);
-			_KanoB::con->printWithSpace("", cons[0] - 19);
+			_Kano::con.printSpace(csSize[1] - 22 - ((csSize[1] % 2) ? 1 : 0));
 			printf("│\n│Function   : ");
-			_KanoB::con->printWithSpace(func, cons[0] - 14);
+			_Kano::con.printSpace(func, csSize[1] - 17 - ((csSize[1] % 2) ? 1 : 0));
 			printf("│\n");
-			_KanoB::con->boxLinePrint("", cons[0]);
+			_Kano::con.boxLine();
 			printf("│Description: ");
-			_KanoB::con->printWithSpace((error.desc == NULL) ? "Description for this case isn't found." : error.desc, cons[0] - 14);
+			_Kano::con.printSpace((error.detail == "") ? "Description for this case isn't found." : error.detail, csSize[1] - 17 - ((csSize[1] % 2) ? 1 : 0));
 			printf("│\n");
-			_KanoB::con->boxLinePrint("", cons[0]);
-
-			_KanoB::con->closeBox(cons[0]);
-
-			_KanoB::end();
+			_Kano::con.boxLine();
+			_Kano::con.boxClose();
 
 			exit((int)error.code);
 
 		};
 
-	};
-	_err *err = new _KanoB::_err;
-#define loge(b) _KanoB::err->E(__FUNCTION__, __FILE__, __LINE__, b); //For early-access to loge.
+		void debug(char* func, char* task) {
 
-	class _deb {
-
-	public:
-
-		void debug(char* func, char* task, int channel) {
-
-			if (_KanoB::isDev) {
+			if (_Kano::isDev) {
 
 				char* caller[2];
 				char* colonPos = strrchr(func, ':');
@@ -277,22 +415,7 @@ namespace _KanoB {
 
 				}
 
-				if (channel == 1)
-					printf("[dev] %s%s%s%s >   %s\n", caller[1], (colonPos != NULL) ? "(" : "", caller[0], (colonPos != NULL) ? ")" : "", task);
-
-				else if (channel == 0) {
-
-					//LOG COLLECTOR
-
-				}
-				else {
-
-					if (colonPos != NULL)
-						free(caller[0]);
-
-					loge(_KanoE::UNKNOWNARG);
-
-				}
+				printf("[dev] %s%s%s%s >   %s\n", caller[1], (colonPos != NULL) ? "(" : "", caller[0], (colonPos != NULL) ? ")" : "", task);
 
 				if (colonPos != NULL)
 					free(caller[0]);
@@ -301,197 +424,37 @@ namespace _KanoB {
 
 		};
 
-	};
-	_deb *deb = new _KanoB::_deb;
-#define devl(b) _KanoB::deb->debug(__FUNCTION__, b, 1); //For early-access to devl.
-#define dev(b) _KanoB::deb->debug(__FUNCTION__, b, 0); //For early-access to dev.
+	} core;
 
-	class _obj {
+	// 0xE1XXX = MEMORY ERROR / 0xE2XXXX = DATA ERROR
 
-	public:
+};
 
-		static bool addo(void* objp) {
+using namespace _Kano;
 
-			devl("To Add Base Kano Object Started.");
+#define eLog(a) _Kano::core.E(__FUNCTION__, __FILE__, __LINE__, a);
+#define deb(a) _Kano::core.debug(__FUNCTION__, a);
 
-			int puc = (int)(sizeof(_KanoB::pub) / sizeof(void*));
-
-			_KanoB::pub = (void**)realloc(_KanoB::pub, (++puc)*sizeof(void*));
-
-			if (_KanoB::pub == NULL)
-				return false;
-			else
-			{
-
-				devl("New Kano Object appended to pub.");
-
-				_KanoB::pub[--puc] = objp;
-				return true;
-
-			}
-
-		};
-
-		static void remo() {
-
-			devl("Starts to remove Kano Objects from pub.");
-
-			int puc = (int)(sizeof(_KanoB::pub) / sizeof(void*));
-
-			for (int i = 0; i < puc; i++) {
-
-				devl("A Kano object is deleted from pub.");
-
-				delete _KanoB::pub[i];
-
-			}
-
-			delete _KanoB::pub;
-
-			devl("Kano pub is completely erased.");
-
-		};
-
-		void __show_pub() {
-
-			printf(bar_l);
-			printf("[TEST] Let you see _KanoM::pub.\n");
-
-			int puc = (int)(sizeof(_KanoB::pub) / sizeof(void*));
-
-			printf("\n       There is %d Kano object(s) in pub.\n       See the list below.\n\n", puc);
-
-			for (int i = 0; i < puc; i++) {
-
-				printf("[%d] %s\n", i + 1, typeid(_KanoB::pub[i]).name());
-
-			}
-
-			printf(bar_l);
-
-		};
-
-	};
-
-	/*class _log {
-
-	private:
-
-	char** log = (char**)calloc(1, sizeof(char*));
-
-	public:
-
-	const char* name = typeid(this).name();
-
-	bool recLog(char* logs, char* func) {
-
-	try {
-
-	char* tempMsg;
-
-	if (tempMsg = (char*)malloc(sizeof(logs)))
-	throw _KanoB::MEMORYLACK;
-
-	if (strcpy(tempMsg, logs))
-	throw _KanoB::DATACOPYFAILURE;
-
-	}
-	catch (unsigned long e) {
-
-	//printf("%s", e);
-
-	}
-
-
-
-	}
-
-	};*/
-	//_log *log = new _KanoB::_log;
-
-	void end() {
-
-		_KanoB::_obj::remo();
-
-		devl("Memory allocation is successfully released.");
-		devl("Program successfully terminated.");
-
-		delete _KanoB::err, _KanoB::deb, _KanoB::con;// , _KanoB::log;
-
-	};
-
-}
-using namespace _KanoB;
-
-#pragma region Midterm Definition
-
-
-
-#pragma endregion
-
-//Kano System: Kano
 namespace Kano {
 
-	char* version = "Delicate 0.7 [0160918.3]";
+	const string version = "Delicate 0.9 [0161001.2  Development]";
 
-	_KanoB::_obj obj;
+	const static void init(bool modeSet) {
 
-	class _set {
+		_Kano::isDev = modeSet;
 
-	public:
+		deb((char*)Kano::version.c_str());
 
-		char* name = "CLASS:_set";
-
-		void devMode(bool mode) { _KanoB::isDev = mode; }; //OK
-
-	};
-	_set *set;
-
-	/*class _mem {
-
-	public:
-
-	char* name = "CLASS:_mem";
-
-	bool remember(void* data) {
-
-	//NEXT: 메모리 관리 시스템 만들기..!
+		deb("Initiation completed.");
 
 	};
 
-	};
-	_mem *mem;*/
+	const static void end(unsigned long exitCode) {
 
-	void end(const long code) {
-
-		_KanoB::end();
-
-		exit((code == NULL) ? 0x00000 : code);
+		exit((int)exitCode);
 
 	};
 
-	void init(bool modeSet) {
+};
 
-		if (modeSet == true)
-			_KanoB::isDev = true;
-
-		_KanoE::setERROR();
-
-		devl(version);
-
-		//Add Kano Objects
-		obj.addo(Kano::set = new Kano::_set);
-		//obj.addo(Kano::mem = new Kano::_mem);
-
-		devl("Initiation completed.");
-
-	};
-
-}
 using namespace Kano;
-
-#pragma region After-Definitions
-
-
-
-#pragma endregion
