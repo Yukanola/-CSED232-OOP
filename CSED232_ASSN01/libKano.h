@@ -91,7 +91,25 @@ namespace _Kano {
 
 	public:
 
-		inline __con() {};
+		__con() {
+
+			if (isWin) {
+
+				CONSOLE_SCREEN_BUFFER_INFO csBuffer;
+				GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csBuffer);
+
+				this->consolSize[0] = csBuffer.srWindow.Bottom - csBuffer.srWindow.Top + 1;
+				this->consolSize[1] = csBuffer.srWindow.Right - csBuffer.srWindow.Left + 1;
+
+			}
+			else {
+
+				this->consolSize[0] = std::system("echo $LINES");
+				this->consolSize[1] = std::system("echo $COLUMNS");
+
+			}
+
+		};
 
 		void setCS(int cols, int lines) {
 
@@ -344,31 +362,7 @@ namespace _Kano {
 
 		};
 
-	};
-
-	#ifdef isWin
-
-	__con::__con {
-
-		CONSOLE_SCREEN_BUFFER_INFO csBuffer;
-		GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csBuffer);
-
-		this->consolSize[0] = csBuffer.srWindow.Bottom - csBuffer.srWindow.Top + 1;
-		this->consolSize[1] = csBuffer.srWindow.Right - csBuffer.srWindow.Left + 1;
-
-	}
-
-	#elif isLinux
-
-	__con::__con {
-
-		this->consolSize[0] = std::system("echo $LINES");
-		this->consolSize[1] = std::system("echo $COLUMNS");
-
-	}
-	#endif
-
-	__con con;
+	} con;
 
 	static class __core {
 
