@@ -93,13 +93,19 @@ namespace _Kano {
 
 		__con() {
 
+
+
 			if (isWin) {
+
+#if isWin
 
 				CONSOLE_SCREEN_BUFFER_INFO csBuffer;
 				GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csBuffer);
 
 				this->consolSize[0] = csBuffer.srWindow.Bottom - csBuffer.srWindow.Top + 1;
 				this->consolSize[1] = csBuffer.srWindow.Right - csBuffer.srWindow.Left + 1;
+
+#endif
 
 			}
 			else {
@@ -451,7 +457,7 @@ using namespace _Kano;
 
 namespace Kano {
 
-	const string version = "Delicate 0.9 [0161002.2  Development]";
+	const string version = "Delicate 0.9 [0161002.3  Development]";
 
 	const static void init(bool modeSet) {
 
