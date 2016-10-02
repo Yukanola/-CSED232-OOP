@@ -128,6 +128,15 @@ namespace _Kano {
 
 		};
 
+		void csPause() {
+
+			if (isWin)
+				std::system("pause");
+			else if (isLinux)
+				std::system("read -n1 -rsp \"Press any key to continue..\"");
+
+		}
+
 		int* csSize(int cols, int lines) {
 
 			if (isWin) {
@@ -387,6 +396,11 @@ namespace _Kano {
 			_Kano::con.boxLine();
 			_Kano::con.boxClose();
 
+			con.csPause();
+
+			color(DEFAULTBACK, DEFAULTFONT);
+			cls();
+
 			exit((int)error.code);
 
 		};
@@ -437,7 +451,7 @@ using namespace _Kano;
 
 namespace Kano {
 
-	const string version = "Delicate 0.9 [0161001.2  Development]";
+	const string version = "Delicate 0.9 [0161002.2  Development]";
 
 	const static void init(bool modeSet) {
 

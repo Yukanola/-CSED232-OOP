@@ -101,7 +101,7 @@ void dispAllProducts(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherL
 		con.boxLine("총 " + to_string(Snacks->getAmounts() + Drinks->getAmounts() + Ices->getAmounts() + Others->getAmounts()) + "개의 상품이 검색되었습니다.");
 		con.boxClose();
 
-		system("pause");
+		con.csPause();
 
 		cls();
 
@@ -115,7 +115,7 @@ void dispAllProducts(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherL
 		con.boxLine("총 " + to_string(Snacks->getAmounts() + Drinks->getAmounts() + Ices->getAmounts() + Others->getAmounts()) + "개의 상품이 검색되었습니다.");
 		con.boxClose();
 
-		system("pause");
+		con.csPause();
 
 		cls();
 
@@ -129,7 +129,7 @@ void dispAllProducts(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherL
 		con.boxLine("총 " + to_string(Snacks->getAmounts() + Drinks->getAmounts() + Ices->getAmounts() + Others->getAmounts()) + "개의 상품이 검색되었습니다.");
 		con.boxClose();
 
-		system("pause");
+		con.csPause();
 
 		cls();
 
@@ -141,7 +141,7 @@ void dispAllProducts(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherL
 	con.boxLine("총 " + to_string(Snacks->getAmounts() + Drinks->getAmounts() + Ices->getAmounts() + Others->getAmounts()) + "개의 상품이 검색되었습니다.");
 	con.boxClose();
 
-	std::system("pause");
+	con.csPause();
 
 }
 
@@ -192,13 +192,17 @@ void endPOS(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Othe
 	delete Snacks, Drinks, Ices, Others;
 
 	if (_Kano::isDev)
-		system("pause");
+		con.csPause();
 
 	con.csSize(20, 3);
 
 	color(BLACK, CYAN);
 
-	cout << endl << "     Thank You." << endl;
+	cout << endl;
+
+	con.printSpaceCenter("Thank You.");
+	
+	cout << endl;
 
 	con.csDelay(2);
 
@@ -535,7 +539,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 	delete sSnacks, sDrinks, sIces, sOthers;
 
 	if (!Mode || !Temp || retVal[0] == -1)
-		system("pause");
+		con.csPause();
 
 	return retVal;
 
@@ -564,7 +568,7 @@ void dispRecord() {
 			con.boxLine();
 			con.boxLine("계속 보시려면 아무 키나 누르세요.");
 			con.boxClose();
-			system("pause");
+			con.csPause();
 
 			cls();
 
@@ -579,6 +583,6 @@ void dispRecord() {
 
 	con.boxClose();
 
-	system("pause");
+	con.csPause();
 
 }

@@ -506,7 +506,7 @@ void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 
 	}
 
-	system("pause");
+	con.csPause();
 
 }
 
@@ -540,7 +540,7 @@ void procStock(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* O
 		con.boxLine("입력한 ID가 이미 존재합니다.");
 		con.boxClose();
 
-		system("pause");
+		con.csPause();
 
 		return;
 
@@ -556,7 +556,7 @@ void procStock(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* O
 		con.boxLine("입력한 이름이 이미 존재합니다.");
 		con.boxClose();
 
-		system("pause");
+		con.csPause();
 
 		return;
 
@@ -619,7 +619,7 @@ void procStock(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* O
 	con.boxLine("입고처리 되었습니다.");
 	con.boxClose();
 
-	system("pause");
+	con.csPause();
 
 }
 
@@ -676,7 +676,7 @@ void procModify(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 			con.boxLine("입력한 ID가 이미 존재합니다.");
 			con.boxClose();
 
-			system("pause");
+			con.csPause();
 
 			return;
 
@@ -703,7 +703,7 @@ void procModify(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 			con.boxLine("입력한 이름이 이미 존재합니다.");
 			con.boxClose();
 
-			system("pause");
+			con.csPause();
 
 			return;
 
@@ -777,7 +777,7 @@ void procModify(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 	con.boxLine("성공적으로 상품 정보를 수정하였습니다.");
 	con.boxClose();
 
-	system("pause");
+	con.csPause();
 
 }
 
@@ -809,6 +809,6 @@ void procRemove(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 	con.boxLineCenter("상품이 삭제되었습니다.");
 	con.boxClose();
 
-	system("pause");
+	con.csPause();
 
 }

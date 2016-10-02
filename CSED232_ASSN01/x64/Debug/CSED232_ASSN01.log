@@ -1,4 +1,4 @@
-﻿  mainFlow.cpp
+﻿  Functions.cpp
 v:\github\-csed232-oop\csed232_assn01\libkano.h(179): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
 v:\github\-csed232-oop\csed232_assn01\libkano.h(197): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
 v:\github\-csed232-oop\csed232_assn01\libkano.h(405): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
@@ -10,17 +10,4 @@ v:\github\-csed232-oop\csed232_assn01\products.h(385): warning C4244: '=': conve
 v:\github\-csed232-oop\csed232_assn01\products.h(386): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 v:\github\-csed232-oop\csed232_assn01\products.h(560): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 v:\github\-csed232-oop\csed232_assn01\products.h(561): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Functions.cpp
-v:\github\-csed232-oop\csed232_assn01\libkano.h(179): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-v:\github\-csed232-oop\csed232_assn01\libkano.h(197): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-v:\github\-csed232-oop\csed232_assn01\libkano.h(405): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(34): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(210): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(211): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(385): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(386): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(560): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(561): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Generating Code...
   CSED232_ASSN01.vcxproj -> V:\Github\-CSED232-OOP\x64\Debug\CSED232_ASSN01.exe
