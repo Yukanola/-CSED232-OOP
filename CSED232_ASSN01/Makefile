@@ -1,4 +1,4 @@
-POS: mainFlow.o Functions.o Flows.o
+all: mainFlow.o Functions.o Flows.o
 	g++ -o POS  mainFlow.o Functions.o Flows.o
 
 mainFlow.o: mainFlow.cpp Functions.cpp Flows.cpp libKano.h Products.h
