@@ -14,7 +14,6 @@
 #pragma region Usings
 using std::string;
 using std::cout;
-using std::to_string;
 #pragma endregion
 
 #pragma region Before-Block
@@ -93,27 +92,20 @@ namespace _Kano {
 
 		__con() {
 
-
-
-			if (isWin) {
-
 #if isWin
 
-				CONSOLE_SCREEN_BUFFER_INFO csBuffer;
-				GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csBuffer);
+			CONSOLE_SCREEN_BUFFER_INFO csBuffer;
+			GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csBuffer);
 
-				this->consolSize[0] = csBuffer.srWindow.Bottom - csBuffer.srWindow.Top + 1;
-				this->consolSize[1] = csBuffer.srWindow.Right - csBuffer.srWindow.Left + 1;
+			this->consolSize[0] = csBuffer.srWindow.Bottom - csBuffer.srWindow.Top + 1;
+			this->consolSize[1] = csBuffer.srWindow.Right - csBuffer.srWindow.Left + 1;
+
+#elif isLinux
+
+			this->consolSize[0] = std::system("echo $LINES");
+			this->consolSize[1] = std::system("echo $COLUMNS");
 
 #endif
-
-			}
-			else {
-
-				this->consolSize[0] = std::system("echo $LINES");
-				this->consolSize[1] = std::system("echo $COLUMNS");
-
-			}
 
 		};
 
@@ -147,7 +139,7 @@ namespace _Kano {
 
 			if (isWin) {
 
-				string command = "mode " + to_string(cols) + "," + to_string(lines);
+				string command = "mode " + std::to_string(cols) + "," + std::to_string(lines);
 
 				std::system(command.c_str());
 
@@ -262,7 +254,7 @@ namespace _Kano {
 
 		};
 		void printLine() {
-			
+
 			for (int i = 0; i < this->consolSize[1] / 2; i++)
 				printf("─");
 
