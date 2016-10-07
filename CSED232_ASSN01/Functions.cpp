@@ -610,7 +610,7 @@ void initAnn() {
 
 		color(BLACK, RED);
 		con.boxOpen();
-		con.boxLine("Please use UTF-8 text.");
+		con.boxLine("Please use UTF-8 without BOM text.");
 		con.boxClose();
 		color(BLACK, YELLOW);
 		con.boxOpen();
