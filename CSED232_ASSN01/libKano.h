@@ -470,7 +470,7 @@ using namespace _Kano;
 
 namespace Kano {
 
-	const string version = "Delicate 0.9 [0161007.2  Development]";
+	const string version = "Delicate 0.9 [0161007.4  Development]";
 
 	const static void init(bool modeSet) {
 
