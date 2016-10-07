@@ -6,7 +6,7 @@ void endPOS(SnackList*, DrinkList*, IceList*, OtherList*);
 
 int main() {
  
-	Kano::init(true);
+	Kano::init(false);
 
 	con.csSize(42, 18);
 

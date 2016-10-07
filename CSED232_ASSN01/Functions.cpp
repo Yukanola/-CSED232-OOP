@@ -30,6 +30,16 @@ bool dispMenu(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 		con.boxClose();
 
 	}
+	
+	if(isLinux) {
+		
+		color(BLACK, YELLOW);
+		con.boxOpen();
+		con.boxLine("POS is most compatible with Windows.");
+		con.boxLine("In Linux, Something can be displayed as wrong way.");
+		con.boxClose();
+		color(BLACK, DEFAULTFONT);
+	}
 
 	sync = false;
 
