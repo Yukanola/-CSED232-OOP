@@ -296,7 +296,7 @@ namespace _Kano {
 
 			printf("│");
 
-			this->printSpace(sentence, cols - 4 - ((this->consolSize[1] % 2 || isLinux) ? 1 : 0));
+			this->printSpace(sentence, cols - 4 - ((this->consolSize[1] % 2) ? 1 : 0) - ((isLinux) ? 1 : 0));
 
 			printf("│\n");
 
@@ -306,7 +306,7 @@ namespace _Kano {
 
 			printf("│");
 
-			this->printSpace(sentence, cols - 4 - ((this->consolSize[1] % 2 || isLinux) ? 1 : 0));
+			this->printSpace(sentence, cols - 4 - ((this->consolSize[1] % 2) ? 1 : 0) - ((isLinux) ? 1 : 0));
 
 			printf("│\n");
 
