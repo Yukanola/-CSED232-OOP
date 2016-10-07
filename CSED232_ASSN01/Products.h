@@ -117,28 +117,46 @@ public:
 			con.boxLineCenter("[SNACK]");
 			con.boxLine();
 
-			printf("¦¢");
-			con.printSpace("Prod. ID", 12);
-			con.printSpace("Name", 32);
-			con.printSpace("Stocks", 16); //60
-			con.printSpace("Prime Cost", 15);
-			con.printSpace("Margin(%%)", 21);
-			con.printSpace("Sail Cost", 15); //110
-			con.printSpace("Manufacturer", 26);
-			printf("¦¢\n");
-			con.boxLine();
+			if(isWin) {
+				
+				printf("¦¢");
+				con.printSpace("Prod. ID", 12);
+				con.printSpace("Name", 32);
+				con.printSpace("Stocks", 16); //60
+				con.printSpace("Prime Cost", 15);
+				con.printSpace("Margin(%%)", 21);
+				con.printSpace("Sail Cost", 15); //110
+				con.printSpace("Manufacturer", 26);
+				printf("¦¢\n");
+				con.boxLine();
+				
+			}
+			else if (isLinux) {
+				
+				con.boxLine("Prod. ID,   Name,   Stocks,   Prime Cost,   Margin(%%),   Sail Cost,   Manufacturer");
+				
+			}
 
 			for (Snack* Queue = this->Head; Queue != NULL; Queue = Queue->getNext()) {
 
-				printf("¦¢");
-				con.printSpace(to_string(Queue->getID()), 12);
-				con.printSpace(Queue->getName(), 32);
-				con.printSpace(to_string(Queue->getStock()), 16); //60
-				con.printSpace(to_string(Queue->getPrimeCost()), 15);
-				con.printSpace(to_string((int) (Queue->getMargin()*100)), 20);
-				con.printSpace(to_string(Queue->getSailCost()), 15); //110
-				con.printSpace(Queue->getManufacturer(), 26);
-				printf("¦¢\n");
+				if(isWin) {
+					
+					printf("¦¢");
+					con.printSpace(to_string(Queue->getID()), 12);
+					con.printSpace(Queue->getName(), 32);
+					con.printSpace(to_string(Queue->getStock()), 16); //60
+					con.printSpace(to_string(Queue->getPrimeCost()), 15);
+					con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
+					con.printSpace(to_string(Queue->getSailCost()), 15); //110
+					con.printSpace(Queue->getManufacturer(), 26);
+					printf("¦¢\n");
+					
+				}
+				else if (isLinux) {
+					
+					con.boxLine(to_string(Queue->getID()) + ", " + Queue->getName() + ", " + to_string(Queue->getStock()) + ", " + to_string(Queue->getPrimeCost()) + ", " + to_string((int)(Queue->getMargin() * 100)) + ", " + to_string(Queue->getSailCost()) + ", " + Queue->getManufacturer());
+					
+				}
 
 			};
 
@@ -292,28 +310,46 @@ public:
 			con.boxLineCenter("[DRINK]");
 			con.boxLine();
 
-			printf("¦¢");
-			con.printSpace("Prod. ID", 12);
-			con.printSpace("Name", 32);
-			con.printSpace("Stocks", 16); //60
-			con.printSpace("Prime Cost", 15);
-			con.printSpace("Margin(%%)", 21);
-			con.printSpace("Sail Cost", 15); //110
-			con.printSpace("Manufacturer", 26);
-			printf("¦¢\n");
-			con.boxLine();
+			if(isWin) {
+				
+				printf("¦¢");
+				con.printSpace("Prod. ID", 12);
+				con.printSpace("Name", 32);
+				con.printSpace("Stocks", 16); //60
+				con.printSpace("Prime Cost", 15);
+				con.printSpace("Margin(%%)", 21);
+				con.printSpace("Sail Cost", 15); //110
+				con.printSpace("Manufacturer", 26);
+				printf("¦¢\n");
+				con.boxLine();
+				
+			}
+			else if (isLinux) {
+				
+				con.boxLine("Prod. ID,   Name,   Stocks,   Prime Cost,   Margin(%%),   Sail Cost,   Manufacturer");
+				
+			}
 
 			for (Drink* Queue = this->Head; Queue != NULL; Queue = Queue->getNext()) {
 
-				printf("¦¢");
-				con.printSpace(to_string(Queue->getID()), 12);
-				con.printSpace(Queue->getName(), 32);
-				con.printSpace(to_string(Queue->getStock()), 16); //60
-				con.printSpace(to_string(Queue->getPrimeCost()), 15);
-				con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
-				con.printSpace(to_string(Queue->getSailCost()), 15); //110
-				con.printSpace(Queue->getManufacturer(), 26);
-				printf("¦¢\n");
+				if(isWin) {
+					
+					printf("¦¢");
+					con.printSpace(to_string(Queue->getID()), 12);
+					con.printSpace(Queue->getName(), 32);
+					con.printSpace(to_string(Queue->getStock()), 16); //60
+					con.printSpace(to_string(Queue->getPrimeCost()), 15);
+					con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
+					con.printSpace(to_string(Queue->getSailCost()), 15); //110
+					con.printSpace(Queue->getManufacturer(), 26);
+					printf("¦¢\n");
+					
+				}
+				else if (isLinux) {
+					
+					con.boxLine(to_string(Queue->getID()) + ", " + Queue->getName() + ", " + to_string(Queue->getStock()) + ", " + to_string(Queue->getPrimeCost()) + ", " + to_string((int)(Queue->getMargin() * 100)) + ", " + to_string(Queue->getSailCost()) + ", " + Queue->getManufacturer());
+					
+				}
 
 			};
 
@@ -467,28 +503,46 @@ public:
 			con.boxLineCenter("[ICE]");
 			con.boxLine();
 
-			printf("¦¢");
-			con.printSpace("Prod. ID", 12);
-			con.printSpace("Name", 32);
-			con.printSpace("Stocks", 16); //60
-			con.printSpace("Prime Cost", 15);
-			con.printSpace("Margin(%%)", 21);
-			con.printSpace("Sail Cost", 15); //110
-			con.printSpace("Manufacturer", 26);
-			printf("¦¢\n");
-			con.boxLine();
+			if(isWin) {
+				
+				printf("¦¢");
+				con.printSpace("Prod. ID", 12);
+				con.printSpace("Name", 32);
+				con.printSpace("Stocks", 16); //60
+				con.printSpace("Prime Cost", 15);
+				con.printSpace("Margin(%%)", 21);
+				con.printSpace("Sail Cost", 15); //110
+				con.printSpace("Manufacturer", 26);
+				printf("¦¢\n");
+				con.boxLine();
+				
+			}
+			else if (isLinux) {
+				
+				con.boxLine("Prod. ID,   Name,   Stocks,   Prime Cost,   Margin(%%),   Sail Cost,   Manufacturer");
+				
+			}
 
 			for (Ice* Queue = this->Head; Queue != NULL; Queue = Queue->getNext()) {
 
-				printf("¦¢");
-				con.printSpace(to_string(Queue->getID()), 12);
-				con.printSpace(Queue->getName(), 32);
-				con.printSpace(to_string(Queue->getStock()), 16); //60
-				con.printSpace(to_string(Queue->getPrimeCost()), 15);
-				con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
-				con.printSpace(to_string(Queue->getSailCost()), 15); //110
-				con.printSpace(Queue->getManufacturer(), 26);
-				printf("¦¢\n");
+				if(isWin) {
+					
+					printf("¦¢");
+					con.printSpace(to_string(Queue->getID()), 12);
+					con.printSpace(Queue->getName(), 32);
+					con.printSpace(to_string(Queue->getStock()), 16); //60
+					con.printSpace(to_string(Queue->getPrimeCost()), 15);
+					con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
+					con.printSpace(to_string(Queue->getSailCost()), 15); //110
+					con.printSpace(Queue->getManufacturer(), 26);
+					printf("¦¢\n");
+					
+				}
+				else if (isLinux) {
+					
+					con.boxLine(to_string(Queue->getID()) + ", " + Queue->getName() + ", " + to_string(Queue->getStock()) + ", " + to_string(Queue->getPrimeCost()) + ", " + to_string((int)(Queue->getMargin() * 100)) + ", " + to_string(Queue->getSailCost()) + ", " + Queue->getManufacturer());
+					
+				}
 
 			};
 
@@ -642,29 +696,48 @@ public:
 			con.boxLineCenter("[OTHER]");
 			con.boxLine();
 
-			printf("¦¢");
-			con.printSpace("Prod. ID", 12);
-			con.printSpace("Name", 32);
-			con.printSpace("Stocks", 16); //60
-			con.printSpace("Prime Cost", 15);
-			con.printSpace("Margin(%%)", 21);
-			con.printSpace("Sail Cost", 15); //110
-			con.printSpace("Manufacturer", 26);
-			printf("¦¢\n");
-			con.boxLine();
+			if(isWin) {
+				
+				printf("¦¢");
+				con.printSpace("Prod. ID", 12);
+				con.printSpace("Name", 32);
+				con.printSpace("Stocks", 16); //60
+				con.printSpace("Prime Cost", 15);
+				con.printSpace("Margin(%%)", 21);
+				con.printSpace("Sail Cost", 15); //110
+				con.printSpace("Manufacturer", 26);
+				printf("¦¢\n");
+				con.boxLine();
+				
+			}
+			else if (isLinux) {
+				
+				con.boxLine("Prod. ID,   Name,   Stocks,   Prime Cost,   Margin(%%),   Sail Cost,   Manufacturer");
+				
+			}
+			
 
 			for (Other* Queue = this->Head; Queue != NULL; Queue = Queue->getNext()) {
 
-				printf("¦¢");
-				con.printSpace(to_string(Queue->getID()), 12);
-				con.printSpace(Queue->getName(), 32);
-				con.printSpace(to_string(Queue->getStock()), 16); //60
-				con.printSpace(to_string(Queue->getPrimeCost()), 15);
-				con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
-				con.printSpace(to_string(Queue->getSailCost()), 15); //110
-				con.printSpace(Queue->getManufacturer(), 26);
-				printf("¦¢\n");
-
+				if(isWin) {
+					
+					printf("¦¢");
+					con.printSpace(to_string(Queue->getID()), 12);
+					con.printSpace(Queue->getName(), 32);
+					con.printSpace(to_string(Queue->getStock()), 16); //60
+					con.printSpace(to_string(Queue->getPrimeCost()), 15);
+					con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
+					con.printSpace(to_string(Queue->getSailCost()), 15); //110
+					con.printSpace(Queue->getManufacturer(), 26);
+					printf("¦¢\n");
+					
+				}
+				else if (isLinux) {
+					
+					con.boxLine(to_string(Queue->getID()) + ", " + Queue->getName() + ", " + to_string(Queue->getStock()) + ", " + to_string(Queue->getPrimeCost()) + ", " + to_string((int)(Queue->getMargin() * 100)) + ", " + to_string(Queue->getSailCost()) + ", " + Queue->getManufacturer());
+					
+				}
+				
 			};
 
 			con.boxClose();
