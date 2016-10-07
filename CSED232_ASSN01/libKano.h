@@ -126,9 +126,9 @@ namespace _Kano {
 
 		void csDelay(float time) {
 			
-			time = time * 1000;
-			
 #if isWin
+
+			time = time * 1000;
 
 			clock_t beginningTime = clock();
 
@@ -136,7 +136,7 @@ namespace _Kano {
 			
 #elif isLinux
 			
-			msleep(time);
+			sleep(time);
 			
 #endif
 
