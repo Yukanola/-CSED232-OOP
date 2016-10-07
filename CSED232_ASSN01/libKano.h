@@ -322,7 +322,7 @@ namespace _Kano {
 
 			printf("│");
 
-			this->printSpaceCenter(sentence, cols - 4 - ((this->consolSize[1] % 2) ? 1 : 0));
+			this->printSpaceCenter(sentence, cols - 4 - ((this->consolSize[1] % 2) ? 1 : 0) + ((isLinux) ? 1 : 0));
 
 			printf("│\n");
 
@@ -332,7 +332,7 @@ namespace _Kano {
 
 			printf("│");
 
-			this->printSpaceCenter(sentence, cols - 4 - ((this->consolSize[1] % 2) ? 1 : 0));
+			this->printSpaceCenter(sentence, cols - 4 - ((this->consolSize[1] % 2) ? 1 : 0) ++ ((isLinux) ? 1 : 0));
 
 			printf("│\n");
 
@@ -342,7 +342,7 @@ namespace _Kano {
 
 			printf("│");
 
-			this->printSpaceRight(sentence, cols - 4 - ((this->consolSize[1] % 2) ? 1 : 0));
+			this->printSpaceRight(sentence, cols - 4 - ((this->consolSize[1] % 2) ? 1 : 0) + ((isLinux) ? 1 : 0));
 
 			printf("│\n");
 
@@ -352,7 +352,7 @@ namespace _Kano {
 
 			printf("│");
 
-			this->printSpaceRight(sentence, cols - 4 - ((this->consolSize[1] % 2) ? 1 : 0));
+			this->printSpaceRight(sentence, cols - 4 - ((this->consolSize[1] % 2) ? 1 : 0) + ((isLinux) ? 1 : 0));
 
 			printf("│\n");
 
