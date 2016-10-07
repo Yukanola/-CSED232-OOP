@@ -156,7 +156,7 @@ void endPOS(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Othe
 	Products << "-SNACK-" << endl;
 
 	for (Snack* aSnack = Snacks->getHead(); aSnack != NULL; aSnack = aSnack->getNext())
-		Products << aSnack->getID() << " " + aSnack->getName()M+ " " << aSnack->getStock() << " " << aSnack->getPrimeCost() << " " << aSnack->getMargin() << " " << aSnack->getSailCost() << " " << aSnack->getManufacturer() << endl;
+		Products << aSnack->getID() << " " + aSnack->getName()+ " " << aSnack->getStock() << " " << aSnack->getPrimeCost() << " " << aSnack->getMargin() << " " << aSnack->getSailCost() << " " << aSnack->getManufacturer() << endl;
 
 	for (; Snacks->getHead() != NULL; Snacks->Delete(Snacks->getHead()));
 
