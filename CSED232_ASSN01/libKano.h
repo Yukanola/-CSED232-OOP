@@ -51,6 +51,8 @@ using std::to_string;
 
 #include <sys/ioctl.h>
 #include <unistd.h>
+#include <linux/timer.h>
+#include <linux/delay.h>
 
 #define BLACK "black"
 #define BLUE "blue"
@@ -125,12 +127,20 @@ namespace _Kano {
 		};
 
 		void csDelay(float time) {
-
+			
 			time = time * 1000;
+			
+#if isWin
 
 			clock_t beginningTime = clock();
 
 			while (clock() - beginningTime < (int)time);
+			
+#elif isLinux
+			
+			msleep(time);
+			
+#endif
 
 		};
 
