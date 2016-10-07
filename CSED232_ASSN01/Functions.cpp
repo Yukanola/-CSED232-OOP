@@ -1,4 +1,4 @@
-#include "Products.h"
+ï»¿#include "Products.h"
 #include <fstream>
 
 using std::endl;
@@ -26,7 +26,7 @@ bool dispMenu(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 	if (sync) {
 
 		con.boxOpen();
-		con.boxLine("Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù.");
+		con.boxLine("ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤.");
 		con.boxClose();
 
 	}
@@ -36,19 +36,19 @@ bool dispMenu(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 	con.boxOpen();
 	con.boxLineCenter("[MENU]");
 	con.boxLine();
-	con.boxLine("0: ÀüÃ¼ »óÇ°Á¤º¸ Ãâ·Â");
-	con.boxLine("1: ÆÇ¸Å");
-	con.boxLine("2: ÀÔ°í");
-	con.boxLine("3: »óÇ°°Ë»ö");
-	con.boxLine("4: »óÇ°Á¤º¸ ¼öÁ¤");
-	con.boxLine("5: »óÇ°Á¤º¸ »èÁ¦");
-	con.boxLine("6: ÆÇ¸ÅÀÌ·Â Ãâ·Â");
-	con.boxLine("7 : Á¾·á");
+	con.boxLine("0: ì „ì²´ ìƒí’ˆì •ë³´ ì¶œë ¥");
+	con.boxLine("1: íŒë§¤");
+	con.boxLine("2: ì…ê³ ");
+	con.boxLine("3: ìƒí’ˆê²€ìƒ‰");
+	con.boxLine("4: ìƒí’ˆì •ë³´ ìˆ˜ì •");
+	con.boxLine("5: ìƒí’ˆì •ë³´ ì‚­ì œ");
+	con.boxLine("6: íŒë§¤ì´ë ¥ ì¶œë ¥");
+	con.boxLine("7 : ì¢…ë£Œ");
 	con.boxClose();
 
 	int input;
 
-	cout << " ¸Ş´º ¼±ÅÃ: ";
+	cout << " ë©”ë‰´ ì„ íƒ: ";
 
 	cin >> input;
 
@@ -98,7 +98,7 @@ void dispAllProducts(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherL
 	if (Snacks->getAmounts() > 15) {
 
 		con.boxOpen();
-		con.boxLine("ÃÑ " + to_string(Snacks->getAmounts() + Drinks->getAmounts() + Ices->getAmounts() + Others->getAmounts()) + "°³ÀÇ »óÇ°ÀÌ °Ë»öµÇ¾ú½À´Ï´Ù.");
+		con.boxLine("ì´ " + to_string(Snacks->getAmounts() + Drinks->getAmounts() + Ices->getAmounts() + Others->getAmounts()) + "ê°œì˜ ìƒí’ˆì´ ê²€ìƒ‰ë˜ì—ˆìŠµë‹ˆë‹¤.");
 		con.boxClose();
 
 		con.csPause();
@@ -112,7 +112,7 @@ void dispAllProducts(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherL
 	if (Drinks->getAmounts() > 15) {
 
 		con.boxOpen();
-		con.boxLine("ÃÑ " + to_string(Snacks->getAmounts() + Drinks->getAmounts() + Ices->getAmounts() + Others->getAmounts()) + "°³ÀÇ »óÇ°ÀÌ °Ë»öµÇ¾ú½À´Ï´Ù.");
+		con.boxLine("ì´ " + to_string(Snacks->getAmounts() + Drinks->getAmounts() + Ices->getAmounts() + Others->getAmounts()) + "ê°œì˜ ìƒí’ˆì´ ê²€ìƒ‰ë˜ì—ˆìŠµë‹ˆë‹¤.");
 		con.boxClose();
 
 		con.csPause();
@@ -126,7 +126,7 @@ void dispAllProducts(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherL
 	if (Ices->getAmounts() > 15) {
 
 		con.boxOpen();
-		con.boxLine("ÃÑ " + to_string(Snacks->getAmounts() + Drinks->getAmounts() + Ices->getAmounts() + Others->getAmounts()) + "°³ÀÇ »óÇ°ÀÌ °Ë»öµÇ¾ú½À´Ï´Ù.");
+		con.boxLine("ì´ " + to_string(Snacks->getAmounts() + Drinks->getAmounts() + Ices->getAmounts() + Others->getAmounts()) + "ê°œì˜ ìƒí’ˆì´ ê²€ìƒ‰ë˜ì—ˆìŠµë‹ˆë‹¤.");
 		con.boxClose();
 
 		con.csPause();
@@ -138,7 +138,7 @@ void dispAllProducts(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherL
 	Others->dispAllProducts();
 
 	con.boxOpen();
-	con.boxLine("ÃÑ " + to_string(Snacks->getAmounts() + Drinks->getAmounts() + Ices->getAmounts() + Others->getAmounts()) + "°³ÀÇ »óÇ°ÀÌ °Ë»öµÇ¾ú½À´Ï´Ù.");
+	con.boxLine("ì´ " + to_string(Snacks->getAmounts() + Drinks->getAmounts() + Ices->getAmounts() + Others->getAmounts()) + "ê°œì˜ ìƒí’ˆì´ ê²€ìƒ‰ë˜ì—ˆìŠµë‹ˆë‹¤.");
 	con.boxClose();
 
 	con.csPause();
@@ -244,22 +244,22 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 	OtherList *sOthers = new OtherList;
 
 	con.boxOpen();
-	con.boxLineCenter("[»óÇ° °Ë»ö]");
+	con.boxLineCenter("[ìƒí’ˆ ê²€ìƒ‰]");
 	con.boxLine();
-	con.boxLine("°Ë»ö ±âÁØÀ» ¼±ÅÃÇÏ¼¼¿ä.");
+	con.boxLine("ê²€ìƒ‰ ê¸°ì¤€ì„ ì„ íƒí•˜ì„¸ìš”.");
 	con.boxClose();
 	con.boxOpen();
 	con.boxLineCenter((Mode) ? "1. Prod. ID    2. Name" : "1. Prod. ID    2. Name    3. Manufacturer");
 	con.boxClose();
 	
-	cout << " °Ë»ö ±âÁØ: ";
+	cout << " ê²€ìƒ‰ ê¸°ì¤€: ";
 	cin >> Temp;
 
 	cout << endl;
 
 	if (Temp == 1) {
 
-		cout << " Ã£À» »óÇ°ÀÇ ID: ";
+		cout << " ì°¾ì„ ìƒí’ˆì˜ ID: ";
 		cin >> Temp;
 
 		if ((aSnack = Snacks->getProdByID(Temp)) && aSnack->getID() == Temp) {
@@ -303,14 +303,14 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 			cls();
 
 		con.boxOpen();
-		con.boxLineCenter("[°Ë»ö °á°ú]");
+		con.boxLineCenter("[ê²€ìƒ‰ ê²°ê³¼]");
 		con.boxLine();
 		
 		if (sort) {
 
-			con.boxLine("ÃÑ 1°³ÀÇ »óÇ°ÀÌ °Ë»öµÇ¾ú½À´Ï´Ù.");
+			con.boxLine("ì´ 1ê°œì˜ ìƒí’ˆì´ ê²€ìƒ‰ë˜ì—ˆìŠµë‹ˆë‹¤.");
 			con.boxLine();
-			printf("¦¢");
+			printf("â”‚");
 			con.printSpace("Prod. ID", 12);
 			con.printSpace("Name", 32);
 			con.printSpace("Stocks", 16); //60
@@ -318,9 +318,9 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 			con.printSpace("Margin(%%)", 21);
 			con.printSpace("Sail Cost", 15); //110
 			con.printSpace("Manufacturer", 26);
-			printf("¦¢\n");
+			printf("â”‚\n");
 			con.boxLine();
-			printf("¦¢");
+			printf("â”‚");
 			con.printSpace(to_string(targetProd->getID()), 12);
 			con.printSpace(targetProd->getName(), 32);
 			con.printSpace(to_string(targetProd->getStock()), 16);
@@ -328,7 +328,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 			con.printSpace(to_string((int)(targetProd->getMargin() * 100)), 20);
 			con.printSpace(to_string(targetProd->getSailCost()), 15);
 			con.printSpace(targetProd->getManufacturer(), 26);
-			printf("¦¢\n");
+			printf("â”‚\n");
 
 			retVal[0] = targetProd->getID();
 			retVal[1] = sort;
@@ -338,14 +338,14 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 
 		}
 		else
-			con.boxLine("ÇØ´ç »óÇ°(µé)À» Ã£À» ¼ö ¾ø½À´Ï´Ù.");	
+			con.boxLine("í•´ë‹¹ ìƒí’ˆ(ë“¤)ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");	
 
 		con.boxClose();
 
 	}
 	else if (Temp == 2) {
 
-		cout << " Ã£À» Á¦Ç°ÀÇ ÀÌ¸§: ";
+		cout << " ì°¾ì„ ì œí’ˆì˜ ì´ë¦„: ";
 		cin >> TempStr;
 
 		if ((aSnack = Snacks->getProdByName(TempStr)) && aSnack->getName() == TempStr) {
@@ -389,14 +389,14 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 			cls();
 
 		con.boxOpen();
-		con.boxLineCenter("[°Ë»ö °á°ú]");
+		con.boxLineCenter("[ê²€ìƒ‰ ê²°ê³¼]");
 		con.boxLine();
 
 		if (sort) {
 
-			con.boxLine("ÃÑ 1°³ÀÇ »óÇ°ÀÌ °Ë»öµÇ¾ú½À´Ï´Ù.");
+			con.boxLine("ì´ 1ê°œì˜ ìƒí’ˆì´ ê²€ìƒ‰ë˜ì—ˆìŠµë‹ˆë‹¤.");
 			con.boxLine();
-			printf("¦¢");
+			printf("â”‚");
 			con.printSpace("Prod. ID", 12);
 			con.printSpace("Name", 32);
 			con.printSpace("Stocks", 16); //60
@@ -404,9 +404,9 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 			con.printSpace("Margin(%%)", 21);
 			con.printSpace("Sail Cost", 15); //110
 			con.printSpace("Manufacturer", 26);
-			printf("¦¢\n");
+			printf("â”‚\n");
 			con.boxLine();
-			printf("¦¢");
+			printf("â”‚");
 			con.printSpace(to_string(targetProd->getID()), 12);
 			con.printSpace(targetProd->getName(), 32);
 			con.printSpace(to_string(targetProd->getStock()), 16);
@@ -414,7 +414,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 			con.printSpace(to_string((int)(targetProd->getMargin() * 100)), 20);
 			con.printSpace(to_string(targetProd->getSailCost()), 15);
 			con.printSpace(targetProd->getManufacturer(), 26);
-			printf("¦¢\n");
+			printf("â”‚\n");
 
 			retVal[0] = targetProd->getID();
 			retVal[1] = sort;
@@ -424,14 +424,14 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 
 		}
 		else
-			con.boxLine("ÇØ´ç »óÇ°(µé)À» Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+			con.boxLine("í•´ë‹¹ ìƒí’ˆ(ë“¤)ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 
 		con.boxClose();
 
 	}
 	else if (Temp == 3 && !Mode) {
 
-		cout << " Ã£À» Á¦Ç°µéÀÇ Á¦Á¶»ç: ";
+		cout << " ì°¾ì„ ì œí’ˆë“¤ì˜ ì œì¡°ì‚¬: ";
 		cin >> TempStr;
 
 		sSnacks = Snacks->getProdsByManufacturer(sSnacks, TempStr);
@@ -440,14 +440,14 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 		sOthers = Others->getProdsByManufacturer(sOthers, TempStr);
 
 		con.boxOpen();
-		con.boxLineCenter("[°Ë»ö °á°ú]");
+		con.boxLineCenter("[ê²€ìƒ‰ ê²°ê³¼]");
 		con.boxLine();
 
 		if (sSnacks->getAmounts() + sDrinks->getAmounts() + sIces->getAmounts() + sOthers->getAmounts()) {
 
-			con.boxLine("ÃÑ " + to_string(sSnacks->getAmounts() + sDrinks->getAmounts() + sIces->getAmounts() + sOthers->getAmounts()) + "°³ÀÇ »óÇ°ÀÌ °Ë»öµÇ¾ú½À´Ï´Ù.");
+			con.boxLine("ì´ " + to_string(sSnacks->getAmounts() + sDrinks->getAmounts() + sIces->getAmounts() + sOthers->getAmounts()) + "ê°œì˜ ìƒí’ˆì´ ê²€ìƒ‰ë˜ì—ˆìŠµë‹ˆë‹¤.");
 			con.boxLine();
-			printf("¦¢");
+			printf("â”‚");
 			con.printSpace("Prod. ID", 12);
 			con.printSpace("Name", 32);
 			con.printSpace("Stocks", 16); //60
@@ -455,12 +455,12 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 			con.printSpace("Margin(%%)", 21);
 			con.printSpace("Sail Cost", 15); //110
 			con.printSpace("Manufacturer", 26);
-			printf("¦¢\n");
+			printf("â”‚\n");
 			con.boxLine();
 
 			for (Snack* Queue = sSnacks->getHead(); Queue != NULL; Queue = Queue->getNext()) {
 
-				printf("¦¢");
+				printf("â”‚");
 				con.printSpace(to_string(Queue->getID()), 12);
 				con.printSpace(Queue->getName(), 32);
 				con.printSpace(to_string(Queue->getStock()), 16); //60
@@ -468,13 +468,13 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 				con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
 				con.printSpace(to_string(Queue->getSailCost()), 15); //110
 				con.printSpace(Queue->getManufacturer(), 26);
-				printf("¦¢\n");
+				printf("â”‚\n");
 
 			}
 
 			for (Drink* Queue = sDrinks->getHead(); Queue != NULL; Queue = Queue->getNext()) {
 
-				printf("¦¢");
+				printf("â”‚");
 				con.printSpace(to_string(Queue->getID()), 12);
 				con.printSpace(Queue->getName(), 32);
 				con.printSpace(to_string(Queue->getStock()), 16); //60
@@ -482,13 +482,13 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 				con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
 				con.printSpace(to_string(Queue->getSailCost()), 15); //110
 				con.printSpace(Queue->getManufacturer(), 26);
-				printf("¦¢\n");
+				printf("â”‚\n");
 
 			}
 
 			for (Ice* Queue = sIces->getHead(); Queue != NULL; Queue = Queue->getNext()) {
 
-				printf("¦¢");
+				printf("â”‚");
 				con.printSpace(to_string(Queue->getID()), 12);
 				con.printSpace(Queue->getName(), 32);
 				con.printSpace(to_string(Queue->getStock()), 16); //60
@@ -496,13 +496,13 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 				con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
 				con.printSpace(to_string(Queue->getSailCost()), 15); //110
 				con.printSpace(Queue->getManufacturer(), 26);
-				printf("¦¢\n");
+				printf("â”‚\n");
 
 			}
 
 			for (Other* Queue = sOthers->getHead(); Queue != NULL; Queue = Queue->getNext()) {
 
-				printf("¦¢");
+				printf("â”‚");
 				con.printSpace(to_string(Queue->getID()), 12);
 				con.printSpace(Queue->getName(), 32);
 				con.printSpace(to_string(Queue->getStock()), 16); //60
@@ -510,13 +510,13 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 				con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
 				con.printSpace(to_string(Queue->getSailCost()), 15); //110
 				con.printSpace(Queue->getManufacturer(), 26);
-				printf("¦¢\n");
+				printf("â”‚\n");
 
 			}
 
 		}
 		else
-			con.boxLine("ÇØ´ç »óÇ°(µé)À» Ã£À» ¼ö ¾ø½À´Ï´Ù.");
+			con.boxLine("í•´ë‹¹ ìƒí’ˆ(ë“¤)ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 
 		con.boxClose();
 
@@ -524,9 +524,9 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 	else {
 
 		con.boxOpen();
-		con.boxLineCenter("[¿À·ù]");
+		con.boxLineCenter("[ì˜¤ë¥˜]");
 		con.boxLine();
-		con.boxLine("Àß¸øµÈ °ªÀ» ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+		con.boxLine("ì˜ëª»ëœ ê°’ì„ ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 		con.boxClose();
 
 	}
@@ -555,7 +555,7 @@ void dispRecord() {
 	char Temp[1024];
 
 	con.boxOpen();
-	con.boxLineCenter("[ÆÇ¸Å ÀÌ·Â]");
+	con.boxLineCenter("[íŒë§¤ ì´ë ¥]");
 	con.boxClose();
 	con.boxOpen();
 
@@ -566,14 +566,14 @@ void dispRecord() {
 		if ((count++) % 35 == 34) {
 
 			con.boxLine();
-			con.boxLine("°è¼Ó º¸½Ã·Á¸é ¾Æ¹« Å°³ª ´©¸£¼¼¿ä.");
+			con.boxLine("ê³„ì† ë³´ì‹œë ¤ë©´ ì•„ë¬´ í‚¤ë‚˜ ëˆ„ë¥´ì„¸ìš”.");
 			con.boxClose();
 			con.csPause();
 
 			cls();
 
 			con.boxOpen();
-			con.boxLineCenter("[ÆÇ¸Å ÀÌ·Â]");
+			con.boxLineCenter("[íŒë§¤ ì´ë ¥]");
 			con.boxClose();
 			con.boxOpen();
 

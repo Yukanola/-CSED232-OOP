@@ -1,4 +1,4 @@
-#include "Products.h"
+ï»¿#include "Products.h"
 #include <fstream>
 #include <ctime>
 
@@ -350,11 +350,11 @@ void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 	ofstream Records("sell_info.txt", std::ios::app);
 
 	con.boxOpen();
-	con.boxLineCenter("[ÆÇ¸Å]");
+	con.boxLineCenter("[íŒë§¤]");
 	con.boxLine();
-	con.boxLine("Á¦Ç° ID¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+	con.boxLine("ì œí’ˆ IDë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 	con.boxClose();
-	cout << " Á¦Ç° ID: ";
+	cout << " ì œí’ˆ ID: ";
 	cin >> Temp;
 
 	if ((aSnack = Snacks->getProdByID(Temp)) && aSnack->getID() == Temp) {
@@ -397,19 +397,19 @@ void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 	cls();
 
 	con.boxOpen();
-	con.boxLineCenter("[Á¦Ç° Á¤º¸]");
+	con.boxLineCenter("[ì œí’ˆ ì •ë³´]");
 	con.boxLine();
 
 	if (!sort) {
 
-		con.boxLine("Á¸ÀçÇÏÁö ¾Ê´Â »óÇ°ÀÔ´Ï´Ù.");
+		con.boxLine("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ìƒí’ˆì…ë‹ˆë‹¤.");
 		con.boxClose();
 
 	}
 	else {
 
 		con.boxLine("");
-		printf("¦¢");
+		printf("â”‚");
 		con.printSpace("Prod. ID", 12);
 		con.printSpace("Name", 32);
 		con.printSpace("Stocks", 16);
@@ -417,7 +417,7 @@ void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 		con.printSpace("Margin(%%)", 21);
 		con.printSpace("Sail Cost", 15);
 		con.printSpace("Manufacturer", 26);
-		printf("¦¢\n¦¢");
+		printf("â”‚\nâ”‚");
 		con.printSpace(to_string(targetProd->getID()), 12);
 		con.printSpace(targetProd->getName(), 32);
 		con.printSpace(to_string(targetProd->getStock()), 16);
@@ -425,10 +425,10 @@ void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 		con.printSpace(to_string((int)(targetProd->getMargin() * 100)), 20);
 		con.printSpace(to_string(targetProd->getSailCost()), 15);
 		con.printSpace(targetProd->getManufacturer(), 26);
-		printf("¦¢\n");
+		printf("â”‚\n");
 		con.boxClose();
 
-		printf(" ÆÇ¸Å ¼ö·®À» ÀÔ·ÂÇÏ¼¼¿ä: ");
+		printf(" íŒë§¤ ìˆ˜ëŸ‰ì„ ì…ë ¥í•˜ì„¸ìš”: ");
 
 		cin >> Temp;
 
@@ -488,13 +488,13 @@ void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 		con.boxOpen();
 
 		if (sort >= 100)
-			con.boxLine("Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù.");
+			con.boxLine("ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤.");
 		else
 		{
 
-			con.boxLine("Á¤»ó Ã³¸®µÇ¾ú½À´Ï´Ù.");
+			con.boxLine("ì •ìƒ ì²˜ë¦¬ë˜ì—ˆìŠµë‹ˆë‹¤.");
 
-			Records << nowATime->tm_year + 1900 << "." << nowATime->tm_mon + 1 << "." << nowATime->tm_mday << " " << nowATime->tm_hour << ":" << nowATime->tm_min << ":" << nowATime->tm_sec << " " << targetProd->getName() + "(ID=" << targetProd->getID() << ", Price=" << targetProd->getSailCost() << ") " << Temp << "°³ = ÃÑ¾× " << Temp * targetProd->getSailCost() << endl;
+			Records << nowATime->tm_year + 1900 << "." << nowATime->tm_mon + 1 << "." << nowATime->tm_mday << " " << nowATime->tm_hour << ":" << nowATime->tm_min << ":" << nowATime->tm_sec << " " << targetProd->getName() + "(ID=" << targetProd->getID() << ", Price=" << targetProd->getSailCost() << ") " << Temp << "ê°œ = ì´ì•¡ " << Temp * targetProd->getSailCost() << endl;
 
 		}
 
@@ -526,9 +526,9 @@ void procStock(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* O
 	con.csSize(80, 28);
 
 	con.boxOpen();
-	con.boxLineCenter("[ÀÔ°í]");
+	con.boxLineCenter("[ì…ê³ ]");
 	con.boxLine();
-	con.boxLine("Á¤º¸¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+	con.boxLine("ì •ë³´ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 	con.boxClose();
 	cout << " = Prod. ID : ";
 	cin >> id;
@@ -536,8 +536,8 @@ void procStock(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* O
 	if (((aSnack = Snacks->getProdByID(id)) && aSnack->getID() == id) || ((aDrink = Drinks->getProdByID(id)) && aDrink->getID() == id) || ((anIce = Ices->getProdByID(id)) && anIce->getID() == id) || ((aProd = Others->getProdByID(id)) && aProd->getID() == id)) {
 
 		con.boxOpen();
-		con.boxLineCenter("[¿À·ù]");
-		con.boxLine("ÀÔ·ÂÇÑ ID°¡ ÀÌ¹Ì Á¸ÀçÇÕ´Ï´Ù.");
+		con.boxLineCenter("[ì˜¤ë¥˜]");
+		con.boxLine("ì…ë ¥í•œ IDê°€ ì´ë¯¸ ì¡´ì¬í•©ë‹ˆë‹¤.");
 		con.boxClose();
 
 		con.csPause();
@@ -552,8 +552,8 @@ void procStock(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* O
 	if (((aSnack = Snacks->getProdByName(name)) && aSnack->getName() == name) || ((aDrink = Drinks->getProdByName(name)) && aDrink->getName() == name) || ((anIce = Ices->getProdByName(name)) && anIce->getName() == name) || ((aProd = Others->getProdByName(name)) && aProd->getName() == name)) {
 
 		con.boxOpen();
-		con.boxLineCenter("[¿À·ù]");
-		con.boxLine("ÀÔ·ÂÇÑ ÀÌ¸§ÀÌ ÀÌ¹Ì Á¸ÀçÇÕ´Ï´Ù.");
+		con.boxLineCenter("[ì˜¤ë¥˜]");
+		con.boxLine("ì…ë ¥í•œ ì´ë¦„ì´ ì´ë¯¸ ì¡´ì¬í•©ë‹ˆë‹¤.");
 		con.boxClose();
 
 		con.csPause();
@@ -571,11 +571,11 @@ void procStock(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* O
 	cout << endl << " = Manufacturer : ";
 	cin >> man;
 	con.boxOpen();
-	con.boxLine("»óÇ° Ä«Å×°í¸®¸¦ ¼±ÅÃÇÏ¼¼¿ä.");
+	con.boxLine("ìƒí’ˆ ì¹´í…Œê³ ë¦¬ë¥¼ ì„ íƒí•˜ì„¸ìš”.");
 	con.boxLine();
 	con.boxLineCenter("1. Snack    2. Drink    3. Ice    4. Other");
 	con.boxClose();
-	cout << " Ä«Å×°í¸® ¹øÈ£: ";
+	cout << " ì¹´í…Œê³ ë¦¬ ë²ˆí˜¸: ";
 	cin >> sort;
 
 	if (sort == 1) {
@@ -609,14 +609,14 @@ void procStock(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* O
 	else {
 
 		con.boxOpen();
-		con.boxLineCenter("[¿À·ù]");
-		con.boxLine("Àß¸øµÈ °ªÀ» ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+		con.boxLineCenter("[ì˜¤ë¥˜]");
+		con.boxLine("ì˜ëª»ëœ ê°’ì„ ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 		con.boxClose();
 
 	}
 
 	con.boxOpen();
-	con.boxLine("ÀÔ°íÃ³¸® µÇ¾ú½À´Ï´Ù.");
+	con.boxLine("ì…ê³ ì²˜ë¦¬ ë˜ì—ˆìŠµë‹ˆë‹¤.");
 	con.boxClose();
 
 	con.csPause();
@@ -627,7 +627,7 @@ void procModify(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 
 	con.csSize(140, 30);
 	con.boxOpen();
-	con.boxLineCenter("»óÇ° °Ë»ö ÈÄ ¼öÁ¤ÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.");
+	con.boxLineCenter("ìƒí’ˆ ê²€ìƒ‰ í›„ ìˆ˜ì •í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
 	con.boxClose();
 
 	Snack* aSnack, *sSnack;
@@ -657,11 +657,11 @@ void procModify(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 	float TempFloat;
 
 	con.boxOpen();
-	con.boxLine("¼öÁ¤ÇÒ Ç×¸ñÀ» ¼±ÅÃÇÏ¼¼¿ä.");
+	con.boxLine("ìˆ˜ì •í•  í•­ëª©ì„ ì„ íƒí•˜ì„¸ìš”.");
 	con.boxLine();
 	con.boxLine("1. Prod.ID    2. Name    3. Stocks    4. Prime Cost    5. Margin    6. Manufacturer");
 	con.boxClose();
-	cout << " ¼±ÅÃ: ";
+	cout << " ì„ íƒ: ";
 	cin >> Temp;
 
 	switch (Temp) {
@@ -672,8 +672,8 @@ void procModify(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 		if (((sSnack = Snacks->getProdByID(Temp)) && sSnack->getID() == Temp) || ((sDrink = Drinks->getProdByID(Temp)) && sDrink->getID() == Temp) || ((sIce = Ices->getProdByID(Temp)) && sIce->getID() == Temp) || ((sProd = Others->getProdByID(Temp)) && sProd->getID() == Temp)) {
 
 			con.boxOpen();
-			con.boxLineCenter("[¿À·ù]");
-			con.boxLine("ÀÔ·ÂÇÑ ID°¡ ÀÌ¹Ì Á¸ÀçÇÕ´Ï´Ù.");
+			con.boxLineCenter("[ì˜¤ë¥˜]");
+			con.boxLine("ì…ë ¥í•œ IDê°€ ì´ë¯¸ ì¡´ì¬í•©ë‹ˆë‹¤.");
 			con.boxClose();
 
 			con.csPause();
@@ -681,7 +681,7 @@ void procModify(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 			return;
 
 		}
-		deb("Åë°ú");
+		deb("í†µê³¼");
 		if (targetProdInfo[1] == 2)
 			aSnack->setID(Temp);
 		else if (targetProdInfo[1] == 3)
@@ -699,8 +699,8 @@ void procModify(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 		if (((sSnack = Snacks->getProdByName(TempStr)) && sSnack->getName() == TempStr) || ((sDrink = Drinks->getProdByName(TempStr)) && sDrink->getName() == TempStr) || ((sIce = Ices->getProdByName(TempStr)) && sIce->getName() == TempStr) || ((sProd = Others->getProdByName(TempStr)) && sProd->getName() == TempStr)) {
 
 			con.boxOpen();
-			con.boxLineCenter("[¿À·ù]");
-			con.boxLine("ÀÔ·ÂÇÑ ÀÌ¸§ÀÌ ÀÌ¹Ì Á¸ÀçÇÕ´Ï´Ù.");
+			con.boxLineCenter("[ì˜¤ë¥˜]");
+			con.boxLine("ì…ë ¥í•œ ì´ë¦„ì´ ì´ë¯¸ ì¡´ì¬í•©ë‹ˆë‹¤.");
 			con.boxClose();
 
 			con.csPause();
@@ -774,7 +774,7 @@ void procModify(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 	}
 
 	con.boxOpen();
-	con.boxLine("¼º°øÀûÀ¸·Î »óÇ° Á¤º¸¸¦ ¼öÁ¤ÇÏ¿´½À´Ï´Ù.");
+	con.boxLine("ì„±ê³µì ìœ¼ë¡œ ìƒí’ˆ ì •ë³´ë¥¼ ìˆ˜ì •í•˜ì˜€ìŠµë‹ˆë‹¤.");
 	con.boxClose();
 
 	con.csPause();
@@ -785,7 +785,7 @@ void procRemove(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 
 	con.csSize(140, 30);
 	con.boxOpen();
-	con.boxLineCenter("»óÇ° °Ë»ö ÈÄ »èÁ¦ÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.");
+	con.boxLineCenter("ìƒí’ˆ ê²€ìƒ‰ í›„ ì‚­ì œí•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
 	con.boxClose();
 
 	int* targetProdInfo;
@@ -806,7 +806,7 @@ void procRemove(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 		eLog(_Kano::UNKNOWNARG);
 
 	con.boxOpen();
-	con.boxLineCenter("»óÇ°ÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù.");
+	con.boxLineCenter("ìƒí’ˆì´ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.");
 	con.boxClose();
 
 	con.csPause();
