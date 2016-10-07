@@ -14,4 +14,5 @@ This program is POS(Point-Of-Sale) which developed as assignment 1 at CSED232 cl
 ## Etc.
 
 Kano Library 0.9_0161007.4 used.
+
 Free License.
