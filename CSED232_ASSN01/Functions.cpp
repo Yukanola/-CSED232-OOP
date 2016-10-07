@@ -14,7 +14,7 @@ int* dispSearch(SnackList*, DrinkList*, IceList*, OtherList*, bool);
 void procModify(SnackList*, DrinkList*, IceList*, OtherList*);
 void procRemove(SnackList*, DrinkList*, IceList*, OtherList*);
 void dispRecord();
-
+ 
 bool dispMenu(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others) {
 
 	static bool sync = 0;

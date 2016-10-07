@@ -383,7 +383,7 @@ namespace _Kano {
 			_Kano::con.printSpace(csCols - 24);
 			printf("│\n│File       : ");
 			_Kano::con.printSpace((char*)bsPos, csSize[1] - 17 - ((csSize[1] % 2) ? 1 : 0));
-			printf("│\n│Line       : %.5d", line);
+			printf("│\n│Line       : %.5d", line); 
 			_Kano::con.printSpace(csSize[1] - 22 - ((csSize[1] % 2) ? 1 : 0));
 			printf("│\n│Function   : ");
 			_Kano::con.printSpace(func, csSize[1] - 17 - ((csSize[1] % 2) ? 1 : 0));

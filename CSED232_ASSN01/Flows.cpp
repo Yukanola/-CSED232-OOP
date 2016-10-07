@@ -172,7 +172,7 @@ bool initProd(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 				deb("char* converted to string.");
 
 				Other* aProd = new Other(atoi(readings[0]), name, atoi(readings[2]), atoi(readings[3]), atof(readings[4]), atoi(readings[5]), man);
-
+ 
 				deb("An Other object created.");
 
 				Others->Add(aProd);

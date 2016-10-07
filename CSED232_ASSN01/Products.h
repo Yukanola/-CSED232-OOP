@@ -321,7 +321,7 @@ public:
 
 		}
 
-	};
+	}; 
 
 	Drink* getProdByID(int id) { Drink* TargetSnack = this->Head;  for (; TargetSnack != NULL && TargetSnack->getID() != id; TargetSnack = TargetSnack->getNext()); return TargetSnack; };
 
