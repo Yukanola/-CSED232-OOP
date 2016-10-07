@@ -48,7 +48,7 @@ bool dispMenu(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 
 	int input;
 
-	cout << " Select Menu ";
+	cout << " Select Menu : ";
 
 	cin >> input;
 
@@ -563,7 +563,7 @@ void dispRecord() {
 
 		con.boxLine(Temp);
 
-		if ((count++) % 35 == 34) {
+		if ((count++) % 25 == 24) {
 
 			con.boxLine();
 			con.boxLine("Press any key to keep going.");
