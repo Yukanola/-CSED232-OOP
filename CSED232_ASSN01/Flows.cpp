@@ -350,11 +350,11 @@ void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 	ofstream Records("sell_info.txt", std::ios::app);
 
 	con.boxOpen();
-	con.boxLineCenter("[판매]");
+	con.boxLineCenter("[SELL]");
 	con.boxLine();
-	con.boxLine("제품 ID를 입력하세요.");
+	con.boxLine("Enter the Product ID.");
 	con.boxClose();
-	cout << " 제품 ID: ";
+	cout << " Prod. ID: ";
 	cin >> Temp;
 
 	if ((aSnack = Snacks->getProdByID(Temp)) && aSnack->getID() == Temp) {
@@ -397,12 +397,12 @@ void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 	cls();
 
 	con.boxOpen();
-	con.boxLineCenter("[제품 정보]");
+	con.boxLineCenter("[Prod. Information]");
 	con.boxLine();
 
 	if (!sort) {
 
-		con.boxLine("존재하지 않는 상품입니다.");
+		con.boxLine("Invalid product (Your product does not exist).");
 		con.boxClose();
 
 	}
@@ -428,7 +428,7 @@ void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 		printf("│\n");
 		con.boxClose();
 
-		printf(" 판매 수량을 입력하세요: ");
+		printf(" How much do you want to sell: ");
 
 		cin >> Temp;
 
@@ -488,13 +488,13 @@ void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 		con.boxOpen();
 
 		if (sort >= 100)
-			con.boxLine("잘못된 입력입니다.");
+			con.boxLine("Invalid Input.");
 		else
 		{
 
-			con.boxLine("정상 처리되었습니다.");
+			con.boxLine("Successfully processed.");
 
-			Records << nowATime->tm_year + 1900 << "." << nowATime->tm_mon + 1 << "." << nowATime->tm_mday << " " << nowATime->tm_hour << ":" << nowATime->tm_min << ":" << nowATime->tm_sec << " " << targetProd->getName() + "(ID=" << targetProd->getID() << ", Price=" << targetProd->getSailCost() << ") " << Temp << "개 = 총액 " << Temp * targetProd->getSailCost() << endl;
+			Records << nowATime->tm_year + 1900 << "." << nowATime->tm_mon + 1 << "." << nowATime->tm_mday << " " << nowATime->tm_hour << ":" << nowATime->tm_min << ":" << nowATime->tm_sec << " " << targetProd->getName() + "(ID=" << targetProd->getID() << ", Price=" << targetProd->getSailCost() << ") " << Temp << " = SUM " << Temp * targetProd->getSailCost() << endl;
 
 		}
 
@@ -526,9 +526,9 @@ void procStock(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* O
 	con.csSize(80, 28);
 
 	con.boxOpen();
-	con.boxLineCenter("[입고]");
+	con.boxLineCenter("[Receiving]");
 	con.boxLine();
-	con.boxLine("정보를 입력하세요.");
+	con.boxLine("Enter the informations.");
 	con.boxClose();
 	cout << " = Prod. ID : ";
 	cin >> id;
@@ -536,8 +536,8 @@ void procStock(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* O
 	if (((aSnack = Snacks->getProdByID(id)) && aSnack->getID() == id) || ((aDrink = Drinks->getProdByID(id)) && aDrink->getID() == id) || ((anIce = Ices->getProdByID(id)) && anIce->getID() == id) || ((aProd = Others->getProdByID(id)) && aProd->getID() == id)) {
 
 		con.boxOpen();
-		con.boxLineCenter("[오류]");
-		con.boxLine("입력한 ID가 이미 존재합니다.");
+		con.boxLineCenter("[ERROR]");
+		con.boxLine("Entered ID already exists.");
 		con.boxClose();
 
 		con.csPause();
@@ -552,8 +552,8 @@ void procStock(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* O
 	if (((aSnack = Snacks->getProdByName(name)) && aSnack->getName() == name) || ((aDrink = Drinks->getProdByName(name)) && aDrink->getName() == name) || ((anIce = Ices->getProdByName(name)) && anIce->getName() == name) || ((aProd = Others->getProdByName(name)) && aProd->getName() == name)) {
 
 		con.boxOpen();
-		con.boxLineCenter("[오류]");
-		con.boxLine("입력한 이름이 이미 존재합니다.");
+		con.boxLineCenter("[ERROR]");
+		con.boxLine("Entered name already exists.");
 		con.boxClose();
 
 		con.csPause();
@@ -571,11 +571,11 @@ void procStock(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* O
 	cout << endl << " = Manufacturer : ";
 	cin >> man;
 	con.boxOpen();
-	con.boxLine("상품 카테고리를 선택하세요.");
+	con.boxLine("Select product category.");
 	con.boxLine();
 	con.boxLineCenter("1. Snack    2. Drink    3. Ice    4. Other");
 	con.boxClose();
-	cout << " 카테고리 번호: ";
+	cout << " Category Number: ";
 	cin >> sort;
 
 	if (sort == 1) {
@@ -609,14 +609,14 @@ void procStock(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* O
 	else {
 
 		con.boxOpen();
-		con.boxLineCenter("[오류]");
-		con.boxLine("잘못된 값을 입력하셨습니다.");
+		con.boxLineCenter("[ERROR]");
+		con.boxLine("Invalid Input.");
 		con.boxClose();
 
 	}
 
 	con.boxOpen();
-	con.boxLine("입고처리 되었습니다.");
+	con.boxLine("Receiving Processed.");
 	con.boxClose();
 
 	con.csPause();
@@ -627,7 +627,7 @@ void procModify(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 
 	con.csSize(140, 30);
 	con.boxOpen();
-	con.boxLineCenter("상품 검색 후 수정하실 수 있습니다.");
+	con.boxLineCenter("You can modify a product after searching it.");
 	con.boxClose();
 
 	Snack* aSnack, *sSnack;
@@ -657,11 +657,11 @@ void procModify(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 	float TempFloat;
 
 	con.boxOpen();
-	con.boxLine("수정할 항목을 선택하세요.");
+	con.boxLine("Select what do you want to modify.");
 	con.boxLine();
 	con.boxLine("1. Prod.ID    2. Name    3. Stocks    4. Prime Cost    5. Margin    6. Manufacturer");
 	con.boxClose();
-	cout << " 선택: ";
+	cout << " Selection: ";
 	cin >> Temp;
 
 	switch (Temp) {
@@ -672,8 +672,8 @@ void procModify(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 		if (((sSnack = Snacks->getProdByID(Temp)) && sSnack->getID() == Temp) || ((sDrink = Drinks->getProdByID(Temp)) && sDrink->getID() == Temp) || ((sIce = Ices->getProdByID(Temp)) && sIce->getID() == Temp) || ((sProd = Others->getProdByID(Temp)) && sProd->getID() == Temp)) {
 
 			con.boxOpen();
-			con.boxLineCenter("[오류]");
-			con.boxLine("입력한 ID가 이미 존재합니다.");
+			con.boxLineCenter("[ERROR]");
+			con.boxLine("Entered ID already exists.");
 			con.boxClose();
 
 			con.csPause();
@@ -681,7 +681,7 @@ void procModify(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 			return;
 
 		}
-		deb("통과");
+		
 		if (targetProdInfo[1] == 2)
 			aSnack->setID(Temp);
 		else if (targetProdInfo[1] == 3)
@@ -699,8 +699,8 @@ void procModify(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 		if (((sSnack = Snacks->getProdByName(TempStr)) && sSnack->getName() == TempStr) || ((sDrink = Drinks->getProdByName(TempStr)) && sDrink->getName() == TempStr) || ((sIce = Ices->getProdByName(TempStr)) && sIce->getName() == TempStr) || ((sProd = Others->getProdByName(TempStr)) && sProd->getName() == TempStr)) {
 
 			con.boxOpen();
-			con.boxLineCenter("[오류]");
-			con.boxLine("입력한 이름이 이미 존재합니다.");
+			con.boxLineCenter("[ERROR]");
+			con.boxLine("Entered name already exists.");
 			con.boxClose();
 
 			con.csPause();
@@ -774,7 +774,7 @@ void procModify(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 	}
 
 	con.boxOpen();
-	con.boxLine("성공적으로 상품 정보를 수정하였습니다.");
+	con.boxLine("Successfully modified product information.");
 	con.boxClose();
 
 	con.csPause();
@@ -785,7 +785,7 @@ void procRemove(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 
 	con.csSize(140, 30);
 	con.boxOpen();
-	con.boxLineCenter("상품 검색 후 삭제하실 수 있습니다.");
+	con.boxLineCenter("You can remove a product after searching it.");
 	con.boxClose();
 
 	int* targetProdInfo;
@@ -806,7 +806,7 @@ void procRemove(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 		eLog(_Kano::UNKNOWNARG);
 
 	con.boxOpen();
-	con.boxLineCenter("상품이 삭제되었습니다.");
+	con.boxLineCenter("A product successfully removed.");
 	con.boxClose();
 
 	con.csPause();

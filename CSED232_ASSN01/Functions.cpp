@@ -26,7 +26,7 @@ bool dispMenu(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 	if (sync) {
 
 		con.boxOpen();
-		con.boxLine("잘못된 입력입니다.");
+		con.boxLine("Invalid Menu Selection.");
 		con.boxClose();
 
 	}
@@ -36,19 +36,19 @@ bool dispMenu(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 	con.boxOpen();
 	con.boxLineCenter("[MENU]");
 	con.boxLine();
-	con.boxLine("0: 전체 상품정보 출력");
-	con.boxLine("1: 판매");
-	con.boxLine("2: 입고");
-	con.boxLine("3: 상품검색");
-	con.boxLine("4: 상품정보 수정");
-	con.boxLine("5: 상품정보 삭제");
-	con.boxLine("6: 판매이력 출력");
-	con.boxLine("7 : 종료");
+	con.boxLine("0: Show all products");
+	con.boxLine("1: Selling");
+	con.boxLine("2: Receiving");
+	con.boxLine("3: Product Search");
+	con.boxLine("4: Modify Product Information");
+	con.boxLine("5: Remove Product Information");
+	con.boxLine("6: Show selling records");
+	con.boxLine("7 : EXIT");
 	con.boxClose();
 
 	int input;
 
-	cout << " 메뉴 선택: ";
+	cout << " Select Menu ";
 
 	cin >> input;
 
@@ -98,7 +98,7 @@ void dispAllProducts(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherL
 	if (Snacks->getAmounts() > 15) {
 
 		con.boxOpen();
-		con.boxLine("총 " + to_string(Snacks->getAmounts() + Drinks->getAmounts() + Ices->getAmounts() + Others->getAmounts()) + "개의 상품이 검색되었습니다.");
+		con.boxLine(to_string(Snacks->getAmounts() + Drinks->getAmounts() + Ices->getAmounts() + Others->getAmounts()) + " product(s) found.");
 		con.boxClose();
 
 		con.csPause();
@@ -112,7 +112,7 @@ void dispAllProducts(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherL
 	if (Drinks->getAmounts() > 15) {
 
 		con.boxOpen();
-		con.boxLine("총 " + to_string(Snacks->getAmounts() + Drinks->getAmounts() + Ices->getAmounts() + Others->getAmounts()) + "개의 상품이 검색되었습니다.");
+		con.boxLine(to_string(Snacks->getAmounts() + Drinks->getAmounts() + Ices->getAmounts() + Others->getAmounts()) + " product(s) found.");
 		con.boxClose();
 
 		con.csPause();
@@ -126,7 +126,7 @@ void dispAllProducts(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherL
 	if (Ices->getAmounts() > 15) {
 
 		con.boxOpen();
-		con.boxLine("총 " + to_string(Snacks->getAmounts() + Drinks->getAmounts() + Ices->getAmounts() + Others->getAmounts()) + "개의 상품이 검색되었습니다.");
+		con.boxLine(to_string(Snacks->getAmounts() + Drinks->getAmounts() + Ices->getAmounts() + Others->getAmounts()) + " product(s) found.");
 		con.boxClose();
 
 		con.csPause();
@@ -138,7 +138,7 @@ void dispAllProducts(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherL
 	Others->dispAllProducts();
 
 	con.boxOpen();
-	con.boxLine("총 " + to_string(Snacks->getAmounts() + Drinks->getAmounts() + Ices->getAmounts() + Others->getAmounts()) + "개의 상품이 검색되었습니다.");
+	con.boxLine(to_string(Snacks->getAmounts() + Drinks->getAmounts() + Ices->getAmounts() + Others->getAmounts()) + " product(s) found.");
 	con.boxClose();
 
 	con.csPause();
@@ -156,7 +156,7 @@ void endPOS(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Othe
 	Products << "-SNACK-" << endl;
 
 	for (Snack* aSnack = Snacks->getHead(); aSnack != NULL; aSnack = aSnack->getNext())
-		Products << aSnack->getID() << " " + aSnack->getName() + " " << aSnack->getStock() << " " << aSnack->getPrimeCost() << " " << aSnack->getMargin() << " " << aSnack->getSailCost() << " " << aSnack->getManufacturer() << endl;
+		Products << aSnack->getID() << " " + aSnack->getName()M+ " " << aSnack->getStock() << " " << aSnack->getPrimeCost() << " " << aSnack->getMargin() << " " << aSnack->getSailCost() << " " << aSnack->getManufacturer() << endl;
 
 	for (; Snacks->getHead() != NULL; Snacks->Delete(Snacks->getHead()));
 
@@ -244,22 +244,22 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 	OtherList *sOthers = new OtherList;
 
 	con.boxOpen();
-	con.boxLineCenter("[상품 검색]");
+	con.boxLineCenter("[Product Search]");
 	con.boxLine();
-	con.boxLine("검색 기준을 선택하세요.");
-	con.boxClose();
+	con.boxLine("Select the way of searching.");
+		con.boxClose();
 	con.boxOpen();
 	con.boxLineCenter((Mode) ? "1. Prod. ID    2. Name" : "1. Prod. ID    2. Name    3. Manufacturer");
 	con.boxClose();
 	
-	cout << " 검색 기준: ";
+	cout << " Way of searching: ";
 	cin >> Temp;
 
 	cout << endl;
 
 	if (Temp == 1) {
 
-		cout << " 찾을 상품의 ID: ";
+		cout << " ID: ";
 		cin >> Temp;
 
 		if ((aSnack = Snacks->getProdByID(Temp)) && aSnack->getID() == Temp) {
@@ -303,12 +303,12 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 			cls();
 
 		con.boxOpen();
-		con.boxLineCenter("[검색 결과]");
+		con.boxLineCenter("[Search Result]");
 		con.boxLine();
 		
 		if (sort) {
 
-			con.boxLine("총 1개의 상품이 검색되었습니다.");
+			con.boxLine("1 product found.");
 			con.boxLine();
 			printf("│");
 			con.printSpace("Prod. ID", 12);
@@ -338,14 +338,14 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 
 		}
 		else
-			con.boxLine("해당 상품(들)을 찾을 수 없습니다.");	
+			con.boxLine("Couldn\'t find any product(s).");	
 
 		con.boxClose();
 
 	}
 	else if (Temp == 2) {
 
-		cout << " 찾을 제품의 이름: ";
+		cout << " Name: ";
 		cin >> TempStr;
 
 		if ((aSnack = Snacks->getProdByName(TempStr)) && aSnack->getName() == TempStr) {
@@ -389,12 +389,12 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 			cls();
 
 		con.boxOpen();
-		con.boxLineCenter("[검색 결과]");
+		con.boxLineCenter("[Search Result]");
 		con.boxLine();
 
 		if (sort) {
 
-			con.boxLine("총 1개의 상품이 검색되었습니다.");
+			con.boxLine("1 product found.");
 			con.boxLine();
 			printf("│");
 			con.printSpace("Prod. ID", 12);
@@ -424,14 +424,14 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 
 		}
 		else
-			con.boxLine("해당 상품(들)을 찾을 수 없습니다.");
+			con.boxLine("Couldn\'t find any product(s).");
 
 		con.boxClose();
 
 	}
 	else if (Temp == 3 && !Mode) {
 
-		cout << " 찾을 제품들의 제조사: ";
+		cout << " Manufacturer: ";
 		cin >> TempStr;
 
 		sSnacks = Snacks->getProdsByManufacturer(sSnacks, TempStr);
@@ -440,12 +440,12 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 		sOthers = Others->getProdsByManufacturer(sOthers, TempStr);
 
 		con.boxOpen();
-		con.boxLineCenter("[검색 결과]");
+		con.boxLineCenter("[Search Result]");
 		con.boxLine();
 
 		if (sSnacks->getAmounts() + sDrinks->getAmounts() + sIces->getAmounts() + sOthers->getAmounts()) {
 
-			con.boxLine("총 " + to_string(sSnacks->getAmounts() + sDrinks->getAmounts() + sIces->getAmounts() + sOthers->getAmounts()) + "개의 상품이 검색되었습니다.");
+			con.boxLine(to_string(sSnacks->getAmounts() + sDrinks->getAmounts() + sIces->getAmounts() + sOthers->getAmounts()) + " product(s) found.");
 			con.boxLine();
 			printf("│");
 			con.printSpace("Prod. ID", 12);
@@ -516,7 +516,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 
 		}
 		else
-			con.boxLine("해당 상품(들)을 찾을 수 없습니다.");
+			con.boxLine("Couldn\'t find any product(s).");
 
 		con.boxClose();
 
@@ -524,9 +524,9 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 	else {
 
 		con.boxOpen();
-		con.boxLineCenter("[오류]");
+		con.boxLineCenter("[ERROR]");
 		con.boxLine();
-		con.boxLine("잘못된 값을 입력하셨습니다.");
+		con.boxLine("Invalid Input.");
 		con.boxClose();
 
 	}
@@ -555,7 +555,7 @@ void dispRecord() {
 	char Temp[1024];
 
 	con.boxOpen();
-	con.boxLineCenter("[판매 이력]");
+	con.boxLineCenter("[RECORD]");
 	con.boxClose();
 	con.boxOpen();
 
@@ -566,14 +566,14 @@ void dispRecord() {
 		if ((count++) % 35 == 34) {
 
 			con.boxLine();
-			con.boxLine("계속 보시려면 아무 키나 누르세요.");
+			con.boxLine("Press any key to keep going.");
 			con.boxClose();
 			con.csPause();
 
 			cls();
 
 			con.boxOpen();
-			con.boxLineCenter("[판매 이력]");
+			con.boxLineCenter("[RECORD]");
 			con.boxClose();
 			con.boxOpen();
 
@@ -585,4 +585,4 @@ void dispRecord() {
 
 	con.csPause();
 
-}
+}
