@@ -409,7 +409,6 @@ namespace _Kano {
 			if (_Kano::isDev) {
 
 				char* copiedFunc = strcpy(copiedFunc, func);
-
 				char* caller[2];
 				char* colonPos = strrchr(copiedFunc, ':');
 
