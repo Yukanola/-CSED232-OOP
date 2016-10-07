@@ -30,16 +30,6 @@ bool dispMenu(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 		con.boxClose();
 
 	}
-	
-	if(isLinux) {
-		
-		color(BLACK, YELLOW);
-		con.boxOpen();
-		con.boxLine("POS is most compatible with Windows.");
-		con.boxLine("In Linux, Something can be displayed as wrong way.");
-		con.boxClose();
-		color(BLACK, DEFAULTFONT);
-	}
 
 	sync = false;
 
@@ -592,6 +582,47 @@ void dispRecord() {
 	}
 
 	con.boxClose();
+
+	con.csPause();
+
+}
+
+void initAnn() {
+
+	con.csSize(80, 24);
+
+	con.boxOpen();
+	con.boxLineCenter("<Information>");
+	con.boxClose();
+	con.boxOpen();
+	con.boxLine("Creator: Jio Gim");
+	con.boxLine("Version: 1.0.0");
+	con.boxClose();
+
+	if (isWin) {
+
+		con.boxOpen();
+		con.boxLine("Please use ANSI text.");
+		con.boxClose();
+
+	}
+	else if (isLinux) {
+
+		color(BLACK, RED);
+		con.boxOpen();
+		con.boxLine("Please use UTF-8 text.");
+		con.boxClose();
+		color(BLACK, YELLOW);
+		con.boxOpen();
+		con.boxLine("POS is most compatible with Windows.");
+		con.boxLine("In Linux, Something can be displayed as wrong way.");
+		con.boxLine("If you use English, this problem will not be happened.");
+		con.boxClose();
+		color(BLACK, DEFAULTFONT);
+
+	}
+
+	cout << " This program is developed as an assignment of CSED232 in POSTECH." << endl << endl;
 
 	con.csPause();
 

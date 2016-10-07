@@ -3,6 +3,7 @@
 bool dispMenu(SnackList*, DrinkList*, IceList*, OtherList*);
 bool initProd(SnackList*, DrinkList*, IceList*, OtherList*);
 void endPOS(SnackList*, DrinkList*, IceList*, OtherList*);
+void initAnn();
 
 int main() {
  
@@ -19,6 +20,8 @@ int main() {
 	
 	if(isWin)
 		color(DEFAULTBACK, DEFAULTFONT);
+
+	initAnn();
 
 	deb("Create Lists.");
 
