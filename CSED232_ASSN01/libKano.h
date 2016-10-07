@@ -61,7 +61,7 @@ using std::to_string;
 #define DEFAULTBACK "black"
 
 #define cls() std::system("clear");
-#define color(a,b) std::system("setterm --term linux --background "a" --foreground "b);
+#define color(a,b) std::system("setterm --term linux --background " a " --foreground " b);
 #define csize(a,b);
 
 #endif
@@ -367,13 +367,13 @@ namespace _Kano {
 
 	public:
 
-		void E(char* func, char* file, int line, _Kano::__errStruct error) {
+		void E(const char* func, const char* file, const int line, _Kano::__errStruct error) {
 
 			cls();
 			color(CYAN, WHITE);
 
 			int* csSize = _Kano::con.csSize(60, 24);
-			char* bsPos = (strrchr(file, '\\')) + 1;
+			const char* bsPos = (strrchr(file, '\\')) + 1;
 			int csCols = (csSize[1] / 2) * 2;
 
 			_Kano::con.boxOpen();
@@ -382,7 +382,7 @@ namespace _Kano {
 			printf("│Code       : 0x%x", error.code);
 			_Kano::con.printSpace(csCols - 24);
 			printf("│\n│File       : ");
-			_Kano::con.printSpace(bsPos, csSize[1] - 17 - ((csSize[1] % 2) ? 1 : 0));
+			_Kano::con.printSpace((char*)bsPos, csSize[1] - 17 - ((csSize[1] % 2) ? 1 : 0));
 			printf("│\n│Line       : %.5d", line);
 			_Kano::con.printSpace(csSize[1] - 22 - ((csSize[1] % 2) ? 1 : 0));
 			printf("│\n│Function   : ");
@@ -404,19 +404,21 @@ namespace _Kano {
 
 		};
 
-		void debug(char* func, char* task) {
+		void debug(const char* func, char* task) {
 
 			if (_Kano::isDev) {
 
+				char* copiedFunc = strcpy(copiedFunc, func);
+
 				char* caller[2];
-				char* colonPos = strrchr(func, ':');
+				char* colonPos = strrchr(copiedFunc, ':');
 
 				if (colonPos != NULL) {
 
 					int caller_length;
 
-					caller[0] = (char*)malloc((--(caller_length = strlen(func) - strlen(colonPos)) + 2) * sizeof(char));
-					strncpy(caller[0], func, caller_length);
+					caller[0] = (char*)malloc((--(caller_length = strlen(copiedFunc) - strlen(colonPos)) + 2) * sizeof(char));
+					strncpy(caller[0], copiedFunc, caller_length);
 					caller[0][caller_length] = NULL;
 					caller[1] = ++colonPos;
 
@@ -424,7 +426,7 @@ namespace _Kano {
 				else {
 
 					caller[0] = "";
-					caller[1] = func;
+					caller[1] = copiedFunc;
 
 				}
 
@@ -462,9 +464,9 @@ namespace Kano {
 
 	};
 
-	const static void end(unsigned long exitCode) {
+	const static int end(unsigned long exitCode) {
 
-		exit((int)exitCode);
+		return (int) exitCode;
 
 	};
 

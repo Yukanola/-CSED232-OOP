@@ -4,7 +4,7 @@ bool dispMenu(SnackList*, DrinkList*, IceList*, OtherList*);
 bool initProd(SnackList*, DrinkList*, IceList*, OtherList*);
 void endPOS(SnackList*, DrinkList*, IceList*, OtherList*);
 
-void main() {
+int main() {
 
 	Kano::init(false);
 
@@ -39,6 +39,6 @@ void main() {
 
 	deb("Kano Script Ended.");
 
-	Kano::end(0x00000);
+	return Kano::end(0x00000);
 
 }
