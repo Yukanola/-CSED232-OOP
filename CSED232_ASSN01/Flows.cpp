@@ -42,7 +42,7 @@ bool initProd(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 				sort = 4;
 
 		}
-		else if (Temp[0] != NULL) {
+		else if (Temp[0] != NULL && Temp[0] != 32) {
 
 			if (sort == 1) {
 
@@ -185,7 +185,7 @@ bool initProd(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 
 	}
 
-	if (Temp[0] != 0 && Temp[0] != '-') {
+	if (Temp[0] != 0 && Temp[0] != '-' && Temp[0] != 32) {
 
 		if (sort == 1) {
 
