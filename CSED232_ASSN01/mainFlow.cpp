@@ -4,7 +4,7 @@ bool dispMenu(SnackList*, DrinkList*, IceList*, OtherList*);
 bool initProd(SnackList*, DrinkList*, IceList*, OtherList*);
 void endPOS(SnackList*, DrinkList*, IceList*, OtherList*);
 
-int main() { 
+int main() {
  
 	Kano::init(true);
 
@@ -14,7 +14,7 @@ int main() {
 
 	cout << endl << endl << "    `7MM\"\"\"Mq.   .g8\"\"8q.    .M\"\"\"bgd" << endl << "      MM   `MM..dP'    `YM. ,MI    \"Y" << endl << "      MM   ,M9 dM'      `MM `MMb." << endl << "      MMmmdM9  MM        MM   `YMMNq." << endl << "      MM       MM.      ,MP .     `MM" << endl << "      MM       `Mb.    ,dP' Mb     dM" << endl << "    .JMML.       `\"bmmd\"'   P\"Ybmmd\"" << endl << endl << endl << endl << endl << endl << "           Copyright 20160087." << endl << endl << endl;
 
-	con.csDelay(2);
+	con.csDelay(1.8);
 	
 	color(DEFAULTBACK, DEFAULTFONT);
 
