@@ -272,7 +272,7 @@ namespace _Kano {
 
 			printf("┌");
 
-			int cols = (this->consolSize[1] - 4) / ((isLinux) ? 2 : 1);
+			int cols = (this->consolSize[1] - 4) / ((isLinux) ? 1 : 2);
 
 			for (int i = 0; i < cols; i++)
 				printf("─");
@@ -284,7 +284,7 @@ namespace _Kano {
 
 			printf("└");
 
-			int cols = (this->consolSize[1] - 4) / ((isLinux) ? 2 : 1);
+			int cols = (this->consolSize[1] - 4) / ((isLinux) ? 1 : 2);
 
 			for (int i = 0; i < cols; i++)
 				printf("─");
