@@ -4,7 +4,7 @@ bool dispMenu(SnackList*, DrinkList*, IceList*, OtherList*);
 bool initProd(SnackList*, DrinkList*, IceList*, OtherList*);
 void endPOS(SnackList*, DrinkList*, IceList*, OtherList*);
 
-int main() {
+int main() { 
  
 	Kano::init(true);
 
