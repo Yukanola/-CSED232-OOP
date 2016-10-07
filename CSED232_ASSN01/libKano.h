@@ -163,6 +163,8 @@ namespace _Kano {
 				this->consolSize[1] = cols;
 
 			}
+			
+			cls();
 
 			return this->consolSize;
 
