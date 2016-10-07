@@ -51,8 +51,6 @@ using std::to_string;
 
 #include <sys/ioctl.h>
 #include <unistd.h>
-#include <linux/timer.h>
-#include <linux/delay.h>
 
 #define BLACK "black"
 #define BLUE "blue"
