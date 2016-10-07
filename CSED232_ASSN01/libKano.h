@@ -49,6 +49,9 @@ using std::to_string;
 #define isWin false
 #define isLinux true
 
+#include <sys/ioctl.h>
+#include <unistd.h>
+
 #define BLACK "black"
 #define BLUE "blue"
 #define GREEN "green"
@@ -103,8 +106,12 @@ namespace _Kano {
 
 #elif isLinux
 
-			this->consolSize[0] = std::system("echo $LINES");
-			this->consolSize[1] = std::system("echo $COLUMNS");
+			struct winsize cS;
+			
+			ioctl(STDOUT_FILENO, TIOCGWINSZ, &cS);
+			
+			this->consolSize[0] = cS.ws_row;
+			this->consolSize[1] = cS.ws_col;
 
 #endif
 
@@ -453,7 +460,7 @@ using namespace _Kano;
 
 namespace Kano {
 
-	const string version = "Delicate 0.9 [0161002.3  Development]";
+	const string version = "Delicate 0.9 [0161007.2  Development]";
 
 	const static void init(bool modeSet) {
 
