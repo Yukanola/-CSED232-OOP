@@ -262,12 +262,12 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 		cout << " ID: ";
 		cin >> Temp;
 
-		if (Temp < 0) {
+		if (Temp <= 0) {
 
 			con.boxOpen();
 			con.boxLineCenter("[ERROR]");
 			con.boxLine();
-			con.boxLine("ID cannot be lower than 0.");
+			con.boxLine("ID cannot be lower than 1.");
 			con.boxClose();
 
 			con.csPause();
@@ -326,25 +326,46 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 
 			con.boxLine("1 product found.");
 			con.boxLine();
-			printf("│");
-			con.printSpace("Prod. ID", 12);
-			con.printSpace("Name", 32);
-			con.printSpace("Stocks", 16); //60
-			con.printSpace("Prime Cost", 15);
-			con.printSpace("Margin(%%)", 21);
-			con.printSpace("Sail Cost", 15); //110
-			con.printSpace("Manufacturer", 26);
-			printf("│\n");
+
+			if (isWin) {
+
+				printf("│");
+				con.printSpace("Prod. ID", 12);
+				con.printSpace("Name", 32);
+				con.printSpace("Stocks", 16); //60
+				con.printSpace("Prime Cost", 15);
+				con.printSpace("Margin(%%)", 21);
+				con.printSpace("Sail Cost", 15); //110
+				con.printSpace("Manufacturer", 26);
+				printf("│\n");
+
+			}
+			else if (isLinux) {
+
+				con.boxLine("Prod. ID,   Name,   Stocks,   Prime Cost,   Margin(%%),   Sail Cost,   Manufacturer");
+
+			}
+
 			con.boxLine();
-			printf("│");
-			con.printSpace(to_string(targetProd->getID()), 12);
-			con.printSpace(targetProd->getName(), 32);
-			con.printSpace(to_string(targetProd->getStock()), 16);
-			con.printSpace(to_string(targetProd->getPrimeCost()), 15);
-			con.printSpace(to_string((int)(targetProd->getMargin() * 100)), 20);
-			con.printSpace(to_string(targetProd->getSailCost()), 15);
-			con.printSpace(targetProd->getManufacturer(), 26);
-			printf("│\n");
+
+			if (isWin) {
+
+				printf("│");
+				con.printSpace(to_string(targetProd->getID()), 12);
+				con.printSpace(targetProd->getName(), 32);
+				con.printSpace(to_string(targetProd->getStock()), 16);
+				con.printSpace(to_string(targetProd->getPrimeCost()), 15);
+				con.printSpace(to_string((int)(targetProd->getMargin() * 100)), 20);
+				con.printSpace(to_string(targetProd->getSailCost()), 15);
+				con.printSpace(targetProd->getManufacturer(), 26);
+				printf("│\n");
+
+			}
+			else if (isLinux) {
+
+				con.boxLine(to_string(targetProd->getID()) + ", " + targetProd->getName() + ", " + to_string(targetProd->getStock()) + ", " + to_string(targetProd->getPrimeCost()) + ", " + to_string((int)(targetProd->getMargin() * 100)) + ", " + to_string(targetProd->getSailCost()) + ", " + targetProd->getManufacturer());
+
+			}
 
 			retVal[0] = targetProd->getID();
 			retVal[1] = sort;
@@ -412,25 +433,45 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 
 			con.boxLine("1 product found.");
 			con.boxLine();
-			printf("│");
-			con.printSpace("Prod. ID", 12);
-			con.printSpace("Name", 32);
-			con.printSpace("Stocks", 16); //60
-			con.printSpace("Prime Cost", 15);
-			con.printSpace("Margin(%%)", 21);
-			con.printSpace("Sail Cost", 15); //110
-			con.printSpace("Manufacturer", 26);
-			printf("│\n");
+
+			if (isWin) {
+				printf("│");
+				con.printSpace("Prod. ID", 12);
+				con.printSpace("Name", 32);
+				con.printSpace("Stocks", 16); //60
+				con.printSpace("Prime Cost", 15);
+				con.printSpace("Margin(%%)", 21);
+				con.printSpace("Sail Cost", 15); //110
+				con.printSpace("Manufacturer", 26);
+				printf("│\n");
+
+			}
+			else if (isLinux) {
+
+				con.boxLine("Prod. ID,   Name,   Stocks,   Prime Cost,   Margin(%%),   Sail Cost,   Manufacturer");
+
+			}
+
 			con.boxLine();
-			printf("│");
-			con.printSpace(to_string(targetProd->getID()), 12);
-			con.printSpace(targetProd->getName(), 32);
-			con.printSpace(to_string(targetProd->getStock()), 16);
-			con.printSpace(to_string(targetProd->getPrimeCost()), 15);
-			con.printSpace(to_string((int)(targetProd->getMargin() * 100)), 20);
-			con.printSpace(to_string(targetProd->getSailCost()), 15);
-			con.printSpace(targetProd->getManufacturer(), 26);
-			printf("│\n");
+
+			if (isWin) {
+
+				printf("│");
+				con.printSpace(to_string(targetProd->getID()), 12);
+				con.printSpace(targetProd->getName(), 32);
+				con.printSpace(to_string(targetProd->getStock()), 16);
+				con.printSpace(to_string(targetProd->getPrimeCost()), 15);
+				con.printSpace(to_string((int)(targetProd->getMargin() * 100)), 20);
+				con.printSpace(to_string(targetProd->getSailCost()), 15);
+				con.printSpace(targetProd->getManufacturer(), 26);
+				printf("│\n");
+
+			}
+			else if (isLinux) {
+
+				con.boxLine(to_string(targetProd->getID()) + ", " + targetProd->getName() + ", " + to_string(targetProd->getStock()) + ", " + to_string(targetProd->getPrimeCost()) + ", " + to_string((int)(targetProd->getMargin() * 100)) + ", " + to_string(targetProd->getSailCost()) + ", " + targetProd->getManufacturer());
+
+			}
 
 			retVal[0] = targetProd->getID();
 			retVal[1] = sort;
@@ -463,70 +504,117 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 
 			con.boxLine(to_string(sSnacks->getAmounts() + sDrinks->getAmounts() + sIces->getAmounts() + sOthers->getAmounts()) + " product(s) found.");
 			con.boxLine();
-			printf("│");
-			con.printSpace("Prod. ID", 12);
-			con.printSpace("Name", 32);
-			con.printSpace("Stocks", 16); //60
-			con.printSpace("Prime Cost", 15);
-			con.printSpace("Margin(%%)", 21);
-			con.printSpace("Sail Cost", 15); //110
-			con.printSpace("Manufacturer", 26);
-			printf("│\n");
+
+			if (isWin) {
+
+				printf("│");
+				con.printSpace("Prod. ID", 12);
+				con.printSpace("Name", 32);
+				con.printSpace("Stocks", 16); //60
+				con.printSpace("Prime Cost", 15);
+				con.printSpace("Margin(%%)", 21);
+				con.printSpace("Sail Cost", 15); //110
+				con.printSpace("Manufacturer", 26);
+				printf("│\n");
+
+			}
+			else if (isLinux) {
+
+				con.boxLine("Prod. ID,   Name,   Stocks,   Prime Cost,   Margin(%%),   Sail Cost,   Manufacturer");
+
+			}
+
 			con.boxLine();
 
 			for (Snack* Queue = sSnacks->getHead(); Queue != NULL; Queue = Queue->getNext()) {
 
-				printf("│");
-				con.printSpace(to_string(Queue->getID()), 12);
-				con.printSpace(Queue->getName(), 32);
-				con.printSpace(to_string(Queue->getStock()), 16); //60
-				con.printSpace(to_string(Queue->getPrimeCost()), 15);
-				con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
-				con.printSpace(to_string(Queue->getSailCost()), 15); //110
-				con.printSpace(Queue->getManufacturer(), 26);
-				printf("│\n");
+				if (isWin) {
+
+					printf("│");
+					con.printSpace(to_string(Queue->getID()), 12);
+					con.printSpace(Queue->getName(), 32);
+					con.printSpace(to_string(Queue->getStock()), 16); //60
+					con.printSpace(to_string(Queue->getPrimeCost()), 15);
+					con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
+					con.printSpace(to_string(Queue->getSailCost()), 15); //110
+					con.printSpace(Queue->getManufacturer(), 26);
+					printf("│\n");
+
+				}
+				else if (isLinux) {
+
+					con.boxLine(to_string(Queue->getID()) + ", " + Queue->getName() + ", " + to_string(Queue->getStock()) + ", " + to_string(Queue->getPrimeCost()) + ", " + to_string((int)(Queue->getMargin() * 100)) + ", " + to_string(Queue->getSailCost()) + ", " + Queue->getManufacturer());
+
+				}
 
 			}
 
 			for (Drink* Queue = sDrinks->getHead(); Queue != NULL; Queue = Queue->getNext()) {
 
-				printf("│");
-				con.printSpace(to_string(Queue->getID()), 12);
-				con.printSpace(Queue->getName(), 32);
-				con.printSpace(to_string(Queue->getStock()), 16); //60
-				con.printSpace(to_string(Queue->getPrimeCost()), 15);
-				con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
-				con.printSpace(to_string(Queue->getSailCost()), 15); //110
-				con.printSpace(Queue->getManufacturer(), 26);
-				printf("│\n");
+				if (isWin) {
+
+					printf("│");
+					con.printSpace(to_string(Queue->getID()), 12);
+					con.printSpace(Queue->getName(), 32);
+					con.printSpace(to_string(Queue->getStock()), 16); //60
+					con.printSpace(to_string(Queue->getPrimeCost()), 15);
+					con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
+					con.printSpace(to_string(Queue->getSailCost()), 15); //110
+					con.printSpace(Queue->getManufacturer(), 26);
+					printf("│\n");
+					
+				}
+				else if (isLinux) {
+
+					con.boxLine(to_string(Queue->getID()) + ", " + Queue->getName() + ", " + to_string(Queue->getStock()) + ", " + to_string(Queue->getPrimeCost()) + ", " + to_string((int)(Queue->getMargin() * 100)) + ", " + to_string(Queue->getSailCost()) + ", " + Queue->getManufacturer());
+
+				}
 
 			}
 
 			for (Ice* Queue = sIces->getHead(); Queue != NULL; Queue = Queue->getNext()) {
 
-				printf("│");
-				con.printSpace(to_string(Queue->getID()), 12);
-				con.printSpace(Queue->getName(), 32);
-				con.printSpace(to_string(Queue->getStock()), 16); //60
-				con.printSpace(to_string(Queue->getPrimeCost()), 15);
-				con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
-				con.printSpace(to_string(Queue->getSailCost()), 15); //110
-				con.printSpace(Queue->getManufacturer(), 26);
-				printf("│\n");
+				if (isWin) {
+
+					printf("│");
+					con.printSpace(to_string(Queue->getID()), 12);
+					con.printSpace(Queue->getName(), 32);
+					con.printSpace(to_string(Queue->getStock()), 16); //60
+					con.printSpace(to_string(Queue->getPrimeCost()), 15);
+					con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
+					con.printSpace(to_string(Queue->getSailCost()), 15); //110
+					con.printSpace(Queue->getManufacturer(), 26);
+					printf("│\n");
+
+				}
+				else if (isLinux) {
+
+					con.boxLine(to_string(Queue->getID()) + ", " + Queue->getName() + ", " + to_string(Queue->getStock()) + ", " + to_string(Queue->getPrimeCost()) + ", " + to_string((int)(Queue->getMargin() * 100)) + ", " + to_string(Queue->getSailCost()) + ", " + Queue->getManufacturer());
+
+				}
 
 			}
 
 			for (Other* Queue = sOthers->getHead(); Queue != NULL; Queue = Queue->getNext()) {
 
-				printf("│");
-				con.printSpace(to_string(Queue->getID()), 12);
-				con.printSpace(Queue->getName(), 32);
-				con.printSpace(to_string(Queue->getStock()), 16); //60
-				con.printSpace(to_string(Queue->getPrimeCost()), 15);
-				con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
-				con.printSpace(to_string(Queue->getSailCost()), 15); //110
-				con.printSpace(Queue->getManufacturer(), 26);
-				printf("│\n");
+				if (isWin) {
+
+					printf("│");
+					con.printSpace(to_string(Queue->getID()), 12);
+					con.printSpace(Queue->getName(), 32);
+					con.printSpace(to_string(Queue->getStock()), 16); //60
+					con.printSpace(to_string(Queue->getPrimeCost()), 15);
+					con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
+					con.printSpace(to_string(Queue->getSailCost()), 15); //110
+					con.printSpace(Queue->getManufacturer(), 26);
+					printf("│\n");
+
+				}
+				else if (isLinux) {
+
+					con.boxLine(to_string(Queue->getID()) + ", " + Queue->getName() + ", " + to_string(Queue->getStock()) + ", " + to_string(Queue->getPrimeCost()) + ", " + to_string((int)(Queue->getMargin() * 100)) + ", " + to_string(Queue->getSailCost()) + ", " + Queue->getManufacturer());
+
+				}
 
 			}
 
@@ -616,7 +704,7 @@ void initAnn() {
 	con.boxClose();
 	con.boxOpen();
 	con.boxLine("Creator: Jio Gim");
-	con.boxLine("Version: 1.0.0");
+	con.boxLine("Version: 1.0.2");
 	con.boxClose();
 
 	if (isWin) {
@@ -639,6 +727,10 @@ void initAnn() {
 		con.boxLine("If you use English, this problem will not be happened.");
 		con.boxClose();
 		color(BLACK, DEFAULTFONT);
+		con.boxOpen();
+		con.boxLine("Suggested screen size is 99*28.");
+		con.boxLine("In other size, some design could be wrongly displayed.");
+		con.boxClose();
 
 	}
 

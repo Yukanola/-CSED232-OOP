@@ -357,12 +357,12 @@ void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 	cout << " Prod. ID: ";
 	cin >> Temp;
 
-	if (Temp < 0) {
+	if (Temp <= 0) {
 
 		con.boxOpen();
 		con.boxLineCenter("[ERROR]");
 		con.boxLine();
-		con.boxLine("ID cannot be lower than 0.");
+		con.boxLine("ID cannot be lower than 1.");
 		con.boxClose();
 
 		con.csPause();
@@ -547,12 +547,12 @@ void procStock(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* O
 	cout << " = Prod. ID : ";
 	cin >> id;
 
-	if (id < 0) {
+	if (id <= 0) {
 
 		con.boxOpen();
 		con.boxLineCenter("[ERROR]");
 		con.boxLine();
-		con.boxLine("ID cannot be lower than 0.");
+		con.boxLine("ID cannot be lower than 1.");
 		con.boxClose();
 
 		con.csPause();
@@ -592,12 +592,58 @@ void procStock(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* O
 
 	cout << endl << " = Stocks : ";
 	cin >> stock;
+
+	if (stock <= 0) {
+
+		con.boxOpen();
+		con.boxLineCenter("[ERROR]");
+		con.boxLine();
+		con.boxLine("Stock cannot be lower than 1.");
+		con.boxClose();
+
+		con.csPause();
+
+		return;
+
+	}
+
 	cout << endl << " = Prime Cost : ";
 	cin >> pCost;
+
+	if (pCost <= 0) {
+
+		con.boxOpen();
+		con.boxLineCenter("[ERROR]");
+		con.boxLine();
+		con.boxLine("Prime Cost cannot be lower than 1.");
+		con.boxClose();
+
+		con.csPause();
+
+		return;
+
+	}
+
 	cout << endl << " = Margin ( < 1 ) : ";
 	cin >> margin;
+
+	if (margin <= 0 || margin >= 1) {
+
+		con.boxOpen();
+		con.boxLineCenter("[ERROR]");
+		con.boxLine();
+		con.boxLine("Margin cannot be lower than 0 or 0 or upper than 1.");
+		con.boxClose();
+
+		con.csPause();
+
+		return;
+
+	}
+
 	cout << endl << " = Manufacturer : ";
 	cin >> man;
+
 	con.boxOpen();
 	con.boxLine("Select product category.");
 	con.boxLine();
@@ -694,16 +740,26 @@ void procModify(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 
 	switch (Temp) {
 
+	default:
+		con.boxOpen();
+		con.boxLineCenter("[ERROR]");
+		con.boxLine();
+		con.boxLine("Invalid Input.");
+		con.boxClose();
+		con.csPause();
+		return;
+		break;
+
 	case 1:
 		cout << " = Prod.ID : ";
 		cin >> Temp;
 
-		if (Temp < 0) {
+		if (Temp <= 0) {
 
 			con.boxOpen();
 			con.boxLineCenter("[ERROR]");
 			con.boxLine();
-			con.boxLine("ID cannot be lower than 0.");
+			con.boxLine("ID cannot be lower than 1.");
 			con.boxClose();
 
 			con.csPause();
@@ -765,6 +821,21 @@ void procModify(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 	case 3:
 		cout << " = Stocks : ";
 		cin >> Temp;
+
+		if (Temp <= 0) {
+
+			con.boxOpen();
+			con.boxLineCenter("[ERROR]");
+			con.boxLine();
+			con.boxLine("Stocks cannot be lower than 1.");
+			con.boxClose();
+
+			con.csPause();
+
+			return;
+
+		}
+
 		if (targetProdInfo[1] == 2)
 			aSnack->setStock(Temp);
 		else if (targetProdInfo[1] == 3)
@@ -778,6 +849,21 @@ void procModify(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 	case 4:
 		cout << " = Prime Cost : ";
 		cin >> Temp;
+
+		if (Temp <= 0) {
+
+			con.boxOpen();
+			con.boxLineCenter("[ERROR]");
+			con.boxLine();
+			con.boxLine("Prime Cost cannot be lower than 1.");
+			con.boxClose();
+
+			con.csPause();
+
+			return;
+
+		}
+
 		if (targetProdInfo[1] == 2)
 			aSnack->setPrimeCost(Temp);
 		else if (targetProdInfo[1] == 3)
@@ -789,8 +875,23 @@ void procModify(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 		break;
 
 	case 5:
-		cout << " = Margin : ";
+		cout << " = Margin ( < 1 ) : ";
 		cin >> TempFloat;
+
+		if (TempFloat <= 0 || TempFloat >= 1) {
+
+			con.boxOpen();
+			con.boxLineCenter("[ERROR]");
+			con.boxLine();
+			con.boxLine("Margin cannot be lower than 0 or 0 or upper than 1.");
+			con.boxClose();
+
+			con.csPause();
+
+			return;
+
+		}
+
 		if (targetProdInfo[1] == 2)
 			aSnack->setMargin(TempFloat);
 		else if (targetProdInfo[1] == 3)
@@ -802,16 +903,16 @@ void procModify(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 		break;
 
 	case 6:
-		cout << " = Prod.ID : ";
-		cin >> Temp;
+		cout << " = Manufacturer : ";
+		cin >> TempStr;
 		if (targetProdInfo[1] == 2)
-			aSnack->setID(Temp);
+			aSnack->setManufacturer(TempStr);
 		else if (targetProdInfo[1] == 3)
-			aDrink->setID(Temp);
+			aDrink->setManufacturer(TempStr);
 		else if (targetProdInfo[1] == 4)
-			anIce->setID(Temp);
+			anIce->setManufacturer(TempStr);
 		else if (targetProdInfo[1] == 5)
-			aProd->setID(Temp);
+			aProd->setManufacturer(TempStr);
 		break;
 
 	}
