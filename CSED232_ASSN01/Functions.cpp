@@ -262,6 +262,22 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 		cout << " ID: ";
 		cin >> Temp;
 
+		if (Temp < 0) {
+
+			con.boxOpen();
+			con.boxLineCenter("[ERROR]");
+			con.boxLine();
+			con.boxLine("ID cannot be lower than 0.");
+			con.boxClose();
+
+			con.csPause();
+
+			delete sSnacks, sDrinks, sIces, sOthers;
+
+			return retVal;
+
+		}
+
 		if ((aSnack = Snacks->getProdByID(Temp)) && aSnack->getID() == Temp) {
 
 			deb("It\'s a Snack!");
@@ -531,10 +547,14 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 
 	}
 
-	for (; sSnacks->getHead() != NULL; sSnacks->Delete(sSnacks->getHead()));
-	for (; sDrinks->getHead() != NULL; sDrinks->Delete(sDrinks->getHead()));
-	for (; sIces->getHead() != NULL; sIces->Delete(sIces->getHead()));
-	for (; sOthers->getHead() != NULL; sOthers->Delete(sOthers->getHead()));
+	if(sSnacks->getAmounts())
+		for (; sSnacks->getHead() != NULL; sSnacks->Delete(sSnacks->getHead()));
+	if(sDrinks->getAmounts())
+		for (; sDrinks->getHead() != NULL; sDrinks->Delete(sDrinks->getHead()));
+	if(sIces->getAmounts())
+		for (; sIces->getHead() != NULL; sIces->Delete(sIces->getHead()));
+	if(sOthers->getAmounts())
+		for (; sOthers->getHead() != NULL; sOthers->Delete(sOthers->getHead()));
 
 	delete sSnacks, sDrinks, sIces, sOthers;
 

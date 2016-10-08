@@ -357,6 +357,20 @@ void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 	cout << " Prod. ID: ";
 	cin >> Temp;
 
+	if (Temp < 0) {
+
+		con.boxOpen();
+		con.boxLineCenter("[ERROR]");
+		con.boxLine();
+		con.boxLine("ID cannot be lower than 0.");
+		con.boxClose();
+
+		con.csPause();
+
+		return;
+
+	}
+
 	if ((aSnack = Snacks->getProdByID(Temp)) && aSnack->getID() == Temp) {
 
 		deb("It\'s a Snack!");
@@ -533,6 +547,20 @@ void procStock(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* O
 	cout << " = Prod. ID : ";
 	cin >> id;
 
+	if (id < 0) {
+
+		con.boxOpen();
+		con.boxLineCenter("[ERROR]");
+		con.boxLine();
+		con.boxLine("ID cannot be lower than 0.");
+		con.boxClose();
+
+		con.csPause();
+
+		return;
+
+	}
+
 	if (((aSnack = Snacks->getProdByID(id)) && aSnack->getID() == id) || ((aDrink = Drinks->getProdByID(id)) && aDrink->getID() == id) || ((anIce = Ices->getProdByID(id)) && anIce->getID() == id) || ((aProd = Others->getProdByID(id)) && aProd->getID() == id)) {
 
 		con.boxOpen();
@@ -669,6 +697,21 @@ void procModify(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 	case 1:
 		cout << " = Prod.ID : ";
 		cin >> Temp;
+
+		if (Temp < 0) {
+
+			con.boxOpen();
+			con.boxLineCenter("[ERROR]");
+			con.boxLine();
+			con.boxLine("ID cannot be lower than 0.");
+			con.boxClose();
+
+			con.csPause();
+
+			return;
+
+		}
+
 		if (((sSnack = Snacks->getProdByID(Temp)) && sSnack->getID() == Temp) || ((sDrink = Drinks->getProdByID(Temp)) && sDrink->getID() == Temp) || ((sIce = Ices->getProdByID(Temp)) && sIce->getID() == Temp) || ((sProd = Others->getProdByID(Temp)) && sProd->getID() == Temp)) {
 
 			con.boxOpen();
