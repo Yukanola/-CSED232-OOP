@@ -1,3 +1,5 @@
+# Program
+
 ## Description
 
 This program is POS(Point-Of-Sale) which developed as assignment 1 at CSED232 class of POSTECH.
@@ -6,6 +8,8 @@ This program is POS(Point-Of-Sale) which developed as assignment 1 at CSED232 cl
 
 + Linux
 + Windows
+
+# Developers
 
 ## Contributors
 
