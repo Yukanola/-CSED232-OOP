@@ -284,13 +284,13 @@ namespace _Kano {
 			if (trigger >= 0) {
 
 				for (int i = 0; i < trigger / 2; i++)
-					printf("%s", ((isMGW) ? "-" : "─"));
+					printf("%s", ((isMGW) ? "--" : "─"));
 
 			}
 			else {
 
 				for (int i = 0, goal = this->consolSize[1] / 2 + trigger / 2; i < goal; i++)
-					printf("%s", ((isMGW) ? "-" : "─"));
+					printf("%s", ((isMGW) ? "--" : "─"));
 
 			}
 
@@ -298,7 +298,7 @@ namespace _Kano {
 		void printLine() {
 
 			for (int i = 0; i < this->consolSize[1] / 2; i++)
-				printf("%s", ((isMGW) ? "-" : "─"));
+				printf("%s", ((isMGW) ? "--" : "─"));
 
 		};
 
@@ -309,7 +309,7 @@ namespace _Kano {
 			int cols = (this->consolSize[1] - 4) / ((isLinux) ? 1 : 2);
 
 			for (int i = 0; i < cols; i++)
-				printf("%s", ((isMGW) ? "-" : "─"));
+				printf("%s", ((isMGW) ? "--" : "─"));
 
 			printf("%s", ((isMGW) ? "\\\n" : "┐\n"));
 
@@ -321,7 +321,7 @@ namespace _Kano {
 			int cols = (this->consolSize[1] - 4) / ((isLinux) ? 1 : 2);
 
 			for (int i = 0; i < cols; i++)
-				printf("%s", (isMGW) ? "-" : "─");
+				printf("%s", (isMGW) ? "--" : "─");
 
 			printf("%s", (isMGW) ? "/\n" : "┘\n");
 
@@ -428,11 +428,11 @@ namespace _Kano {
 			_Kano::con.printSpace(csSize[1] - 22 - ((csSize[1] % 2) ? 1 : 0));
 			printf("│\n│Function   : ");
 			_Kano::con.printSpace(func, csSize[1] - 17 - ((csSize[1] % 2) ? 1 : 0));
-			printf("│\n");
+			printf((isMGW) ? "|\n" : "│\n");
 			_Kano::con.boxLine();
 			printf("│Description: ");
 			_Kano::con.printSpace((error.detail == "") ? "Description for this case isn't found." : error.detail, csSize[1] - 17 - ((csSize[1] % 2) ? 1 : 0));
-			printf("│\n");
+			printf((isMGW) ? "|\n" : "│\n");
 			_Kano::con.boxLine();
 			_Kano::con.boxClose();
 
@@ -494,7 +494,7 @@ using namespace _Kano;
 
 namespace Kano {
 
-	const string version = "Delicate 0.9 [0161008.1  Development]";
+	const string version = "Delicate 0.9 [0161009.2  Development]";
 
 	const static void init(bool modeSet) {
 

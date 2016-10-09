@@ -329,7 +329,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 
 			if (isWin) {
 
-				printf("│");
+				printf((isMGW) ? "|" : "│");
 				con.printSpace("Prod. ID", 12);
 				con.printSpace("Name", 32);
 				con.printSpace("Stocks", 16); //60
@@ -337,7 +337,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 				con.printSpace("Margin(%%)", 21);
 				con.printSpace("Sail Cost", 15); //110
 				con.printSpace("Manufacturer", 26);
-				printf("│\n");
+				printf((isMGW) ? "|\n" : "│\n");
 
 			}
 			else if (isLinux) {
@@ -350,7 +350,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 
 			if (isWin) {
 
-				printf("│");
+				printf((isMGW) ? "|" : "│");
 				con.printSpace(to_string(targetProd->getID()), 12);
 				con.printSpace(targetProd->getName(), 32);
 				con.printSpace(to_string(targetProd->getStock()), 16);
@@ -358,7 +358,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 				con.printSpace(to_string((int)(targetProd->getMargin() * 100)), 20);
 				con.printSpace(to_string(targetProd->getSailCost()), 15);
 				con.printSpace(targetProd->getManufacturer(), 26);
-				printf("│\n");
+				printf((isMGW) ? "|\n" : "│\n");
 
 			}
 			else if (isLinux) {
@@ -435,7 +435,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 			con.boxLine();
 
 			if (isWin) {
-				printf("│");
+				printf((isMGW) ? "|" : "│");
 				con.printSpace("Prod. ID", 12);
 				con.printSpace("Name", 32);
 				con.printSpace("Stocks", 16); //60
@@ -443,7 +443,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 				con.printSpace("Margin(%%)", 21);
 				con.printSpace("Sail Cost", 15); //110
 				con.printSpace("Manufacturer", 26);
-				printf("│\n");
+				printf((isMGW) ? "|\n" : "│\n");
 
 			}
 			else if (isLinux) {
@@ -456,7 +456,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 
 			if (isWin) {
 
-				printf("│");
+				printf((isMGW) ? "|" : "│");
 				con.printSpace(to_string(targetProd->getID()), 12);
 				con.printSpace(targetProd->getName(), 32);
 				con.printSpace(to_string(targetProd->getStock()), 16);
@@ -464,7 +464,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 				con.printSpace(to_string((int)(targetProd->getMargin() * 100)), 20);
 				con.printSpace(to_string(targetProd->getSailCost()), 15);
 				con.printSpace(targetProd->getManufacturer(), 26);
-				printf("│\n");
+				printf((isMGW) ? "|\n" : "│\n");
 
 			}
 			else if (isLinux) {
@@ -507,7 +507,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 
 			if (isWin) {
 
-				printf("│");
+				printf((isMGW) ? "|" : "│");
 				con.printSpace("Prod. ID", 12);
 				con.printSpace("Name", 32);
 				con.printSpace("Stocks", 16); //60
@@ -515,7 +515,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 				con.printSpace("Margin(%%)", 21);
 				con.printSpace("Sail Cost", 15); //110
 				con.printSpace("Manufacturer", 26);
-				printf("│\n");
+				printf((isMGW) ? "|\n" : "│\n");
 
 			}
 			else if (isLinux) {
@@ -530,7 +530,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 
 				if (isWin) {
 
-					printf("│");
+					printf((isMGW) ? "|" : "│");
 					con.printSpace(to_string(Queue->getID()), 12);
 					con.printSpace(Queue->getName(), 32);
 					con.printSpace(to_string(Queue->getStock()), 16); //60
@@ -538,7 +538,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 					con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
 					con.printSpace(to_string(Queue->getSailCost()), 15); //110
 					con.printSpace(Queue->getManufacturer(), 26);
-					printf("│\n");
+					printf((isMGW) ? "|\n" : "│\n");
 
 				}
 				else if (isLinux) {
@@ -553,7 +553,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 
 				if (isWin) {
 
-					printf("│");
+					printf((isMGW) ? "|" : "│");
 					con.printSpace(to_string(Queue->getID()), 12);
 					con.printSpace(Queue->getName(), 32);
 					con.printSpace(to_string(Queue->getStock()), 16); //60
@@ -561,7 +561,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 					con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
 					con.printSpace(to_string(Queue->getSailCost()), 15); //110
 					con.printSpace(Queue->getManufacturer(), 26);
-					printf("│\n");
+					printf((isMGW) ? "|\n" : "│\n");
 					
 				}
 				else if (isLinux) {
@@ -576,7 +576,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 
 				if (isWin) {
 
-					printf("│");
+					printf((isMGW) ? "|" : "│");
 					con.printSpace(to_string(Queue->getID()), 12);
 					con.printSpace(Queue->getName(), 32);
 					con.printSpace(to_string(Queue->getStock()), 16); //60
@@ -584,7 +584,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 					con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
 					con.printSpace(to_string(Queue->getSailCost()), 15); //110
 					con.printSpace(Queue->getManufacturer(), 26);
-					printf("│\n");
+					printf((isMGW) ? "|\n" : "│\n");
 
 				}
 				else if (isLinux) {
@@ -599,7 +599,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 
 				if (isWin) {
 
-					printf("│");
+					printf((isMGW) ? "|" : "│");
 					con.printSpace(to_string(Queue->getID()), 12);
 					con.printSpace(Queue->getName(), 32);
 					con.printSpace(to_string(Queue->getStock()), 16); //60
@@ -607,7 +607,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 					con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
 					con.printSpace(to_string(Queue->getSailCost()), 15); //110
 					con.printSpace(Queue->getManufacturer(), 26);
-					printf("│\n");
+					printf((isMGW) ? "|\n" : "│\n");
 
 				}
 				else if (isLinux) {
@@ -704,7 +704,7 @@ void initAnn() {
 	con.boxClose();
 	con.boxOpen();
 	con.boxLine("Creator: Jio Gim");
-	con.boxLine("Version: 1.0.2");
+	con.boxLine("Version: 1.0.3");
 	con.boxClose();
 
 	if (isWin) {

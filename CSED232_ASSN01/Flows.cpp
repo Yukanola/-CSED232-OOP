@@ -426,7 +426,7 @@ void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 	else {
 
 		con.boxLine("");
-		printf("│");
+		printf((isMGW) ? "|" : "│");
 		con.printSpace("Prod. ID", 12);
 		con.printSpace("Name", 32);
 		con.printSpace("Stocks", 16);
@@ -434,7 +434,7 @@ void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 		con.printSpace("Margin(%%)", 21);
 		con.printSpace("Sail Cost", 15);
 		con.printSpace("Manufacturer", 26);
-		printf("│\n│");
+		printf((isMGW) ? "|\n|" : "│\n│");
 		con.printSpace(to_string(targetProd->getID()), 12);
 		con.printSpace(targetProd->getName(), 32);
 		con.printSpace(to_string(targetProd->getStock()), 16);
@@ -442,7 +442,7 @@ void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 		con.printSpace(to_string((int)(targetProd->getMargin() * 100)), 20);
 		con.printSpace(to_string(targetProd->getSailCost()), 15);
 		con.printSpace(targetProd->getManufacturer(), 26);
-		printf("│\n");
+		printf((isMGW) ? "|\n" : "│\n");
 		con.boxClose();
 
 		printf(" How much do you want to sell: ");
