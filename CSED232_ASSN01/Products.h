@@ -1,4 +1,4 @@
-#include "libKano.h"
+ï»¿#include "libKano.h"
 
 using std::endl;
 //using std::ostringstream;
@@ -119,7 +119,7 @@ public:
 
 			if(isWin) {
 				
-				printf("¦¢");
+				printf("â”‚");
 				con.printSpace("Prod. ID", 12);
 				con.printSpace("Name", 32);
 				con.printSpace("Stocks", 16); //60
@@ -127,7 +127,7 @@ public:
 				con.printSpace("Margin(%%)", 21);
 				con.printSpace("Sail Cost", 15); //110
 				con.printSpace("Manufacturer", 26);
-				printf("¦¢\n");
+				printf("â”‚\n");
 				con.boxLine();
 				
 			}
@@ -141,7 +141,7 @@ public:
 
 				if(isWin) {
 					
-					printf("¦¢");
+					printf("â”‚");
 					con.printSpace(to_string(Queue->getID()), 12);
 					con.printSpace(Queue->getName(), 32);
 					con.printSpace(to_string(Queue->getStock()), 16); //60
@@ -149,7 +149,7 @@ public:
 					con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
 					con.printSpace(to_string(Queue->getSailCost()), 15); //110
 					con.printSpace(Queue->getManufacturer(), 26);
-					printf("¦¢\n");
+					printf("â”‚\n");
 					
 				}
 				else if (isLinux) {
@@ -312,7 +312,7 @@ public:
 
 			if(isWin) {
 				
-				printf("¦¢");
+				printf("â”‚");
 				con.printSpace("Prod. ID", 12);
 				con.printSpace("Name", 32);
 				con.printSpace("Stocks", 16); //60
@@ -320,7 +320,7 @@ public:
 				con.printSpace("Margin(%%)", 21);
 				con.printSpace("Sail Cost", 15); //110
 				con.printSpace("Manufacturer", 26);
-				printf("¦¢\n");
+				printf("â”‚\n");
 				con.boxLine();
 				
 			}
@@ -334,7 +334,7 @@ public:
 
 				if(isWin) {
 					
-					printf("¦¢");
+					printf("â”‚");
 					con.printSpace(to_string(Queue->getID()), 12);
 					con.printSpace(Queue->getName(), 32);
 					con.printSpace(to_string(Queue->getStock()), 16); //60
@@ -342,7 +342,7 @@ public:
 					con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
 					con.printSpace(to_string(Queue->getSailCost()), 15); //110
 					con.printSpace(Queue->getManufacturer(), 26);
-					printf("¦¢\n");
+					printf("â”‚\n");
 					
 				}
 				else if (isLinux) {
@@ -505,7 +505,7 @@ public:
 
 			if(isWin) {
 				
-				printf("¦¢");
+				printf("â”‚");
 				con.printSpace("Prod. ID", 12);
 				con.printSpace("Name", 32);
 				con.printSpace("Stocks", 16); //60
@@ -513,7 +513,7 @@ public:
 				con.printSpace("Margin(%%)", 21);
 				con.printSpace("Sail Cost", 15); //110
 				con.printSpace("Manufacturer", 26);
-				printf("¦¢\n");
+				printf("â”‚\n");
 				con.boxLine();
 				
 			}
@@ -527,7 +527,7 @@ public:
 
 				if(isWin) {
 					
-					printf("¦¢");
+					printf("â”‚");
 					con.printSpace(to_string(Queue->getID()), 12);
 					con.printSpace(Queue->getName(), 32);
 					con.printSpace(to_string(Queue->getStock()), 16); //60
@@ -535,7 +535,7 @@ public:
 					con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
 					con.printSpace(to_string(Queue->getSailCost()), 15); //110
 					con.printSpace(Queue->getManufacturer(), 26);
-					printf("¦¢\n");
+					printf("â”‚\n");
 					
 				}
 				else if (isLinux) {
@@ -698,7 +698,7 @@ public:
 
 			if(isWin) {
 				
-				printf("¦¢");
+				printf("â”‚");
 				con.printSpace("Prod. ID", 12);
 				con.printSpace("Name", 32);
 				con.printSpace("Stocks", 16); //60
@@ -706,7 +706,7 @@ public:
 				con.printSpace("Margin(%%)", 21);
 				con.printSpace("Sail Cost", 15); //110
 				con.printSpace("Manufacturer", 26);
-				printf("¦¢\n");
+				printf("â”‚\n");
 				con.boxLine();
 				
 			}
@@ -721,7 +721,7 @@ public:
 
 				if(isWin) {
 					
-					printf("¦¢");
+					printf("â”‚");
 					con.printSpace(to_string(Queue->getID()), 12);
 					con.printSpace(Queue->getName(), 32);
 					con.printSpace(to_string(Queue->getStock()), 16); //60
@@ -729,7 +729,7 @@ public:
 					con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
 					con.printSpace(to_string(Queue->getSailCost()), 15); //110
 					con.printSpace(Queue->getManufacturer(), 26);
-					printf("¦¢\n");
+					printf("â”‚\n");
 					
 				}
 				else if (isLinux) {

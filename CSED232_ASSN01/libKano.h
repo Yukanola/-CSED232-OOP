@@ -9,12 +9,7 @@
 #include <string>
 #include <typeinfo>
 #include <ctime>
-#pragma endregion
-
-#pragma region Usings
-using std::string;
-using std::cout;
-using std::to_string;
+#include <sstream>
 #pragma endregion
 
 #pragma region Before-Block
@@ -28,6 +23,12 @@ using std::to_string;
 #ifdef _MSC_FULL_VER
 #pragma warning(disable:4996)
 #pragma warning(disable:4820)
+#endif
+
+#ifdef __MINGW32__
+#define isMGW true
+#else
+#define isMGW false
 #endif
 
 #define BLACK "0"
@@ -48,6 +49,7 @@ using std::to_string;
 #else
 #define isWin false
 #define isLinux true
+#define isMGW false
 
 #include <sys/ioctl.h>
 #include <unistd.h>
@@ -68,6 +70,28 @@ using std::to_string;
 #define csize(a,b);
 
 #endif
+
+#pragma region Usings Part 1
+using std::string;
+using std::cout;
+#pragma endregion
+
+namespace std {
+
+	template <typename TN>
+	string to_string(TN something) {
+
+		stringstream strStr;
+		strStr << something;
+		return strStr.str();
+
+	}
+
+}
+
+#pragma region Usings Part 2
+using std::to_string;
+#pragma endregion
 
 namespace _Kano {
 
@@ -260,13 +284,13 @@ namespace _Kano {
 			if (trigger >= 0) {
 
 				for (int i = 0; i < trigger / 2; i++)
-					printf("─");
+					printf("%s", ((isMGW) ? "-" : "─"));
 
 			}
 			else {
 
 				for (int i = 0, goal = this->consolSize[1] / 2 + trigger / 2; i < goal; i++)
-					printf("─");
+					printf("%s", ((isMGW) ? "-" : "─"));
 
 			}
 
@@ -274,51 +298,51 @@ namespace _Kano {
 		void printLine() {
 
 			for (int i = 0; i < this->consolSize[1] / 2; i++)
-				printf("─");
+				printf("%s", ((isMGW) ? "-" : "─"));
 
 		};
 
 		void boxOpen() {
 
-			printf("┌");
+			printf("%s", ((isMGW) ? "/" : "┌"));
 
 			int cols = (this->consolSize[1] - 4) / ((isLinux) ? 1 : 2);
 
 			for (int i = 0; i < cols; i++)
-				printf("─");
+				printf("%s", ((isMGW) ? "-" : "─"));
 
-			printf("┐\n");
+			printf("%s", ((isMGW) ? "\\\n" : "┐\n"));
 
 		};
 		void boxClose() {
 
-			printf("└");
+			printf("%s", (isMGW) ? "\\" : "└");
 
 			int cols = (this->consolSize[1] - 4) / ((isLinux) ? 1 : 2);
 
 			for (int i = 0; i < cols; i++)
-				printf("─");
+				printf("%s", (isMGW) ? "-" : "─");
 
-			printf("┘\n");
+			printf("%s", (isMGW) ? "/\n" : "┘\n");
 
 		};
 		void boxLine(char* sentence, int cols) {
 
-			printf("│");
+			printf("%s", (isMGW) ? "|" : "│");
 
 			this->printSpace(sentence, cols - 4 - ((this->consolSize[1] % 2) ? 1 : 0) + ((isLinux) ? 1 : 0));
 
-			printf("│\n");
+			printf("%s", (isMGW) ? "|\n" : "│\n");
 
 		};
 		void boxLine(char* sentence) { this->boxLine(sentence, this->consolSize[1]); };
 		void boxLine(string sentence, int cols) {
 
-			printf("│");
+			printf("%s", (isMGW) ? "|" : "│");
 
 			this->printSpace(sentence, cols - 4 - ((this->consolSize[1] % 2) ? 1 : 0) + ((isLinux) ? 1 : 0));
 
-			printf("│\n");
+			printf("%s", (isMGW) ? "|\n" : "│\n");
 
 		};
 		void boxLine(string sentence) { this->boxLine(sentence, this->consolSize[1]); };
@@ -330,51 +354,51 @@ namespace _Kano {
 		void boxLineLeft(string sentence) { this->boxLine(sentence); };
 		void boxLineCenter(char* sentence, int cols) {
 
-			printf("│");
+			printf("%s", (isMGW) ? "|" : "│");
 
 			this->printSpaceCenter(sentence, cols - 4 - ((this->consolSize[1] % 2) ? 1 : 0) + ((isLinux) ? 1 : 0));
 
-			printf("│\n");
+			printf("%s", (isMGW) ? "|\n" : "│\n");
 
 		};
 		void boxLineCenter(char* sentence) { this->boxLineCenter(sentence, this->consolSize[1]); };
 		void boxLineCenter(string sentence, int cols) {
 
-			printf("│");
+			printf("%s", (isMGW) ? "|" : "│");
 
 			this->printSpaceCenter(sentence, cols - 4 - ((this->consolSize[1] % 2) ? 1 : 0) + ((isLinux) ? 1 : 0));
 
-			printf("│\n");
+			printf("%s", (isMGW) ? "|\n" : "│\n");
 
 		};
 		void boxLineCenter(string sentence) { this->boxLineCenter(sentence, this->consolSize[1]); };
 		void boxLineRight(char* sentence, int cols) {
 
-			printf("│");
+			printf("%s", (isMGW) ? "|" : "│");
 
 			this->printSpaceRight(sentence, cols - 4 - ((this->consolSize[1] % 2) ? 1 : 0) + ((isLinux) ? 1 : 0));
 
-			printf("│\n");
+			printf("%s", (isMGW) ? "|\n" : "│\n");
 
 		};
 		void boxLineRight(char* sentence) { this->boxLineRight(sentence, this->consolSize[1]); };
 		void boxLineRight(string sentence, int cols) {
 
-			printf("│");
+			printf("%s", (isMGW) ? "|" : "│");
 
 			this->printSpaceRight(sentence, cols - 4 - ((this->consolSize[1] % 2) ? 1 : 0) + ((isLinux) ? 1 : 0));
 
-			printf("│\n");
+			printf("%s", (isMGW) ? "|\n" : "│\n");
 
 		};
 		void boxLineRight(string sentence) { this->boxLineRight(sentence, this->consolSize[1]); };
 		void boxCutter() {
 
-			printf("├");
+			printf("%s", (isMGW) ? "|" : "├");
 
 			this->printLine(-4);
 
-			printf("┤\n");
+			printf("%s", (isMGW) ? "|\n" : "┤\n");
 
 		};
 
@@ -470,7 +494,7 @@ using namespace _Kano;
 
 namespace Kano {
 
-	const string version = "Delicate 0.9 [0161007.4  Development]";
+	const string version = "Delicate 0.9 [0161008.1  Development]";
 
 	const static void init(bool modeSet) {
 

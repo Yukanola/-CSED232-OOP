@@ -24,6 +24,9 @@ bool initProd(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 
 	int sort = 1;
 
+	if (!Products)
+		return false;
+
 	for (; !Products.eof(); Products.getline(Temp, 1024)) {
 
 		deb(Temp);
