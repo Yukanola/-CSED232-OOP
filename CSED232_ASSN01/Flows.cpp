@@ -1,4 +1,4 @@
-﻿#include "Products.h"
+#include "Products.h"
 #include <fstream>
 #include <ctime>
 

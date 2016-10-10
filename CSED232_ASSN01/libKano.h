@@ -1,4 +1,4 @@
-﻿// Copyright Kanola 2016. Compatible for Windows and Unix-based OS.
+// Copyright Kanola 2016. Compatible for Windows and Unix-based OS.
 
 #pragma once
 #pragma region Inclusions

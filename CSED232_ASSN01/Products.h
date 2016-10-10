@@ -1,4 +1,4 @@
-﻿#include "libKano.h"
+#include "libKano.h"
 
 using std::endl;
 //using std::ostringstream;
