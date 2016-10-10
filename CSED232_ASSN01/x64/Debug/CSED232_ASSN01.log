@@ -1,14 +1,77 @@
 ﻿  mainFlow.cpp
-v:\github\-csed232-oop\csed232_assn01\libkano.h(228): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-v:\github\-csed232-oop\csed232_assn01\libkano.h(246): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-v:\github\-csed232-oop\csed232_assn01\libkano.h(462): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(34): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(228): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(229): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(421): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(422): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(614): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(615): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\mainflow.cpp(19): warning C4305: 'argument': truncation from 'double' to 'float'
-  CSED232_ASSN01.vcxproj -> V:\Github\-CSED232-OOP\x64\Debug\CSED232_ASSN01.exe
+v:\github\-csed232-oop\csed232_assn01\products.h : warning C4819: The file contains a character that cannot be represented in the current code page (949). Save the file in Unicode format to prevent data loss
+v:\github\-csed232-oop\csed232_assn01\libkano.h : warning C4819: The file contains a character that cannot be represented in the current code page (949). Save the file in Unicode format to prevent data loss
+v:\github\-csed232-oop\csed232_assn01\libkano.h(307): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\libkano.h(319): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\libkano.h(331): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\libkano.h(341): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\libkano.h(357): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\libkano.h(367): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\libkano.h(377): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\libkano.h(387): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\libkano.h(397): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\products.h(122): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\products.h(144): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\products.h(315): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\products.h(337): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\products.h(508): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\products.h(530): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\products.h(701): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\products.h(724): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\products.h(724): fatal error C1075: the left parenthesis '(' was unmatched at the end of the file
+  Functions.cpp
+v:\github\-csed232-oop\csed232_assn01\functions.cpp : warning C4819: The file contains a character that cannot be represented in the current code page (949). Save the file in Unicode format to prevent data loss
+v:\github\-csed232-oop\csed232_assn01\products.h : warning C4819: The file contains a character that cannot be represented in the current code page (949). Save the file in Unicode format to prevent data loss
+v:\github\-csed232-oop\csed232_assn01\libkano.h : warning C4819: The file contains a character that cannot be represented in the current code page (949). Save the file in Unicode format to prevent data loss
+v:\github\-csed232-oop\csed232_assn01\libkano.h(307): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\libkano.h(319): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\libkano.h(331): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\libkano.h(341): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\libkano.h(357): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\libkano.h(367): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\libkano.h(377): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\libkano.h(387): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\libkano.h(397): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\products.h(122): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\products.h(144): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\products.h(315): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\products.h(337): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\products.h(508): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\products.h(530): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\products.h(701): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\products.h(724): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\functions.cpp(332): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\functions.cpp(353): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\functions.cpp(438): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\functions.cpp(459): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\functions.cpp(510): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\functions.cpp(533): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\functions.cpp(556): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\functions.cpp(579): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\functions.cpp(602): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\functions.cpp(602): fatal error C1075: the left parenthesis '(' was unmatched at the end of the file
+  Flows.cpp
+v:\github\-csed232-oop\csed232_assn01\flows.cpp : warning C4819: The file contains a character that cannot be represented in the current code page (949). Save the file in Unicode format to prevent data loss
+v:\github\-csed232-oop\csed232_assn01\products.h : warning C4819: The file contains a character that cannot be represented in the current code page (949). Save the file in Unicode format to prevent data loss
+v:\github\-csed232-oop\csed232_assn01\libkano.h : warning C4819: The file contains a character that cannot be represented in the current code page (949). Save the file in Unicode format to prevent data loss
+v:\github\-csed232-oop\csed232_assn01\libkano.h(307): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\libkano.h(319): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\libkano.h(331): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\libkano.h(341): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\libkano.h(357): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\libkano.h(367): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\libkano.h(377): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\libkano.h(387): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\libkano.h(397): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\products.h(122): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\products.h(144): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\products.h(315): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\products.h(337): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\products.h(508): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\products.h(530): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\products.h(701): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\products.h(724): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\flows.cpp(429): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\flows.cpp(437): error C2001: newline in constant
+v:\github\-csed232-oop\csed232_assn01\flows.cpp(437): fatal error C1075: the left parenthesis '(' was unmatched at the end of the file
+  Generating Code...
