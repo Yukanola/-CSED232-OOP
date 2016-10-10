@@ -1,4 +1,9 @@
+#if _WIN32
 #include "Products.h"
+#else
+#include "Products_Linux.h"
+#endif
+
 #include <fstream>
 #include <ctime>
 

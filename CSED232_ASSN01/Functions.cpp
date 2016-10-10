@@ -1,4 +1,9 @@
-﻿#include "Products.h"
+﻿#if _WIN32
+#include "Products.h"
+#else
+#include "Products_Linux.h"
+#endif
+
 #include <fstream>
 
 using std::endl;
@@ -704,7 +709,7 @@ void initAnn() {
 	con.boxClose();
 	con.boxOpen();
 	con.boxLine("Creator: Jio Gim");
-	con.boxLine("Version: 1.0.5");
+	con.boxLine("Version: 1.0.6");
 	con.boxClose();
 
 	if (isWin) {

@@ -1,4 +1,8 @@
+#if _WIN32
 #include "libKano.h"
+#else
+#include "libKano_Linux.h"
+#endif
 
 using std::endl;
 //using std::ostringstream;

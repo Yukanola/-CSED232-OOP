@@ -1,6 +1,7 @@
 POS: mainFlow_Linux.o Functions_Linux.o Flows_Linux.o
 	@echo "POS Building..."
 	g++ -w -o POS mainFlow_Linux.o Functions_Linux.o Flows_Linux.o
+	rm *.o
 
 mainFlow_Linux.o: mainFlow.cpp Functions.cpp Flows.cpp libKano_Linux.h Products_Linux.h
 	tail --bytes=+4 mainFlow.cpp > mainFlow_Linux.cpp

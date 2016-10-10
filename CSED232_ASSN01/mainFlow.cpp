@@ -1,4 +1,8 @@
-﻿#include "Products.h"
+﻿#if _WIN32
+#include "Products.h"
+#else
+#include "Products_Linux.h"
+#endif
 
 bool dispMenu(SnackList*, DrinkList*, IceList*, OtherList*);
 bool initProd(SnackList*, DrinkList*, IceList*, OtherList*);
