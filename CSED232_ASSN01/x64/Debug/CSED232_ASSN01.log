@@ -1,18 +1,4 @@
-﻿  Functions.cpp
-v:\github\-csed232-oop\csed232_assn01\libkano.h(228): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-v:\github\-csed232-oop\csed232_assn01\libkano.h(246): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-v:\github\-csed232-oop\csed232_assn01\libkano.h(462): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(34): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(228): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(229): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(421): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(422): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(614): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(615): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Generating Code...
-  Compiling...
-  mainFlow.cpp
+﻿  mainFlow.cpp
 v:\github\-csed232-oop\csed232_assn01\libkano.h(228): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
 v:\github\-csed232-oop\csed232_assn01\libkano.h(246): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
 v:\github\-csed232-oop\csed232_assn01\libkano.h(462): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
@@ -25,26 +11,4 @@ v:\github\-csed232-oop\csed232_assn01\products.h(422): warning C4244: '=': conve
 v:\github\-csed232-oop\csed232_assn01\products.h(614): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 v:\github\-csed232-oop\csed232_assn01\products.h(615): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 v:\github\-csed232-oop\csed232_assn01\mainflow.cpp(19): warning C4305: 'argument': truncation from 'double' to 'float'
-  Flows.cpp
-v:\github\-csed232-oop\csed232_assn01\libkano.h(228): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-v:\github\-csed232-oop\csed232_assn01\libkano.h(246): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-v:\github\-csed232-oop\csed232_assn01\libkano.h(462): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(34): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(228): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(229): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(421): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(422): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(614): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(615): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\flows.cpp(75): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\flows.cpp(109): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\flows.cpp(143): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\flows.cpp(177): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\flows.cpp(218): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\flows.cpp(252): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\flows.cpp(286): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\flows.cpp(320): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\flows.cpp(534): warning C4101: 'sCost': unreferenced local variable
-  Generating Code...
   CSED232_ASSN01.vcxproj -> V:\Github\-CSED232-OOP\x64\Debug\CSED232_ASSN01.exe

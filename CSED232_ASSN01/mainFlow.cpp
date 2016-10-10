@@ -7,7 +7,7 @@ void initAnn();
 
 int main() {
  
-	Kano::init(true);
+	Kano::init(false);
 
 	con.csSize(42, 18);
 
