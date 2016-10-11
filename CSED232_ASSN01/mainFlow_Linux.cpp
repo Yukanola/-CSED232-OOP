@@ -6,10 +6,12 @@
 
 bool dispMenu(SnackList*, DrinkList*, IceList*, OtherList*);
 bool initProd(SnackList*, DrinkList*, IceList*, OtherList*);
+bool initProd(SnackList*, DrinkList*, IceList*, OtherList*, char*);
+void endPOS(SnackList*, DrinkList*, IceList*, OtherList*, char*);
 void endPOS(SnackList*, DrinkList*, IceList*, OtherList*);
 void initAnn();
 
-int main() {
+int main(int argc, char** argv) {
  
 	Kano::init(false);
 
@@ -29,14 +31,17 @@ int main() {
 
 	deb("Create Lists.");
 
-	SnackList* Snacks = new SnackList;
-	DrinkList* Drinks = new DrinkList;
-	IceList* Ices = new IceList;
-	OtherList* Others = new OtherList;
+	SnackList* Snacks = new SnackList();
+	DrinkList* Drinks = new DrinkList();
+	IceList* Ices = new IceList();
+	OtherList* Others = new OtherList();
 
 	deb("Input Products to List.");
 
-	initProd(Snacks, Drinks, Ices, Others);
+	if (argc > 1)
+		initProd(Snacks, Drinks, Ices, Others, argv[1]);
+	else
+		initProd(Snacks, Drinks, Ices, Others);
 
 	deb("Displaying Menu.");
 
@@ -44,7 +49,10 @@ int main() {
 
 	deb("Delete Lists.");
 
-	endPOS(Snacks, Drinks, Ices, Others);
+	if (argc > 1)
+		endPOS(Snacks, Drinks, Ices, Others, argv[1]);
+	else
+		endPOS(Snacks, Drinks, Ices, Others);
 
 	deb("Kano Script Ended.");
 

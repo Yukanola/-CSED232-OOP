@@ -18,6 +18,7 @@ void procStock(SnackList*, DrinkList*, IceList*, OtherList*);
 int* dispSearch(SnackList*, DrinkList*, IceList*, OtherList*, bool);
 void procModify(SnackList*, DrinkList*, IceList*, OtherList*);
 void procRemove(SnackList*, DrinkList*, IceList*, OtherList*);
+void endPOS(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others, char* firstArg);
 void dispRecord();
 
 bool dispMenu(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others) {
@@ -152,9 +153,15 @@ void dispAllProducts(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherL
 
 void endPOS(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others) {
 
+	endPOS(Snacks, Drinks, Ices, Others, "product.txt");
+
+}
+
+void endPOS(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others, char* firstArg) {
+
 	con.csSize(80, 24);
 
-	ofstream Products("product.txt", std::ios::trunc);
+	ofstream Products(firstArg, std::ios::trunc);
 
 	deb("POS Shut down process started.");
 

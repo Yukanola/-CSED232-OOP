@@ -18,6 +18,7 @@ void procStock(SnackList*, DrinkList*, IceList*, OtherList*);
 int* dispSearch(SnackList*, DrinkList*, IceList*, OtherList*, bool);
 void procModify(SnackList*, DrinkList*, IceList*, OtherList*);
 void procRemove(SnackList*, DrinkList*, IceList*, OtherList*);
+void endPOS(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others, char* firstArg);
 void dispRecord();
 
 bool dispMenu(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others) {
@@ -152,9 +153,15 @@ void dispAllProducts(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherL
 
 void endPOS(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others) {
 
+	endPOS(Snacks, Drinks, Ices, Others, "product.txt");
+
+}
+
+void endPOS(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others, char* firstArg) {
+
 	con.csSize(80, 24);
 
-	ofstream Products("product.txt", std::ios::trunc);
+	ofstream Products(firstArg, std::ios::trunc);
 
 	deb("POS Shut down process started.");
 
@@ -163,7 +170,8 @@ void endPOS(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Othe
 	for (Snack* aSnack = Snacks->getHead(); aSnack != NULL; aSnack = aSnack->getNext())
 		Products << aSnack->getID() << " " + aSnack->getName()+ " " << aSnack->getStock() << " " << aSnack->getPrimeCost() << " " << aSnack->getMargin() << " " << aSnack->getSailCost() << " " << aSnack->getManufacturer() << endl;
 
-	for (; Snacks->getHead() != NULL; Snacks->Delete(Snacks->getHead()));
+	for (; Snacks->getAmounts() != 0;)
+		Snacks->Delete(Snacks->getHead());
 
 	deb("Snacks Deleted.");
 
@@ -172,7 +180,8 @@ void endPOS(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Othe
 	for (Drink* aSnack = Drinks->getHead(); aSnack != NULL; aSnack = aSnack->getNext())
 		Products << aSnack->getID() << " " + aSnack->getName() + " " << aSnack->getStock() << " " << aSnack->getPrimeCost() << " " << aSnack->getMargin() << " " << aSnack->getSailCost() << " " << aSnack->getManufacturer() << endl;
 
-	for (; Drinks->getHead() != NULL; Drinks->Delete(Drinks->getHead()));
+	for (; Drinks->getAmounts() != 0;)
+		Drinks->Delete(Drinks->getHead());
 
 	deb("Drinks Deleted.");
 
@@ -181,7 +190,8 @@ void endPOS(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Othe
 	for (Ice* aSnack = Ices->getHead(); aSnack != NULL; aSnack = aSnack->getNext())
 		Products << aSnack->getID() << " " + aSnack->getName() + " " << aSnack->getStock() << " " << aSnack->getPrimeCost() << " " << aSnack->getMargin() << " " << aSnack->getSailCost() << " " << aSnack->getManufacturer() << endl;
 
-	for (; Ices->getHead() != NULL; Ices->Delete(Ices->getHead()));
+	for (; Ices->getAmounts() != 0;)
+		Ices->Delete(Ices->getHead());
 
 	deb("Ices Deleted.");
 
@@ -190,7 +200,8 @@ void endPOS(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Othe
 	for (Other* aSnack = Others->getHead(); aSnack != NULL; aSnack = aSnack->getNext())
 		Products << aSnack->getID() << " " + aSnack->getName() + " " << aSnack->getStock() << " " << aSnack->getPrimeCost() << " " << aSnack->getMargin() << " " << aSnack->getSailCost() << " " << aSnack->getManufacturer() << endl;
 
-	for (; Others->getHead() != NULL; Others->Delete(Others->getHead()));
+	for (; Others->getAmounts() != 0;)
+		Others->Delete(Others->getHead());
 
 	deb("Others Deleted.");
 
@@ -243,10 +254,10 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 	Drink* aDrink;
 	Ice* anIce;
 	Other *aProd, *targetProd;
-	SnackList* sSnacks = new SnackList;
-	DrinkList* sDrinks = new DrinkList;
-	IceList* sIces = new IceList;
-	OtherList *sOthers = new OtherList;
+	SnackList* sSnacks = new SnackList();
+	DrinkList* sDrinks = new DrinkList();
+	IceList* sIces = new IceList();
+	OtherList *sOthers = new OtherList();
 
 	con.boxOpen();
 	con.boxLineCenter("[Product Search]");
@@ -709,7 +720,7 @@ void initAnn() {
 	con.boxClose();
 	con.boxOpen();
 	con.boxLine("Creator: Jio Gim");
-	con.boxLine("Version: 1.0.6");
+	con.boxLine("Version: 1.0.8");
 	con.boxClose();
 
 	if (isWin) {

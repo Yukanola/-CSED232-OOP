@@ -6,7 +6,8 @@
 
 bool dispMenu(SnackList*, DrinkList*, IceList*, OtherList*);
 bool initProd(SnackList*, DrinkList*, IceList*, OtherList*);
-bool initProd(SnackList*, DrinkList*, IceList*, OtherList*, char* firstArg);
+bool initProd(SnackList*, DrinkList*, IceList*, OtherList*, char*);
+void endPOS(SnackList*, DrinkList*, IceList*, OtherList*, char*);
 void endPOS(SnackList*, DrinkList*, IceList*, OtherList*);
 void initAnn();
 
@@ -48,7 +49,10 @@ int main(int argc, char** argv) {
 
 	deb("Delete Lists.");
 
-	endPOS(Snacks, Drinks, Ices, Others);
+	if (argc > 1)
+		endPOS(Snacks, Drinks, Ices, Others, argv[1]);
+	else
+		endPOS(Snacks, Drinks, Ices, Others);
 
 	deb("Kano Script Ended.");
 

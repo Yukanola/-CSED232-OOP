@@ -15,8 +15,8 @@ class Snack {
 
 	float Margin;
 
-	Snack* Next = NULL;
-	Snack* Before = NULL;
+	Snack* Next;
+	Snack* Before;
 
 public:
 
@@ -29,6 +29,8 @@ public:
 		this->PrimeCost = primeCost;
 		this->Manufacturer = manufacturer;
 		this->SailCost = sailCost;
+		this->Next = NULL;
+		this->Before = NULL;
 
 	};
 
@@ -56,15 +58,27 @@ public:
 
 class SnackList {
 
-	Snack* Head = NULL;
-	Snack* Tail = NULL;
-	int Amounts = 0;
+	Snack* Head;
+	Snack* Tail;
+	int Amounts;
 
 public:
 
+	SnackList() {
+
+		this->Amounts = 0;
+		this->Head = NULL;
+		this->Tail = NULL;
+
+	};
+
 	void Add(Snack* NewProd) {
 
+		deb("Starts to add a snack.");
+
 		if (this->Amounts != 0) {
+
+			deb("Snack is not alone.");
 
 			this->Tail->setNext(NewProd);
 
@@ -84,14 +98,14 @@ public:
 
 		if (this->Amounts == 1) {
 
-			this->Head = NULL;
-			this->Tail = NULL;
+			this->Head;
+			this->Tail;
 
 		}
 		else if (TargetProd == this->Tail) {
 
 			TargetProd->getBefore()->setNext(NULL);
-			this->Tail = NULL;
+			this->Tail;
 
 		}
 		else if (TargetProd == this->Head) {
@@ -209,8 +223,8 @@ class Drink {
 
 	float Margin;
 
-	Drink* Next = NULL;
-	Drink* Before = NULL;
+	Drink* Next;
+	Drink* Before;
 
 public:
 
@@ -223,6 +237,8 @@ public:
 		this->PrimeCost = primeCost;
 		this->Manufacturer = manufacturer;
 		this->SailCost = sailCost;
+		this->Next = NULL;
+		this->Before = NULL;
 
 	};
 
@@ -249,11 +265,19 @@ public:
 
 class DrinkList {
 
-	Drink* Head = NULL;
-	Drink* Tail = NULL;
-	int Amounts = 0;
+	Drink* Head;
+	Drink* Tail;
+	int Amounts;
 
 public:
+
+	DrinkList() {
+
+		this->Amounts = 0;
+		this->Head = NULL;
+		this->Tail = NULL;
+
+	};
 
 	void Add(Drink* NewProd) {
 
@@ -277,14 +301,14 @@ public:
 
 		if (this->Amounts == 1) {
 
-			this->Head = NULL;
-			this->Tail = NULL;
+			this->Head;
+			this->Tail;
 
 		}
 		else if (TargetProd == this->Tail) {
 
 			TargetProd->getBefore()->setNext(NULL);
-			this->Tail = NULL;
+			this->Tail;
 
 		}
 		else if (TargetProd == this->Head) {
@@ -402,8 +426,8 @@ class Ice {
 
 	float Margin;
 
-	Ice* Next = NULL;
-	Ice* Before = NULL;
+	Ice* Next;
+	Ice* Before;
 
 public:
 
@@ -416,6 +440,8 @@ public:
 		this->PrimeCost = primeCost;
 		this->Manufacturer = manufacturer;
 		this->SailCost = sailCost;
+		this->Next = NULL;
+		this->Before = NULL;
 
 	};
 
@@ -442,11 +468,19 @@ public:
 
 class IceList {
 
-	Ice* Head = NULL;
-	Ice* Tail = NULL;
-	int Amounts = 0;
+	Ice* Head;
+	Ice* Tail;
+	int Amounts;
 
 public:
+
+	IceList() {
+
+		this->Amounts = 0;
+		this->Head = NULL;
+		this->Tail = NULL;
+
+	};
 
 	void Add(Ice* NewProd) {
 
@@ -470,14 +504,14 @@ public:
 
 		if (this->Amounts == 1) {
 
-			this->Head = NULL;
-			this->Tail = NULL;
+			this->Head;
+			this->Tail;
 
 		}
 		else if (TargetProd == this->Tail) {
 
 			TargetProd->getBefore()->setNext(NULL);
-			this->Tail = NULL;
+			this->Tail;
 
 		}
 		else if (TargetProd == this->Head) {
@@ -595,8 +629,8 @@ class Other {
 
 	float Margin;
 
-	Other* Next = NULL;
-	Other* Before = NULL;
+	Other* Next;
+	Other* Before;
 
 public:
 
@@ -609,6 +643,8 @@ public:
 		this->PrimeCost = primeCost;
 		this->Manufacturer = manufacturer;
 		this->SailCost = sailCost;
+		this->Next = NULL;
+		this->Before = NULL;
 
 	};
 
@@ -635,11 +671,19 @@ public:
 
 class OtherList {
 
-	Other* Head = NULL;
-	Other* Tail = NULL;
-	int Amounts = 0;
+	Other* Head;
+	Other* Tail;
+	int Amounts;
 
 public:
+
+	OtherList() {
+
+		this->Amounts = 0;
+		this->Head = NULL;
+		this->Tail = NULL;
+
+	};
 
 	void Add(Other* NewProd) {
 
@@ -663,14 +707,14 @@ public:
 
 		if (this->Amounts == 1) {
 
-			this->Head = NULL;
-			this->Tail = NULL;
+			this->Head;
+			this->Tail;
 
 		}
 		else if (TargetProd == this->Tail) {
 
 			TargetProd->getBefore()->setNext(NULL);
-			this->Tail = NULL;
+			this->Tail;
 
 		}
 		else if (TargetProd == this->Head) {
