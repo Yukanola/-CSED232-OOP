@@ -47,11 +47,11 @@ bool initProd(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 
 			deb("New product type found.");
 
-			if (!strcmp(Temp, "-SNACK-"))
+			if (strstr(Temp, "-SNACK-") != NULL)
 				sort = 1;
-			else if (!strcmp(Temp, "-DRINK-"))
+			else if (strstr(Temp, "-DRINK-") != NULL)
 				sort = 2;
-			else if (!strcmp(Temp, "-ICE-"))
+			else if (strstr(Temp, "-ICE-") != NULL)
 				sort = 3;
 			else
 				sort = 4;
