@@ -29,6 +29,8 @@ public:
 		this->PrimeCost = primeCost;
 		this->Manufacturer = manufacturer;
 		this->SailCost = sailCost;
+		this->Next = NULL;
+		this->Before = NULL;
 
 	};
 
@@ -62,9 +64,21 @@ class SnackList {
 
 public:
 
+	SnackList() {
+
+		this->Amounts = 0;
+		this->Head = NULL;
+		this->Tail = NULL;
+
+	};
+
 	void Add(Snack* NewProd) {
 
+		deb("Starts to add a snack.");
+
 		if (this->Amounts != 0) {
+
+			deb("Snack is not alone.");
 
 			this->Tail->setNext(NewProd);
 
@@ -223,6 +237,8 @@ public:
 		this->PrimeCost = primeCost;
 		this->Manufacturer = manufacturer;
 		this->SailCost = sailCost;
+		this->Next = NULL;
+		this->Before = NULL;
 
 	};
 
@@ -254,6 +270,14 @@ class DrinkList {
 	int Amounts;
 
 public:
+
+	DrinkList() {
+
+		this->Amounts = 0;
+		this->Head = NULL;
+		this->Tail = NULL;
+
+	};
 
 	void Add(Drink* NewProd) {
 
@@ -416,6 +440,8 @@ public:
 		this->PrimeCost = primeCost;
 		this->Manufacturer = manufacturer;
 		this->SailCost = sailCost;
+		this->Next = NULL;
+		this->Before = NULL;
 
 	};
 
@@ -447,6 +473,14 @@ class IceList {
 	int Amounts;
 
 public:
+
+	IceList() {
+
+		this->Amounts = 0;
+		this->Head = NULL;
+		this->Tail = NULL;
+
+	};
 
 	void Add(Ice* NewProd) {
 
@@ -609,6 +643,8 @@ public:
 		this->PrimeCost = primeCost;
 		this->Manufacturer = manufacturer;
 		this->SailCost = sailCost;
+		this->Next = NULL;
+		this->Before = NULL;
 
 	};
 
@@ -640,6 +676,14 @@ class OtherList {
 	int Amounts;
 
 public:
+
+	OtherList() {
+
+		this->Amounts = 0;
+		this->Head = NULL;
+		this->Tail = NULL;
+
+	};
 
 	void Add(Other* NewProd) {
 
