@@ -6,12 +6,13 @@
 
 bool dispMenu(SnackList*, DrinkList*, IceList*, OtherList*);
 bool initProd(SnackList*, DrinkList*, IceList*, OtherList*);
+bool initProd(SnackList*, DrinkList*, IceList*, OtherList*, char* firstArg);
 void endPOS(SnackList*, DrinkList*, IceList*, OtherList*);
 void initAnn();
 
-int main() {
+int main(int argc, char** argv) {
  
-	Kano::init(true);
+	Kano::init(false);
 
 	con.csSize(42, 18);
 
@@ -36,7 +37,10 @@ int main() {
 
 	deb("Input Products to List.");
 
-	initProd(Snacks, Drinks, Ices, Others);
+	if (argc > 1)
+		initProd(Snacks, Drinks, Ices, Others, argv[1]);
+	else
+		initProd(Snacks, Drinks, Ices, Others);
 
 	deb("Displaying Menu.");
 

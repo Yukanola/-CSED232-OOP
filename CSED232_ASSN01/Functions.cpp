@@ -713,7 +713,7 @@ void initAnn() {
 	con.boxClose();
 	con.boxOpen();
 	con.boxLine("Creator: Jio Gim");
-	con.boxLine("Version: 1.0.7");
+	con.boxLine("Version: 1.0.8");
 	con.boxClose();
 
 	if (isWin) {

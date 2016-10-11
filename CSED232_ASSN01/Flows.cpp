@@ -18,12 +18,19 @@ using std::ios;
 
 Other* makeProd(int, string, int, int, float, int, string);
 int* dispSearch(SnackList*, DrinkList*, IceList*, OtherList*, bool);
+bool initProd(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others, char* firstArg);
 
 bool initProd(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others) {
 
+	return initProd(Snacks, Drinks, Ices, Others, "product.txt");
+
+}
+
+bool initProd(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others, char* firstArg) {
+
 	deb("Read product.txt File.");
 
-	ifstream Products("product.txt");
+	ifstream Products(firstArg);
 
 	char Temp[1024] = "";
 

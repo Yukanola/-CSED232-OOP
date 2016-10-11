@@ -1,4 +1,4 @@
-﻿  Functions.cpp
+﻿  mainFlow.cpp
 v:\github\-csed232-oop\csed232_assn01\libkano.h(228): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
 v:\github\-csed232-oop\csed232_assn01\libkano.h(246): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
 v:\github\-csed232-oop\csed232_assn01\libkano.h(462): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
@@ -10,4 +10,5 @@ v:\github\-csed232-oop\csed232_assn01\products.h(451): warning C4244: '=': conve
 v:\github\-csed232-oop\csed232_assn01\products.h(452): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 v:\github\-csed232-oop\csed232_assn01\products.h(654): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 v:\github\-csed232-oop\csed232_assn01\products.h(655): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+v:\github\-csed232-oop\csed232_assn01\mainflow.cpp(24): warning C4305: 'argument': truncation from 'double' to 'float'
   CSED232_ASSN01.vcxproj -> V:\Github\-CSED232-OOP\x64\Debug\CSED232_ASSN01.exe
