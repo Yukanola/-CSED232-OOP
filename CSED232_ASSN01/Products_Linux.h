@@ -98,14 +98,14 @@ public:
 
 		if (this->Amounts == 1) {
 
-			this->Head;
-			this->Tail;
+			this->Head = NULL;
+			this->Tail = NULL;
 
 		}
 		else if (TargetProd == this->Tail) {
 
 			TargetProd->getBefore()->setNext(NULL);
-			this->Tail;
+			this->Tail = NULL;
 
 		}
 		else if (TargetProd == this->Head) {
@@ -301,14 +301,14 @@ public:
 
 		if (this->Amounts == 1) {
 
-			this->Head;
-			this->Tail;
+			this->Head = NULL;
+			this->Tail = NULL;
 
 		}
 		else if (TargetProd == this->Tail) {
 
 			TargetProd->getBefore()->setNext(NULL);
-			this->Tail;
+			this->Tail = NULL;
 
 		}
 		else if (TargetProd == this->Head) {
@@ -504,14 +504,14 @@ public:
 
 		if (this->Amounts == 1) {
 
-			this->Head;
-			this->Tail;
+			this->Head = NULL;
+			this->Tail = NULL;
 
 		}
 		else if (TargetProd == this->Tail) {
 
 			TargetProd->getBefore()->setNext(NULL);
-			this->Tail;
+			this->Tail = NULL;
 
 		}
 		else if (TargetProd == this->Head) {
@@ -707,14 +707,14 @@ public:
 
 		if (this->Amounts == 1) {
 
-			this->Head;
-			this->Tail;
+			this->Head = NULL;
+			this->Tail = NULL;
 
 		}
 		else if (TargetProd == this->Tail) {
 
 			TargetProd->getBefore()->setNext(NULL);
-			this->Tail;
+			this->Tail = NULL;
 
 		}
 		else if (TargetProd == this->Head) {

@@ -196,7 +196,7 @@ namespace _Kano {
 
 		void printSpace(char* sentence, int cols) {
 
-			std::printf(sentence);
+			printf("%s", sentence);
 
 			cols -= (int)strlen(sentence);
 

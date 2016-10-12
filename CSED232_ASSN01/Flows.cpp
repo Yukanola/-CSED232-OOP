@@ -438,23 +438,44 @@ void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 	else {
 
 		con.boxLine("");
-		printf((isMGW) ? "|" : "│");
-		con.printSpace("Prod. ID", 12);
-		con.printSpace("Name", 32);
-		con.printSpace("Stocks", 16);
-		con.printSpace("Prime Cost", 15);
-		con.printSpace("Margin(%%)", 21);
-		con.printSpace("Sail Cost", 15);
-		con.printSpace("Manufacturer", 26);
-		printf((isMGW) ? "|\n|" : "│\n│");
-		con.printSpace(to_string(targetProd->getID()), 12);
-		con.printSpace(targetProd->getName(), 32);
-		con.printSpace(to_string(targetProd->getStock()), 16);
-		con.printSpace(to_string(targetProd->getPrimeCost()), 15);
-		con.printSpace(to_string((int)(targetProd->getMargin() * 100)), 20);
-		con.printSpace(to_string(targetProd->getSailCost()), 15);
-		con.printSpace(targetProd->getManufacturer(), 26);
-		printf((isMGW) ? "|\n" : "│\n");
+		if(isWin) {
+				
+			printf((isMGW) ? "|" : "│");
+			con.printSpace("Prod. ID", 12);
+			con.printSpace("Name", 32);
+			con.printSpace("Stocks", 16); //60
+			con.printSpace("Prime Cost", 15);
+			con.printSpace("Margin(%%)", 21);
+			con.printSpace("Sail Cost", 15); //110
+			con.printSpace("Manufacturer", 26);
+			printf((isMGW) ? "|\n|" : "│\n│");
+			
+		}
+		else if (isLinux) {
+			
+			con.boxLine("Prod. ID,   Name,   Stocks,   Prime Cost,   Margin(%%),   Sail Cost,   Manufacturer");
+			
+		}
+		
+		if (isWin) {
+			
+			printf((isMGW) ? "|" : "│");
+			con.printSpace(to_string(targetProd->getID()), 12);
+			con.printSpace(targetProd->getName(), 32);
+			con.printSpace(to_string(targetProd->getStock()), 16);
+			con.printSpace(to_string(targetProd->getPrimeCost()), 15);
+			con.printSpace(to_string((int)(targetProd->getMargin() * 100)), 20);
+			con.printSpace(to_string(targetProd->getSailCost()), 15);
+			con.printSpace(targetProd->getManufacturer(), 26);
+			printf((isMGW) ? "|\n" : "│\n");
+
+		}
+		else if (isLinux) {
+				
+			cout << "│" << to_string(targetProd->getID()).c_str() << ", " << targetProd->getName().c_str() << ", " << to_string(targetProd->getStock()).c_str() << ", " << to_string(targetProd->getPrimeCost()).c_str() << ", " << to_string((int)(targetProd->getMargin() * 100)).c_str() << ", " << to_string(targetProd->getSailCost()).c_str() << ", "<< targetProd->getManufacturer().c_str() << endl;
+
+		}
+			
 		con.boxClose();
 
 		printf(" How much do you want to sell: ");

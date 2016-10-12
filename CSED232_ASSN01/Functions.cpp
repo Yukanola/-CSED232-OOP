@@ -379,7 +379,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 			}
 			else if (isLinux) {
 
-				con.boxLine(to_string(targetProd->getID()) + ", " + targetProd->getName() + ", " + to_string(targetProd->getStock()) + ", " + to_string(targetProd->getPrimeCost()) + ", " + to_string((int)(targetProd->getMargin() * 100)) + ", " + to_string(targetProd->getSailCost()) + ", " + targetProd->getManufacturer());
+				cout << "│" << to_string(targetProd->getID()).c_str() << ", " << targetProd->getName().c_str() << ", " << to_string(targetProd->getStock()).c_str() << ", " << to_string(targetProd->getPrimeCost()).c_str() << ", " << to_string((int)(targetProd->getMargin() * 100)).c_str() << ", " << to_string(targetProd->getSailCost()).c_str() << ", "<< targetProd->getManufacturer().c_str() << endl;
 
 			}
 
@@ -485,7 +485,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 			}
 			else if (isLinux) {
 
-				con.boxLine(to_string(targetProd->getID()) + ", " + targetProd->getName() + ", " + to_string(targetProd->getStock()) + ", " + to_string(targetProd->getPrimeCost()) + ", " + to_string((int)(targetProd->getMargin() * 100)) + ", " + to_string(targetProd->getSailCost()) + ", " + targetProd->getManufacturer());
+				cout << "│" << to_string(targetProd->getID()).c_str() << ", " << targetProd->getName().c_str() << ", " << to_string(targetProd->getStock()).c_str() << ", " << to_string(targetProd->getPrimeCost()).c_str() << ", " << to_string((int)(targetProd->getMargin() * 100)).c_str() << ", " << to_string(targetProd->getSailCost()).c_str() << ", "<< targetProd->getManufacturer().c_str() << endl;
 
 			}
 
@@ -559,7 +559,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 				}
 				else if (isLinux) {
 
-					con.boxLine(to_string(Queue->getID()) + ", " + Queue->getName() + ", " + to_string(Queue->getStock()) + ", " + to_string(Queue->getPrimeCost()) + ", " + to_string((int)(Queue->getMargin() * 100)) + ", " + to_string(Queue->getSailCost()) + ", " + Queue->getManufacturer());
+					cout << "│" << to_string(Queue->getID()).c_str() << ", " << Queue->getName().c_str() << ", " << to_string(Queue->getStock()).c_str() << ", " << to_string(Queue->getPrimeCost()).c_str() << ", " << to_string((int)(Queue->getMargin() * 100)).c_str() << ", " << to_string(Queue->getSailCost()).c_str() << ", "<< Queue->getManufacturer().c_str() << endl;
 
 				}
 
@@ -582,7 +582,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 				}
 				else if (isLinux) {
 
-					con.boxLine(to_string(Queue->getID()) + ", " + Queue->getName() + ", " + to_string(Queue->getStock()) + ", " + to_string(Queue->getPrimeCost()) + ", " + to_string((int)(Queue->getMargin() * 100)) + ", " + to_string(Queue->getSailCost()) + ", " + Queue->getManufacturer());
+					cout << "│" << to_string(Queue->getID()).c_str() << ", " << Queue->getName().c_str() << ", " << to_string(Queue->getStock()).c_str() << ", " << to_string(Queue->getPrimeCost()).c_str() << ", " << to_string((int)(Queue->getMargin() * 100)).c_str() << ", " << to_string(Queue->getSailCost()).c_str() << ", "<< Queue->getManufacturer().c_str() << endl;
 
 				}
 
@@ -605,7 +605,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 				}
 				else if (isLinux) {
 
-					con.boxLine(to_string(Queue->getID()) + ", " + Queue->getName() + ", " + to_string(Queue->getStock()) + ", " + to_string(Queue->getPrimeCost()) + ", " + to_string((int)(Queue->getMargin() * 100)) + ", " + to_string(Queue->getSailCost()) + ", " + Queue->getManufacturer());
+					cout << "│" << to_string(Queue->getID()).c_str() << ", " << Queue->getName().c_str() << ", " << to_string(Queue->getStock()).c_str() << ", " << to_string(Queue->getPrimeCost()).c_str() << ", " << to_string((int)(Queue->getMargin() * 100)).c_str() << ", " << to_string(Queue->getSailCost()).c_str() << ", "<< Queue->getManufacturer().c_str() << endl;
 
 				}
 
@@ -628,7 +628,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 				}
 				else if (isLinux) {
 
-					con.boxLine(to_string(Queue->getID()) + ", " + Queue->getName() + ", " + to_string(Queue->getStock()) + ", " + to_string(Queue->getPrimeCost()) + ", " + to_string((int)(Queue->getMargin() * 100)) + ", " + to_string(Queue->getSailCost()) + ", " + Queue->getManufacturer());
+					cout << "│" << to_string(Queue->getID()).c_str() << ", " << Queue->getName().c_str() << ", " << to_string(Queue->getStock()).c_str() << ", " << to_string(Queue->getPrimeCost()).c_str() << ", " << to_string((int)(Queue->getMargin() * 100)).c_str() << ", " << to_string(Queue->getSailCost()).c_str() << ", "<< Queue->getManufacturer().c_str() << endl;
 
 				}
 
@@ -682,6 +682,16 @@ void dispRecord() {
 	con.boxLineCenter("[RECORD]");
 	con.boxClose();
 	con.boxOpen();
+	
+	if (!Records) {
+		
+		con.boxLine("No Records.");
+		con.boxClose();
+		con.csPause();
+		
+		return;
+		
+	}
 
 	for (Records.getline(Temp, 1024); !Records.eof(); Records.getline(Temp, 1024)) {
 
@@ -720,7 +730,7 @@ void initAnn() {
 	con.boxClose();
 	con.boxOpen();
 	con.boxLine("Creator: Jio Gim");
-	con.boxLine("Version: 1.0.9");
+	con.boxLine("Version: 1.0.10");
 	con.boxClose();
 
 	if (isWin) {
