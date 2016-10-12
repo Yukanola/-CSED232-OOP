@@ -144,7 +144,7 @@ public:
 				con.printSpace("Prime Cost", 15);
 				con.printSpace("Margin(%%)", 21);
 				con.printSpace("Sail Cost", 15); //110
-				con.printSpace("Manufacturer", 26);
+				con.printSpace("Manufacturer", 25);
 				printf((isMGW) ? "|\n" : "│\n");
 				con.boxLine();
 				
@@ -193,7 +193,7 @@ public:
 		Snack* TargetSnack = this->Head;
 
 		for (int i = 0; i < this->Amounts; i++) {
-			if (TargetSnack->getManufacturer() == man) {
+			if (NULL != strstr(TargetSnack->getManufacturer().c_str(), man.c_str())) {
 
 				Snack* copySnack = new Snack(TargetSnack->getID(), TargetSnack->getName(), TargetSnack->getStock(), TargetSnack->getPrimeCost(), TargetSnack->getMargin(), TargetSnack->getSailCost(), TargetSnack->getManufacturer());
 
@@ -347,7 +347,7 @@ public:
 				con.printSpace("Prime Cost", 15);
 				con.printSpace("Margin(%%)", 21);
 				con.printSpace("Sail Cost", 15); //110
-				con.printSpace("Manufacturer", 26);
+				con.printSpace("Manufacturer", 25);
 				printf((isMGW) ? "|\n" : "│\n");
 				con.boxLine();
 				
@@ -396,7 +396,7 @@ public:
 		Drink* TargetSnack = this->Head;
 
 		for (int i = 0; i < this->Amounts; i++) {
-			if (TargetSnack->getManufacturer() == man) {
+			if (NULL != strstr(TargetSnack->getManufacturer().c_str(), man.c_str())) {
 
 				Drink* copySnack = new Drink(TargetSnack->getID(), TargetSnack->getName(), TargetSnack->getStock(), TargetSnack->getPrimeCost(), TargetSnack->getMargin(), TargetSnack->getSailCost(), TargetSnack->getManufacturer());
 
@@ -550,7 +550,7 @@ public:
 				con.printSpace("Prime Cost", 15);
 				con.printSpace("Margin(%%)", 21);
 				con.printSpace("Sail Cost", 15); //110
-				con.printSpace("Manufacturer", 26);
+				con.printSpace("Manufacturer", 25);
 				printf((isMGW) ? "|\n" : "│\n");
 				con.boxLine();
 				
@@ -599,7 +599,7 @@ public:
 		Ice* TargetSnack = this->Head;
 
 		for (int i = 0; i < this->Amounts; i++) {
-			if (TargetSnack->getManufacturer() == man) {
+			if (NULL != strstr(TargetSnack->getManufacturer().c_str(), man.c_str())) {
 
 				Ice* copySnack = new Ice(TargetSnack->getID(), TargetSnack->getName(), TargetSnack->getStock(), TargetSnack->getPrimeCost(), TargetSnack->getMargin(), TargetSnack->getSailCost(), TargetSnack->getManufacturer());
 
@@ -753,7 +753,7 @@ public:
 				con.printSpace("Prime Cost", 15);
 				con.printSpace("Margin(%%)", 21);
 				con.printSpace("Sail Cost", 15); //110
-				con.printSpace("Manufacturer", 26);
+				con.printSpace("Manufacturer", 25);
 				printf((isMGW) ? "|\n" : "│\n");
 				con.boxLine();
 				
@@ -803,7 +803,7 @@ public:
 		Other* TargetSnack = this->Head;
 
 		for (int i = 0; i < this->Amounts; i++) {
-			if (TargetSnack->getManufacturer() == man) {
+			if (NULL != strstr(TargetSnack->getManufacturer().c_str(), man.c_str())) {
 
 				Other* copySnack = new Other(TargetSnack->getID(), TargetSnack->getName(), TargetSnack->getStock(), TargetSnack->getPrimeCost(), TargetSnack->getMargin(), TargetSnack->getSailCost(), TargetSnack->getManufacturer());
 

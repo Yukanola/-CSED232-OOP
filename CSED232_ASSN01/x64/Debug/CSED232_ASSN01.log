@@ -18,22 +18,9 @@ v:\github\-csed232-oop\csed232_assn01\flows.cpp(230): warning C4244: 'argument':
 v:\github\-csed232-oop\csed232_assn01\flows.cpp(264): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 v:\github\-csed232-oop\csed232_assn01\flows.cpp(298): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
 v:\github\-csed232-oop\csed232_assn01\flows.cpp(332): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\flows.cpp(567): warning C4101: 'sCost': unreferenced local variable
+v:\github\-csed232-oop\csed232_assn01\flows.cpp(568): warning C4101: 'sCost': unreferenced local variable
   Generating Code...
   Compiling...
-  mainFlow.cpp
-v:\github\-csed232-oop\csed232_assn01\libkano.h(228): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-v:\github\-csed232-oop\csed232_assn01\libkano.h(246): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-v:\github\-csed232-oop\csed232_assn01\libkano.h(462): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(40): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(41): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(248): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(249): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(451): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(452): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(654): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\products.h(655): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-v:\github\-csed232-oop\csed232_assn01\mainflow.cpp(25): warning C4305: 'argument': truncation from 'double' to 'float'
   Functions.cpp
 v:\github\-csed232-oop\csed232_assn01\libkano.h(228): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
 v:\github\-csed232-oop\csed232_assn01\libkano.h(246): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
@@ -47,4 +34,6 @@ v:\github\-csed232-oop\csed232_assn01\products.h(452): warning C4244: '=': conve
 v:\github\-csed232-oop\csed232_assn01\products.h(654): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 v:\github\-csed232-oop\csed232_assn01\products.h(655): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   Generating Code...
+  Skipping... (no relevant changes detected)
+  mainFlow.cpp
   CSED232_ASSN01.vcxproj -> V:\Github\-CSED232-OOP\x64\Debug\CSED232_ASSN01.exe

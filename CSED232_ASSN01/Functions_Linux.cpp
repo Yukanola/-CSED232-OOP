@@ -246,7 +246,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 		con.setCS(140, 30);
 
 	int Temp = 0, sort = 0;
-	static int retVal[2] = {-1, -1};
+	static int retVal[2] = {-1, -1}; // {id, type}
 
 	string TempStr;
 
@@ -352,7 +352,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 				con.printSpace("Prime Cost", 15);
 				con.printSpace("Margin(%%)", 21);
 				con.printSpace("Sail Cost", 15); //110
-				con.printSpace("Manufacturer", 26);
+				con.printSpace("Manufacturer", 25);
 				printf((isMGW) ? "|\n" : "│\n");
 
 			}
@@ -458,7 +458,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 				con.printSpace("Prime Cost", 15);
 				con.printSpace("Margin(%%)", 21);
 				con.printSpace("Sail Cost", 15); //110
-				con.printSpace("Manufacturer", 26);
+				con.printSpace("Manufacturer", 25);
 				printf((isMGW) ? "|\n" : "│\n");
 
 			}
@@ -530,7 +530,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 				con.printSpace("Prime Cost", 15);
 				con.printSpace("Margin(%%)", 21);
 				con.printSpace("Sail Cost", 15); //110
-				con.printSpace("Manufacturer", 26);
+				con.printSpace("Manufacturer", 25);
 				printf((isMGW) ? "|\n" : "│\n");
 
 			}
@@ -730,7 +730,7 @@ void initAnn() {
 	con.boxClose();
 	con.boxOpen();
 	con.boxLine("Creator: Jio Gim");
-	con.boxLine("Version: 1.0.10");
+	con.boxLine("Version: 1.0.11");
 	con.boxClose();
 
 	if (isWin) {

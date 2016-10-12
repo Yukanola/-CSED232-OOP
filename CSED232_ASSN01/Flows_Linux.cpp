@@ -447,8 +447,8 @@ void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 			con.printSpace("Prime Cost", 15);
 			con.printSpace("Margin(%%)", 21);
 			con.printSpace("Sail Cost", 15); //110
-			con.printSpace("Manufacturer", 26);
-			printf((isMGW) ? "|\n|" : "│\n│");
+			con.printSpace("Manufacturer", 25);
+			printf((isMGW) ? "|\n" : "│\n");
 			
 		}
 		else if (isLinux) {
@@ -459,6 +459,7 @@ void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 		
 		if (isWin) {
 			
+			con.boxLine();
 			printf((isMGW) ? "|" : "│");
 			con.printSpace(to_string(targetProd->getID()), 12);
 			con.printSpace(targetProd->getName(), 32);
@@ -722,6 +723,9 @@ void procStock(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* O
 		con.boxLineCenter("[ERROR]");
 		con.boxLine("Invalid Input.");
 		con.boxClose();
+		con.csPause();
+
+		return;
 
 	}
 
@@ -953,6 +957,9 @@ void procModify(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 
 	}
 
+	targetProdInfo[0] = -1;
+	targetProdInfo[1] = -1;
+
 	con.boxOpen();
 	con.boxLine("Successfully modified product information.");
 	con.boxClose();
@@ -972,6 +979,9 @@ void procRemove(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 
 	targetProdInfo = dispSearch(Snacks, Drinks, Ices, Others, true);
 
+	//cout << "[TEST] [" << targetProdInfo[0] << "][" << targetProdInfo[1] << "]\n";
+	//con.csPause();
+
 	if (targetProdInfo[1] == -1)
 		return;
 	else if (targetProdInfo[1] == 2)
@@ -984,6 +994,9 @@ void procRemove(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 		Others->Delete(Others->getProdByID(targetProdInfo[0]));
 	else
 		eLog(_Kano::UNKNOWNARG);
+
+	targetProdInfo[0] = -1;
+	targetProdInfo[1] = -1;
 
 	con.boxOpen();
 	con.boxLineCenter("A product successfully removed.");
