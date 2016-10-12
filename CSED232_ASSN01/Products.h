@@ -172,7 +172,7 @@ public:
 				}
 				else if (isLinux) {
 					
-					con.boxLine(to_string(Queue->getID()) + ", " + Queue->getName() + ", " + to_string(Queue->getStock()) + ", " + to_string(Queue->getPrimeCost()) + ", " + to_string((int)(Queue->getMargin() * 100)) + ", " + to_string(Queue->getSailCost()) + ", " + Queue->getManufacturer());
+					cout << "│" << to_string(Queue->getID()).c_str() << ", " << Queue->getName().c_str() << ", " << to_string(Queue->getStock()).c_str() << ", " << to_string(Queue->getPrimeCost()).c_str() << ", " << to_string((int)(Queue->getMargin() * 100)).c_str() << ", " << to_string(Queue->getSailCost()).c_str() << ", "<< Queue->getManufacturer().c_str() << endl;
 					
 				}
 
@@ -375,7 +375,7 @@ public:
 				}
 				else if (isLinux) {
 					
-					con.boxLine(to_string(Queue->getID()) + ", " + Queue->getName() + ", " + to_string(Queue->getStock()) + ", " + to_string(Queue->getPrimeCost()) + ", " + to_string((int)(Queue->getMargin() * 100)) + ", " + to_string(Queue->getSailCost()) + ", " + Queue->getManufacturer());
+					cout << "│" << to_string(Queue->getID()).c_str() << ", " << Queue->getName().c_str() << ", " << to_string(Queue->getStock()).c_str() << ", " << to_string(Queue->getPrimeCost()).c_str() << ", " << to_string((int)(Queue->getMargin() * 100)).c_str() << ", " << to_string(Queue->getSailCost()).c_str() << ", "<< Queue->getManufacturer().c_str() << endl;
 					
 				}
 
@@ -578,7 +578,7 @@ public:
 				}
 				else if (isLinux) {
 					
-					con.boxLine(to_string(Queue->getID()) + ", " + Queue->getName() + ", " + to_string(Queue->getStock()) + ", " + to_string(Queue->getPrimeCost()) + ", " + to_string((int)(Queue->getMargin() * 100)) + ", " + to_string(Queue->getSailCost()) + ", " + Queue->getManufacturer());
+					cout << "│" << to_string(Queue->getID()).c_str() << ", " << Queue->getName().c_str() << ", " << to_string(Queue->getStock()).c_str() << ", " << to_string(Queue->getPrimeCost()).c_str() << ", " << to_string((int)(Queue->getMargin() * 100)).c_str() << ", " << to_string(Queue->getSailCost()).c_str() << ", "<< Queue->getManufacturer().c_str() << endl;
 					
 				}
 
@@ -782,7 +782,7 @@ public:
 				}
 				else if (isLinux) {
 					
-					con.boxLine(to_string(Queue->getID()) + ", " + Queue->getName() + ", " + to_string(Queue->getStock()) + ", " + to_string(Queue->getPrimeCost()) + ", " + to_string((int)(Queue->getMargin() * 100)) + ", " + to_string(Queue->getSailCost()) + ", " + Queue->getManufacturer());
+					cout << "│" << to_string(Queue->getID()).c_str() << ", " << Queue->getName().c_str() << ", " << to_string(Queue->getStock()).c_str() << ", " << to_string(Queue->getPrimeCost()).c_str() << ", " << to_string((int)(Queue->getMargin() * 100)).c_str() << ", " << to_string(Queue->getSailCost()).c_str() << ", "<< Queue->getManufacturer().c_str() << endl;
 					
 				}
 				

@@ -13,7 +13,7 @@ using std::ofstream;
 using std::ios;
 
 void dispAllProducts(SnackList*, DrinkList*, IceList*, OtherList*);
-void procSale(SnackList*, DrinkList*, IceList*, OtherList*);
+void procSale(SnackList*, DrinkList*, IceList*, OtherList*);    
 void procStock(SnackList*, DrinkList*, IceList*, OtherList*);
 int* dispSearch(SnackList*, DrinkList*, IceList*, OtherList*, bool);
 void procModify(SnackList*, DrinkList*, IceList*, OtherList*);
@@ -263,7 +263,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 	con.boxLineCenter("[Product Search]");
 	con.boxLine();
 	con.boxLine("Select the way of searching.");
-		con.boxClose();
+	con.boxClose();
 	con.boxOpen();
 	con.boxLineCenter((Mode) ? "1. Prod. ID    2. Name" : "1. Prod. ID    2. Name    3. Manufacturer");
 	con.boxClose();
@@ -720,7 +720,7 @@ void initAnn() {
 	con.boxClose();
 	con.boxOpen();
 	con.boxLine("Creator: Jio Gim");
-	con.boxLine("Version: 1.0.8");
+	con.boxLine("Version: 1.0.9");
 	con.boxClose();
 
 	if (isWin) {

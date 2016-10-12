@@ -66,7 +66,7 @@
 #define DEFAULTBACK "black"
 
 #define cls() std::system("clear");
-#define color(a,b) std::system("setterm --term linux --background " a " --foreground " b);
+#define color(a,b) std::system("setterm -term linux -background " a " -foreground " b);
 #define csize(a,b);
 
 #endif
