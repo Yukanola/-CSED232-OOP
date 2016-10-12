@@ -13,7 +13,7 @@ using std::ofstream;
 using std::ios;
 
 void dispAllProducts(SnackList*, DrinkList*, IceList*, OtherList*);
-void procSale(SnackList*, DrinkList*, IceList*, OtherList*);
+void procSale(SnackList*, DrinkList*, IceList*, OtherList*);    
 void procStock(SnackList*, DrinkList*, IceList*, OtherList*);
 int* dispSearch(SnackList*, DrinkList*, IceList*, OtherList*, bool);
 void procModify(SnackList*, DrinkList*, IceList*, OtherList*);
