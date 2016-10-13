@@ -145,9 +145,12 @@
     <ClCompile Include="mainFlow.cpp" />
     <ClCompile Include="Functions.cpp" />
     <ClCompile Include="Flows.cpp" />
+    <ClCompile Include="ProductFunc.cpp" />
+    <ClCompile Include="ProductListFunc.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libKano.h" />
+    <ClInclude Include="ProductList.h" />
     <ClInclude Include="Products.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

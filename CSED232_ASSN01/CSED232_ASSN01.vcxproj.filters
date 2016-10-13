@@ -24,12 +24,21 @@
     <ClCompile Include="Flows.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ProductListFunc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProductFunc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libKano.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Products.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProductList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
