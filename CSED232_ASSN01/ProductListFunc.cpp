@@ -1,4 +1,8 @@
+ï»¿#if _WIN32
 #include "ProductList.h"
+#else
+#include "ProductList_Linux.h"
+#endif
 
 void SnackList::Add(Snack* NewProd) {
 
@@ -57,7 +61,8 @@ void SnackList::Delete(Snack* TargetProd) {
 
 void SnackList::dispAllProducts() {
 
-	con.setCS(140, 35);
+	if(isWin)
+		con.setCS(140, 35);
 
 	if (this->Amounts) {
 
@@ -67,7 +72,7 @@ void SnackList::dispAllProducts() {
 
 		if (isWin) {
 
-			printf((isMGW) ? "|" : "¦¢");
+			printf((isMGW) ? "|" : "â”‚");
 			con.printSpace("Prod. ID", 12);
 			con.printSpace("Name", 32);
 			con.printSpace("Stocks", 16); //60
@@ -75,7 +80,7 @@ void SnackList::dispAllProducts() {
 			con.printSpace("Margin(%%)", 21);
 			con.printSpace("Sail Cost", 15); //110
 			con.printSpace("Manufacturer", 25);
-			printf((isMGW) ? "|\n" : "¦¢\n");
+			printf((isMGW) ? "|\n" : "â”‚\n");
 			con.boxLine();
 
 		}
@@ -89,7 +94,7 @@ void SnackList::dispAllProducts() {
 
 			if (isWin) {
 
-				printf((isMGW) ? "|" : "¦¢");
+				printf((isMGW) ? "|" : "â”‚");
 				con.printSpace(to_string(Queue->getID()), 12);
 				con.printSpace(Queue->getName(), 32);
 				con.printSpace(to_string(Queue->getStock()), 16); //60
@@ -97,12 +102,12 @@ void SnackList::dispAllProducts() {
 				con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
 				con.printSpace(to_string(Queue->getSailCost()), 15); //110
 				con.printSpace(Queue->getManufacturer(), 26);
-				printf((isMGW) ? "|\n" : "¦¢\n");
+				printf((isMGW) ? "|\n" : "â”‚\n");
 
 			}
 			else if (isLinux) {
 
-				cout << "¦¢" << to_string(Queue->getID()).c_str() << ", " << Queue->getName().c_str() << ", " << to_string(Queue->getStock()).c_str() << ", " << to_string(Queue->getPrimeCost()).c_str() << ", " << to_string((int)(Queue->getMargin() * 100)).c_str() << ", " << to_string(Queue->getSailCost()).c_str() << ", " << Queue->getManufacturer().c_str() << endl;
+				cout << "â”‚" << to_string(Queue->getID()).c_str() << ", " << Queue->getName().c_str() << ", " << to_string(Queue->getStock()).c_str() << ", " << to_string(Queue->getPrimeCost()).c_str() << ", " << to_string((int)(Queue->getMargin() * 100)).c_str() << ", " << to_string(Queue->getSailCost()).c_str() << ", " << Queue->getManufacturer().c_str() << endl;
 
 			}
 
@@ -188,7 +193,8 @@ void DrinkList::Delete(Drink* TargetProd) {
 
 void DrinkList::dispAllProducts() {
 
-	con.setCS(140, 35);
+	if(isWin)
+		con.setCS(140, 35);
 
 	if (this->Amounts) {
 
@@ -198,7 +204,7 @@ void DrinkList::dispAllProducts() {
 
 		if (isWin) {
 
-			printf((isMGW) ? "|" : "¦¢");
+			printf((isMGW) ? "|" : "â”‚");
 			con.printSpace("Prod. ID", 12);
 			con.printSpace("Name", 32);
 			con.printSpace("Stocks", 16); //60
@@ -206,7 +212,7 @@ void DrinkList::dispAllProducts() {
 			con.printSpace("Margin(%%)", 21);
 			con.printSpace("Sail Cost", 15); //110
 			con.printSpace("Manufacturer", 25);
-			printf((isMGW) ? "|\n" : "¦¢\n");
+			printf((isMGW) ? "|\n" : "â”‚\n");
 			con.boxLine();
 
 		}
@@ -220,7 +226,7 @@ void DrinkList::dispAllProducts() {
 
 			if (isWin) {
 
-				printf((isMGW) ? "|" : "¦¢");
+				printf((isMGW) ? "|" : "â”‚");
 				con.printSpace(to_string(Queue->getID()), 12);
 				con.printSpace(Queue->getName(), 32);
 				con.printSpace(to_string(Queue->getStock()), 16); //60
@@ -228,12 +234,12 @@ void DrinkList::dispAllProducts() {
 				con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
 				con.printSpace(to_string(Queue->getSailCost()), 15); //110
 				con.printSpace(Queue->getManufacturer(), 26);
-				printf((isMGW) ? "|\n" : "¦¢\n");
+				printf((isMGW) ? "|\n" : "â”‚\n");
 
 			}
 			else if (isLinux) {
 
-				cout << "¦¢" << to_string(Queue->getID()).c_str() << ", " << Queue->getName().c_str() << ", " << to_string(Queue->getStock()).c_str() << ", " << to_string(Queue->getPrimeCost()).c_str() << ", " << to_string((int)(Queue->getMargin() * 100)).c_str() << ", " << to_string(Queue->getSailCost()).c_str() << ", " << Queue->getManufacturer().c_str() << endl;
+				cout << "â”‚" << to_string(Queue->getID()).c_str() << ", " << Queue->getName().c_str() << ", " << to_string(Queue->getStock()).c_str() << ", " << to_string(Queue->getPrimeCost()).c_str() << ", " << to_string((int)(Queue->getMargin() * 100)).c_str() << ", " << to_string(Queue->getSailCost()).c_str() << ", " << Queue->getManufacturer().c_str() << endl;
 
 			}
 
@@ -319,7 +325,8 @@ void IceList::Delete(Ice* TargetProd) {
 
 void IceList::dispAllProducts() {
 
-	con.setCS(140, 35);
+	if(isWin)
+		con.setCS(140, 35);
 
 	if (this->Amounts) {
 
@@ -329,7 +336,7 @@ void IceList::dispAllProducts() {
 
 		if (isWin) {
 
-			printf((isMGW) ? "|" : "¦¢");
+			printf((isMGW) ? "|" : "â”‚");
 			con.printSpace("Prod. ID", 12);
 			con.printSpace("Name", 32);
 			con.printSpace("Stocks", 16); //60
@@ -337,7 +344,7 @@ void IceList::dispAllProducts() {
 			con.printSpace("Margin(%%)", 21);
 			con.printSpace("Sail Cost", 15); //110
 			con.printSpace("Manufacturer", 25);
-			printf((isMGW) ? "|\n" : "¦¢\n");
+			printf((isMGW) ? "|\n" : "â”‚\n");
 			con.boxLine();
 
 		}
@@ -351,7 +358,7 @@ void IceList::dispAllProducts() {
 
 			if (isWin) {
 
-				printf((isMGW) ? "|" : "¦¢");
+				printf((isMGW) ? "|" : "â”‚");
 				con.printSpace(to_string(Queue->getID()), 12);
 				con.printSpace(Queue->getName(), 32);
 				con.printSpace(to_string(Queue->getStock()), 16); //60
@@ -359,12 +366,12 @@ void IceList::dispAllProducts() {
 				con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
 				con.printSpace(to_string(Queue->getSailCost()), 15); //110
 				con.printSpace(Queue->getManufacturer(), 26);
-				printf((isMGW) ? "|\n" : "¦¢\n");
+				printf((isMGW) ? "|\n" : "â”‚\n");
 
 			}
 			else if (isLinux) {
 
-				cout << "¦¢" << to_string(Queue->getID()).c_str() << ", " << Queue->getName().c_str() << ", " << to_string(Queue->getStock()).c_str() << ", " << to_string(Queue->getPrimeCost()).c_str() << ", " << to_string((int)(Queue->getMargin() * 100)).c_str() << ", " << to_string(Queue->getSailCost()).c_str() << ", " << Queue->getManufacturer().c_str() << endl;
+				cout << "â”‚" << to_string(Queue->getID()).c_str() << ", " << Queue->getName().c_str() << ", " << to_string(Queue->getStock()).c_str() << ", " << to_string(Queue->getPrimeCost()).c_str() << ", " << to_string((int)(Queue->getMargin() * 100)).c_str() << ", " << to_string(Queue->getSailCost()).c_str() << ", " << Queue->getManufacturer().c_str() << endl;
 
 			}
 
@@ -450,7 +457,8 @@ void OtherList::Delete(Other* TargetProd) {
 
 void OtherList::dispAllProducts() {
 
-	con.setCS(140, 35);
+	if(isWin)
+		con.setCS(140, 35);
 
 	if (this->Amounts) {
 
@@ -460,7 +468,7 @@ void OtherList::dispAllProducts() {
 
 		if (isWin) {
 
-			printf((isMGW) ? "|" : "¦¢");
+			printf((isMGW) ? "|" : "â”‚");
 			con.printSpace("Prod. ID", 12);
 			con.printSpace("Name", 32);
 			con.printSpace("Stocks", 16); //60
@@ -468,7 +476,7 @@ void OtherList::dispAllProducts() {
 			con.printSpace("Margin(%%)", 21);
 			con.printSpace("Sail Cost", 15); //110
 			con.printSpace("Manufacturer", 25);
-			printf((isMGW) ? "|\n" : "¦¢\n");
+			printf((isMGW) ? "|\n" : "â”‚\n");
 			con.boxLine();
 
 		}
@@ -483,7 +491,7 @@ void OtherList::dispAllProducts() {
 
 			if (isWin) {
 
-				printf((isMGW) ? "|" : "¦¢");
+				printf((isMGW) ? "|" : "â”‚");
 				con.printSpace(to_string(Queue->getID()), 12);
 				con.printSpace(Queue->getName(), 32);
 				con.printSpace(to_string(Queue->getStock()), 16); //60
@@ -491,12 +499,12 @@ void OtherList::dispAllProducts() {
 				con.printSpace(to_string((int)(Queue->getMargin() * 100)), 20);
 				con.printSpace(to_string(Queue->getSailCost()), 15); //110
 				con.printSpace(Queue->getManufacturer(), 26);
-				printf((isMGW) ? "|\n" : "¦¢\n");
+				printf((isMGW) ? "|\n" : "â”‚\n");
 
 			}
 			else if (isLinux) {
 
-				cout << "¦¢" << to_string(Queue->getID()).c_str() << ", " << Queue->getName().c_str() << ", " << to_string(Queue->getStock()).c_str() << ", " << to_string(Queue->getPrimeCost()).c_str() << ", " << to_string((int)(Queue->getMargin() * 100)).c_str() << ", " << to_string(Queue->getSailCost()).c_str() << ", " << Queue->getManufacturer().c_str() << endl;
+				cout << "â”‚" << to_string(Queue->getID()).c_str() << ", " << Queue->getName().c_str() << ", " << to_string(Queue->getStock()).c_str() << ", " << to_string(Queue->getPrimeCost()).c_str() << ", " << to_string((int)(Queue->getMargin() * 100)).c_str() << ", " << to_string(Queue->getSailCost()).c_str() << ", " << Queue->getManufacturer().c_str() << endl;
 
 			}
 

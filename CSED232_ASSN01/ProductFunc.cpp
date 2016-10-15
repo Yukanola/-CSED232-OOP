@@ -1,4 +1,8 @@
+﻿#if _WIN32
 #include "Products.h"
+#else
+#include "Products_Linux.h"
+#endif
 
 Snack::Snack(int id, string name, int amount, int primeCost, float margin, int sailCost, string manufacturer) {
 
