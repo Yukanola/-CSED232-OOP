@@ -1,7 +1,7 @@
 #if _WIN32
-#include "Products.h"
+#include "ProductList.h"
 #else
-#include "Products_Linux.h"
+#include "ProductList_Linux.h"
 #endif
 
 #include <fstream>
@@ -730,7 +730,7 @@ void initAnn() {
 	con.boxClose();
 	con.boxOpen();
 	con.boxLine("Creator: Jio Gim");
-	con.boxLine("Version: 1.0.11");
+	con.boxLine("Version: 1.0.12");
 	con.boxClose();
 
 	if (isWin) {

@@ -30,23 +30,31 @@ void SnackList::Delete(Snack* TargetProd) {
 
 	if (this->Amounts == 1) {
 
+		deb("Amount is 1.");
+
 		this->Head = NULL;
 		this->Tail = NULL;
 
 	}
 	else if (TargetProd == this->Tail) {
 
+		deb("This is Tail.");
+
 		TargetProd->getBefore()->setNext(NULL);
-		this->Tail = NULL;
+		this->Tail = TargetProd->getBefore();
 
 	}
 	else if (TargetProd == this->Head) {
+
+		deb("This is Head.");
 
 		this->Head = TargetProd->getNext();
 		TargetProd->getNext()->setBefore(NULL);
 
 	}
 	else {
+
+		deb("This is middle of List.");
 
 		TargetProd->getNext()->setBefore(TargetProd->getBefore());
 		TargetProd->getBefore()->setNext(TargetProd->getNext());
@@ -162,23 +170,31 @@ void DrinkList::Delete(Drink* TargetProd) {
 
 	if (this->Amounts == 1) {
 
+		deb("Amount is 1.");
+
 		this->Head = NULL;
 		this->Tail = NULL;
 
 	}
 	else if (TargetProd == this->Tail) {
 
+		deb("This is Tail.");
+
 		TargetProd->getBefore()->setNext(NULL);
-		this->Tail = NULL;
+		this->Tail = TargetProd->getBefore();
 
 	}
 	else if (TargetProd == this->Head) {
+
+		deb("This is Head.");
 
 		this->Head = TargetProd->getNext();
 		TargetProd->getNext()->setBefore(NULL);
 
 	}
 	else {
+
+		deb("This is middle of List.");
 
 		TargetProd->getNext()->setBefore(TargetProd->getBefore());
 		TargetProd->getBefore()->setNext(TargetProd->getNext());
@@ -294,23 +310,31 @@ void IceList::Delete(Ice* TargetProd) {
 
 	if (this->Amounts == 1) {
 
+		deb("Amount is 1.");
+
 		this->Head = NULL;
 		this->Tail = NULL;
 
 	}
 	else if (TargetProd == this->Tail) {
 
+		deb("This is Tail.");
+
 		TargetProd->getBefore()->setNext(NULL);
-		this->Tail = NULL;
+		this->Tail = TargetProd->getBefore();
 
 	}
 	else if (TargetProd == this->Head) {
+
+		deb("This is Head.");
 
 		this->Head = TargetProd->getNext();
 		TargetProd->getNext()->setBefore(NULL);
 
 	}
 	else {
+
+		deb("This is middle of List.");
 
 		TargetProd->getNext()->setBefore(TargetProd->getBefore());
 		TargetProd->getBefore()->setNext(TargetProd->getNext());
@@ -426,23 +450,31 @@ void OtherList::Delete(Other* TargetProd) {
 
 	if (this->Amounts == 1) {
 
+		deb("Amount is 1.");
+
 		this->Head = NULL;
 		this->Tail = NULL;
 
 	}
 	else if (TargetProd == this->Tail) {
 
+		deb("This is Tail.");
+
 		TargetProd->getBefore()->setNext(NULL);
-		this->Tail = NULL;
+		this->Tail = TargetProd->getBefore();
 
 	}
 	else if (TargetProd == this->Head) {
+
+		deb("This is Head.");
 
 		this->Head = TargetProd->getNext();
 		TargetProd->getNext()->setBefore(NULL);
 
 	}
 	else {
+
+		deb("This is middle of List.");
 
 		TargetProd->getNext()->setBefore(TargetProd->getBefore());
 		TargetProd->getBefore()->setNext(TargetProd->getNext());

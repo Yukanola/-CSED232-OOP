@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
 	if(isWin)
 		color(DEFAULTFONT, DEFAULTBACK);
 
-	cout << endl << endl << "    `7MM\"\"\"Mq.   .g8\"\"8q.    .M\"\"\"bgd" << endl << "      MM   `MM..dP'    `YM. ,MI    \"Y" << endl << "      MM   ,M9 dM'      `MM `MMb." << endl << "      MMmmdM9  MM        MM   `YMMNq." << endl << "      MM       MM.      ,MP .     `MM" << endl << "      MM       `Mb.    ,dP' Mb     dM" << endl << "    .JMML.       `\"bmmd\"'   P\"Ybmmd\"" << endl << endl << endl << endl << endl << endl << "    Copyright 20160087. Version 1.0.11" << endl << endl << endl;
+	cout << endl << endl << "    `7MM\"\"\"Mq.   .g8\"\"8q.    .M\"\"\"bgd" << endl << "      MM   `MM..dP'    `YM. ,MI    \"Y" << endl << "      MM   ,M9 dM'      `MM `MMb." << endl << "      MMmmdM9  MM        MM   `YMMNq." << endl << "      MM       MM.      ,MP .     `MM" << endl << "      MM       `Mb.    ,dP' Mb     dM" << endl << "    .JMML.       `\"bmmd\"'   P\"Ybmmd\"" << endl << endl << endl << endl << endl << endl << "    Copyright 20160087. Version 1.0.12" << endl << endl << endl;
 
 	con.csDelay(1.8);
 	

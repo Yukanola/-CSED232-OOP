@@ -438,8 +438,8 @@ void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 	else {
 
 		con.boxLine("");
-		if(isWin) {
-				
+		if (isWin) {
+
 			printf((isMGW) ? "|" : "│");
 			con.printSpace("Prod. ID", 12);
 			con.printSpace("Name", 32);
@@ -449,16 +449,16 @@ void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 			con.printSpace("Sail Cost", 15); //110
 			con.printSpace("Manufacturer", 25);
 			printf((isMGW) ? "|\n" : "│\n");
-			
+
 		}
 		else if (isLinux) {
-			
+
 			con.boxLine("Prod. ID,   Name,   Stocks,   Prime Cost,   Margin(%%),   Sail Cost,   Manufacturer");
-			
+
 		}
-		
+
 		if (isWin) {
-			
+
 			con.boxLine();
 			printf((isMGW) ? "|" : "│");
 			con.printSpace(to_string(targetProd->getID()), 12);
@@ -472,11 +472,11 @@ void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 
 		}
 		else if (isLinux) {
-				
-			cout << "│" << to_string(targetProd->getID()).c_str() << ", " << targetProd->getName().c_str() << ", " << to_string(targetProd->getStock()).c_str() << ", " << to_string(targetProd->getPrimeCost()).c_str() << ", " << to_string((int)(targetProd->getMargin() * 100)).c_str() << ", " << to_string(targetProd->getSailCost()).c_str() << ", "<< targetProd->getManufacturer().c_str() << endl;
+
+			cout << "│" << to_string(targetProd->getID()).c_str() << ", " << targetProd->getName().c_str() << ", " << to_string(targetProd->getStock()).c_str() << ", " << to_string(targetProd->getPrimeCost()).c_str() << ", " << to_string((int)(targetProd->getMargin() * 100)).c_str() << ", " << to_string(targetProd->getSailCost()).c_str() << ", " << targetProd->getManufacturer().c_str() << endl;
 
 		}
-			
+
 		con.boxClose();
 
 		printf(" How much do you want to sell: ");
@@ -528,10 +528,9 @@ void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 				break;
 
 			}
-			if (aProd->getStock() == Temp)
-				Others->Delete(aProd);
-			else
-				aProd->setStock(aProd->getStock() - Temp);
+
+			aProd->setStock(aProd->getStock() - Temp);
+
 			break;
 
 		}
@@ -551,12 +550,14 @@ void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 
 		if ((sort % 100) != 5)
 			delete targetProd;
+		else if ((sort % 100) == 5 && targetProd->getStock() == 0)
+			Others->Delete(targetProd);
 
 		con.boxClose();
 		Records.close();
 
 	}
-
+	
 	con.csPause();
 
 }
