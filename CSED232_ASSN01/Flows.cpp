@@ -528,10 +528,9 @@ void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 				break;
 
 			}
-			if (aProd->getStock() == Temp)
-				Others->Delete(aProd);
-			else
-				aProd->setStock(aProd->getStock() - Temp);
+
+			aProd->setStock(aProd->getStock() - Temp);
+
 			break;
 
 		}
@@ -551,6 +550,8 @@ void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 
 		if ((sort % 100) != 5)
 			delete targetProd;
+		else if ((sort % 100) == 5 && targetProd->getStock() == 0)
+			Others->Delete(targetProd);
 
 		con.boxClose();
 		Records.close();

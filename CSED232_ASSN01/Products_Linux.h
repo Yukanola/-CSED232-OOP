@@ -98,23 +98,31 @@ public:
 
 		if (this->Amounts == 1) {
 
+			deb("Amount is 1.");
+
 			this->Head = NULL;
 			this->Tail = NULL;
 
 		}
 		else if (TargetProd == this->Tail) {
 
+			deb("This is Tail.");
+
 			TargetProd->getBefore()->setNext(NULL);
-			this->Tail = NULL;
+			this->Tail = TargetProd->getBefore();
 
 		}
 		else if (TargetProd == this->Head) {
+
+			deb("This is Head.");
 
 			this->Head = TargetProd->getNext();
 			TargetProd->getNext()->setBefore(NULL);
 
 		}
 		else {
+
+			deb("This is middle of List.");
 
 			TargetProd->getNext()->setBefore(TargetProd->getBefore());
 			TargetProd->getBefore()->setNext(TargetProd->getNext());
@@ -135,8 +143,8 @@ public:
 			con.boxLineCenter("[SNACK]");
 			con.boxLine();
 
-			if(isWin) {
-				
+			if (isWin) {
+
 				printf((isMGW) ? "|" : "│");
 				con.printSpace("Prod. ID", 12);
 				con.printSpace("Name", 32);
@@ -147,18 +155,18 @@ public:
 				con.printSpace("Manufacturer", 25);
 				printf((isMGW) ? "|\n" : "│\n");
 				con.boxLine();
-				
+
 			}
 			else if (isLinux) {
-				
+
 				con.boxLine("Prod. ID,   Name,   Stocks,   Prime Cost,   Margin(%%),   Sail Cost,   Manufacturer");
-				
+
 			}
 
 			for (Snack* Queue = this->Head; Queue != NULL; Queue = Queue->getNext()) {
 
-				if(isWin) {
-					
+				if (isWin) {
+
 					printf((isMGW) ? "|" : "│");
 					con.printSpace(to_string(Queue->getID()), 12);
 					con.printSpace(Queue->getName(), 32);
@@ -168,12 +176,12 @@ public:
 					con.printSpace(to_string(Queue->getSailCost()), 15); //110
 					con.printSpace(Queue->getManufacturer(), 26);
 					printf((isMGW) ? "|\n" : "│\n");
-					
+
 				}
 				else if (isLinux) {
-					
-					cout << "│" << to_string(Queue->getID()).c_str() << ", " << Queue->getName().c_str() << ", " << to_string(Queue->getStock()).c_str() << ", " << to_string(Queue->getPrimeCost()).c_str() << ", " << to_string((int)(Queue->getMargin() * 100)).c_str() << ", " << to_string(Queue->getSailCost()).c_str() << ", "<< Queue->getManufacturer().c_str() << endl;
-					
+
+					cout << "│" << to_string(Queue->getID()).c_str() << ", " << Queue->getName().c_str() << ", " << to_string(Queue->getStock()).c_str() << ", " << to_string(Queue->getPrimeCost()).c_str() << ", " << to_string((int)(Queue->getMargin() * 100)).c_str() << ", " << to_string(Queue->getSailCost()).c_str() << ", " << Queue->getManufacturer().c_str() << endl;
+
 				}
 
 			};
@@ -301,23 +309,31 @@ public:
 
 		if (this->Amounts == 1) {
 
+			deb("Amount is 1.");
+
 			this->Head = NULL;
 			this->Tail = NULL;
 
 		}
 		else if (TargetProd == this->Tail) {
 
+			deb("This is Tail.");
+
 			TargetProd->getBefore()->setNext(NULL);
-			this->Tail = NULL;
+			this->Tail = TargetProd->getBefore();
 
 		}
 		else if (TargetProd == this->Head) {
+
+			deb("This is Head.");
 
 			this->Head = TargetProd->getNext();
 			TargetProd->getNext()->setBefore(NULL);
 
 		}
 		else {
+
+			deb("This is middle of List.");
 
 			TargetProd->getNext()->setBefore(TargetProd->getBefore());
 			TargetProd->getBefore()->setNext(TargetProd->getNext());
@@ -338,8 +354,8 @@ public:
 			con.boxLineCenter("[DRINK]");
 			con.boxLine();
 
-			if(isWin) {
-				
+			if (isWin) {
+
 				printf((isMGW) ? "|" : "│");
 				con.printSpace("Prod. ID", 12);
 				con.printSpace("Name", 32);
@@ -350,18 +366,18 @@ public:
 				con.printSpace("Manufacturer", 25);
 				printf((isMGW) ? "|\n" : "│\n");
 				con.boxLine();
-				
+
 			}
 			else if (isLinux) {
-				
+
 				con.boxLine("Prod. ID,   Name,   Stocks,   Prime Cost,   Margin(%%),   Sail Cost,   Manufacturer");
-				
+
 			}
 
 			for (Drink* Queue = this->Head; Queue != NULL; Queue = Queue->getNext()) {
 
-				if(isWin) {
-					
+				if (isWin) {
+
 					printf((isMGW) ? "|" : "│");
 					con.printSpace(to_string(Queue->getID()), 12);
 					con.printSpace(Queue->getName(), 32);
@@ -371,12 +387,12 @@ public:
 					con.printSpace(to_string(Queue->getSailCost()), 15); //110
 					con.printSpace(Queue->getManufacturer(), 26);
 					printf((isMGW) ? "|\n" : "│\n");
-					
+
 				}
 				else if (isLinux) {
-					
-					cout << "│" << to_string(Queue->getID()).c_str() << ", " << Queue->getName().c_str() << ", " << to_string(Queue->getStock()).c_str() << ", " << to_string(Queue->getPrimeCost()).c_str() << ", " << to_string((int)(Queue->getMargin() * 100)).c_str() << ", " << to_string(Queue->getSailCost()).c_str() << ", "<< Queue->getManufacturer().c_str() << endl;
-					
+
+					cout << "│" << to_string(Queue->getID()).c_str() << ", " << Queue->getName().c_str() << ", " << to_string(Queue->getStock()).c_str() << ", " << to_string(Queue->getPrimeCost()).c_str() << ", " << to_string((int)(Queue->getMargin() * 100)).c_str() << ", " << to_string(Queue->getSailCost()).c_str() << ", " << Queue->getManufacturer().c_str() << endl;
+
 				}
 
 			};
@@ -385,7 +401,7 @@ public:
 
 		}
 
-	}; 
+	};
 
 	Drink* getProdByID(int id) { Drink* TargetSnack = this->Head;  for (; TargetSnack != NULL && TargetSnack->getID() != id; TargetSnack = TargetSnack->getNext()); return TargetSnack; };
 
@@ -504,23 +520,31 @@ public:
 
 		if (this->Amounts == 1) {
 
+			deb("Amount is 1.");
+
 			this->Head = NULL;
 			this->Tail = NULL;
 
 		}
 		else if (TargetProd == this->Tail) {
 
+			deb("This is Tail.");
+
 			TargetProd->getBefore()->setNext(NULL);
-			this->Tail = NULL;
+			this->Tail = TargetProd->getBefore();
 
 		}
 		else if (TargetProd == this->Head) {
+
+			deb("This is Head.");
 
 			this->Head = TargetProd->getNext();
 			TargetProd->getNext()->setBefore(NULL);
 
 		}
 		else {
+
+			deb("This is middle of List.");
 
 			TargetProd->getNext()->setBefore(TargetProd->getBefore());
 			TargetProd->getBefore()->setNext(TargetProd->getNext());
@@ -541,8 +565,8 @@ public:
 			con.boxLineCenter("[ICE]");
 			con.boxLine();
 
-			if(isWin) {
-				
+			if (isWin) {
+
 				printf((isMGW) ? "|" : "│");
 				con.printSpace("Prod. ID", 12);
 				con.printSpace("Name", 32);
@@ -553,18 +577,18 @@ public:
 				con.printSpace("Manufacturer", 25);
 				printf((isMGW) ? "|\n" : "│\n");
 				con.boxLine();
-				
+
 			}
 			else if (isLinux) {
-				
+
 				con.boxLine("Prod. ID,   Name,   Stocks,   Prime Cost,   Margin(%%),   Sail Cost,   Manufacturer");
-				
+
 			}
 
 			for (Ice* Queue = this->Head; Queue != NULL; Queue = Queue->getNext()) {
 
-				if(isWin) {
-					
+				if (isWin) {
+
 					printf((isMGW) ? "|" : "│");
 					con.printSpace(to_string(Queue->getID()), 12);
 					con.printSpace(Queue->getName(), 32);
@@ -574,12 +598,12 @@ public:
 					con.printSpace(to_string(Queue->getSailCost()), 15); //110
 					con.printSpace(Queue->getManufacturer(), 26);
 					printf((isMGW) ? "|\n" : "│\n");
-					
+
 				}
 				else if (isLinux) {
-					
-					cout << "│" << to_string(Queue->getID()).c_str() << ", " << Queue->getName().c_str() << ", " << to_string(Queue->getStock()).c_str() << ", " << to_string(Queue->getPrimeCost()).c_str() << ", " << to_string((int)(Queue->getMargin() * 100)).c_str() << ", " << to_string(Queue->getSailCost()).c_str() << ", "<< Queue->getManufacturer().c_str() << endl;
-					
+
+					cout << "│" << to_string(Queue->getID()).c_str() << ", " << Queue->getName().c_str() << ", " << to_string(Queue->getStock()).c_str() << ", " << to_string(Queue->getPrimeCost()).c_str() << ", " << to_string((int)(Queue->getMargin() * 100)).c_str() << ", " << to_string(Queue->getSailCost()).c_str() << ", " << Queue->getManufacturer().c_str() << endl;
+
 				}
 
 			};
@@ -707,23 +731,31 @@ public:
 
 		if (this->Amounts == 1) {
 
+			deb("Amount is 1.");
+
 			this->Head = NULL;
 			this->Tail = NULL;
 
 		}
 		else if (TargetProd == this->Tail) {
 
+			deb("This is Tail.");
+
 			TargetProd->getBefore()->setNext(NULL);
-			this->Tail = NULL;
+			this->Tail = TargetProd->getBefore();
 
 		}
 		else if (TargetProd == this->Head) {
+
+			deb("This is Head.");
 
 			this->Head = TargetProd->getNext();
 			TargetProd->getNext()->setBefore(NULL);
 
 		}
 		else {
+
+			deb("This is middle of List.");
 
 			TargetProd->getNext()->setBefore(TargetProd->getBefore());
 			TargetProd->getBefore()->setNext(TargetProd->getNext());
@@ -744,8 +776,8 @@ public:
 			con.boxLineCenter("[OTHER]");
 			con.boxLine();
 
-			if(isWin) {
-				
+			if (isWin) {
+
 				printf((isMGW) ? "|" : "│");
 				con.printSpace("Prod. ID", 12);
 				con.printSpace("Name", 32);
@@ -756,19 +788,19 @@ public:
 				con.printSpace("Manufacturer", 25);
 				printf((isMGW) ? "|\n" : "│\n");
 				con.boxLine();
-				
+
 			}
 			else if (isLinux) {
-				
+
 				con.boxLine("Prod. ID,   Name,   Stocks,   Prime Cost,   Margin(%%),   Sail Cost,   Manufacturer");
-				
+
 			}
-			
+
 
 			for (Other* Queue = this->Head; Queue != NULL; Queue = Queue->getNext()) {
 
-				if(isWin) {
-					
+				if (isWin) {
+
 					printf((isMGW) ? "|" : "│");
 					con.printSpace(to_string(Queue->getID()), 12);
 					con.printSpace(Queue->getName(), 32);
@@ -778,14 +810,14 @@ public:
 					con.printSpace(to_string(Queue->getSailCost()), 15); //110
 					con.printSpace(Queue->getManufacturer(), 26);
 					printf((isMGW) ? "|\n" : "│\n");
-					
+
 				}
 				else if (isLinux) {
-					
-					cout << "│" << to_string(Queue->getID()).c_str() << ", " << Queue->getName().c_str() << ", " << to_string(Queue->getStock()).c_str() << ", " << to_string(Queue->getPrimeCost()).c_str() << ", " << to_string((int)(Queue->getMargin() * 100)).c_str() << ", " << to_string(Queue->getSailCost()).c_str() << ", "<< Queue->getManufacturer().c_str() << endl;
-					
+
+					cout << "│" << to_string(Queue->getID()).c_str() << ", " << Queue->getName().c_str() << ", " << to_string(Queue->getStock()).c_str() << ", " << to_string(Queue->getPrimeCost()).c_str() << ", " << to_string((int)(Queue->getMargin() * 100)).c_str() << ", " << to_string(Queue->getSailCost()).c_str() << ", " << Queue->getManufacturer().c_str() << endl;
+
 				}
-				
+
 			};
 
 			con.boxClose();
