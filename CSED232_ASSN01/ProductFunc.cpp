@@ -4,7 +4,7 @@
 #include "Products_Linux.h"
 #endif
 
-Snack::Snack(int id, string name, int amount, int primeCost, float margin, int sailCost, string manufacturer) {
+Snack::Snack(int id, string name, int amount, int primeCost, float margin, int sailCost, string manufacturer) {	// Snack의 생성자로, 기본 값들을 설정하는 기능을 가지고 있다.
 
 	this->ID = id;
 	this->Name = name;
@@ -18,7 +18,7 @@ Snack::Snack(int id, string name, int amount, int primeCost, float margin, int s
 
 };
 
-Drink::Drink(int id, string name, int amount, int primeCost, float margin, int sailCost, string manufacturer) {
+Drink::Drink(int id, string name, int amount, int primeCost, float margin, int sailCost, string manufacturer) {	// Snack 참조.
 
 	this->ID = id;
 	this->Name = name;
@@ -32,7 +32,7 @@ Drink::Drink(int id, string name, int amount, int primeCost, float margin, int s
 
 };
 
-Ice::Ice(int id, string name, int amount, int primeCost, float margin, int sailCost, string manufacturer) {
+Ice::Ice(int id, string name, int amount, int primeCost, float margin, int sailCost, string manufacturer) {	// Snack 참조.
 
 	this->ID = id;
 	this->Name = name;
@@ -46,7 +46,7 @@ Ice::Ice(int id, string name, int amount, int primeCost, float margin, int sailC
 
 };
 
-Other::Other(int id, string name, int amount, int primeCost, float margin, int sailCost, string manufacturer) {
+Other::Other(int id, string name, int amount, int primeCost, float margin, int sailCost, string manufacturer) {	// Snack 참조.
 
 	this->ID = id;
 	this->Name = name;

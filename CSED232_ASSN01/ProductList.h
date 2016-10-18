@@ -8,13 +8,13 @@ using std::endl;
 
 class SnackList {
 
-	Snack* Head;
-	Snack* Tail;
-	int Amounts;
+	Snack* Head;	// 첫 노드를 가리키는 변수
+	Snack* Tail;	// 마지막 노드를 가리키는 변수
+	int Amounts;	// 총 노드 수
 
 public:
 
-	SnackList() { this->Amounts = 0; this->Head = NULL; this->Tail = NULL; };
+	SnackList() { this->Amounts = 0; this->Head = NULL; this->Tail = NULL; };	// 과자 목록의 생성자로, 기본 값들을 설정한다.
 
 	void Add(Snack* NewProd);
 
@@ -22,19 +22,19 @@ public:
 
 	void dispAllProducts();
 
-	Snack* getProdByID(int id) { Snack* TargetSnack = this->Head;  for (; TargetSnack != NULL && TargetSnack->getID() != id; TargetSnack = TargetSnack->getNext()); return TargetSnack; };
+	Snack* getProdByID(int id) { Snack* TargetSnack = this->Head;  for (; TargetSnack != NULL && TargetSnack->getID() != id; TargetSnack = TargetSnack->getNext()); return TargetSnack; };	// 일치하는 ID가 나올때까지 계속 찾는다.
 
-	Snack* getProdByName(string name) { Snack* TargetSnack = this->Head;  for (; TargetSnack != NULL && TargetSnack->getName() != name; TargetSnack = TargetSnack->getNext()); return TargetSnack; };
+	Snack* getProdByName(string name) { Snack* TargetSnack = this->Head;  for (; TargetSnack != NULL && TargetSnack->getName() != name; TargetSnack = TargetSnack->getNext()); return TargetSnack; };	// 일치하는 Name이 나올떼까지 계속 찾는다.
 
 	SnackList* getProdsByManufacturer(SnackList* Box, string man);
 
-	Snack* getHead() { return this->Head; };
+	Snack* getHead() { return this->Head; };	// Head를 반환한다.
 
-	int getAmounts() { return this->Amounts; };
+	int getAmounts() { return this->Amounts; };	// 총 개수를 반환한다.
 
 };
 
-class DrinkList {
+class DrinkList {	// Snack 참조.
 
 	Drink* Head;
 	Drink* Tail;
@@ -62,7 +62,7 @@ public:
 
 };
 
-class IceList {
+class IceList {	// Snack 참조.
 
 	Ice* Head;
 	Ice* Tail;
@@ -90,7 +90,7 @@ public:
 
 };
 
-class OtherList {
+class OtherList {	// Snack 참조.
 
 	Other* Head;
 	Other* Tail;

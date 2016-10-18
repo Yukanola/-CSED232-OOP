@@ -1,4 +1,31 @@
 ﻿// Copyright Kanola 2016. Compatible for Windows and Unix-based OS.
+/*
+
+	[함수]
+	
+	init: 처음에 개발 모드인지 아닌지를 저장하고, 버전을 출력하는 함수입니다.
+	cls: Clear, Cls 명령과 같은 기능을 수행하는 함수입니다.
+	color: 콘솔 글자 색을 바꿀 때 사용하는 함수입니다.
+	setCS: 콘솔 사이즈를 저장하고 있는 변수의 값을 바꾸는 함수입니다.
+	csSize: 콘솔 창의 크기를 변경하는 함수입니다. 리눅스에서는 값이 입력되어도 현재 콘솔의 크기를 받아와서 저장합니다.
+	csDelay: 지정한 초동안 기다리는 함수입니다.
+	csPause: 엔터를 누르면 넘어가도록 구현한 함수입니다. Windows에서의 pause 명령과 기능이 동일합니다.
+	printSpace: 문자열과 칸 수를 입력하면 문자열을 출력하고 남은 칸을 공백으로 채우는 함수입니다.
+	boxOpen: 박스의 윗 부분을 출력하는 함수입니다.
+	boxLine: 박스의 중간 부분을 출력하는 함수입니다. 왼쪽 정렬입니다.
+	boxLineCenter: 박스의 중간 부분을 출력하는 함수입니다. 가운데 정렬입니다.
+	boxClose: 박스의 아랫 부분을 출력하는 함수입니다.
+	deb: 개발에 사용한 여러가지 Flag들을 기록하고, 출력하는 함수입니다.
+	end: 프로그램을 종료할 때 사용한 함수입니다. 현재는 return 기능밖에 없으나, 개발의 안정성을 위해 혹시나 하여 추가해두었습니다.
+	
+	[변수]
+	
+	isWin: Windows 환경(Visual Studio, MinGW)에서 참값을 가집니다.
+	isMGW: MinGW 환경에서 참값을 가집니다.
+	isLinux: Linux 환경에서 참값을 가집니다.
+	isDev: init 함수에서 설정한 값을 가집니다.
+
+*/
 
 #pragma once
 #pragma region Inclusions

@@ -8,42 +8,41 @@
 
 class Snack {
 
-	int ID, Stock, PrimeCost, SailCost;
+	int ID, Stock, PrimeCost, SailCost;	// 상품 정보들
 
-	string Name, Manufacturer;
+	string Name, Manufacturer;	// 상품 정보들
 
-	float Margin;
+	float Margin;	// 마진값은 소수로 저장되(하)고 퍼센트로 표시합니다.
 
-	Snack* Next;
-	Snack* Before;
+	Snack* Next;	// 다음 과자 노드를 가리키는 포인터
+	Snack* Before;	// 이전 과자 노드를 가리키는 포인터
 
 public:
 
 	Snack(int id, string name, int amount, int primeCost, float margin, int sailCost, string manufacturer);
 
-	void setID(int id) { this->ID = id; };
-	void setName(string name) { this->Name = name; };
-	void setStock(int stock) { this->Stock = stock; };
-	void setPrimeCost(int cost) { this->PrimeCost = cost; this->SailCost = cost*((float)1 + this->Margin); };
-	void setMargin(float margin) { this->Margin = margin; this->SailCost = ((float)1 + margin)*this->PrimeCost; };
-	void setManufacturer(string man) { this->Manufacturer = man; };
-	void setNext(Snack* aSnack) { this->Next = aSnack; };
-	void setBefore(Snack* aSnack) { this->Before = aSnack; };
+	void setID(int id) { this->ID = id; };	// ID를 설정합니다.
+	void setName(string name) { this->Name = name; };	// Name을 설정합니다.
+	void setStock(int stock) { this->Stock = stock; };	// Stock을 설정합니다.
+	void setPrimeCost(int cost) { this->PrimeCost = cost; this->SailCost = cost*((float)1 + this->Margin); };	// PrimeCost를 설정합니다.	SaleCost도 같이 수정됩니다.
+	void setMargin(float margin) { this->Margin = margin; this->SailCost = ((float)1 + margin)*this->PrimeCost; };	// Margin을 설정합니다.	SaleCost도 같이 수정됩니다.
+	void setManufacturer(string man) { this->Manufacturer = man; };	// Manufacturer을 설정합니다.
+	void setNext(Snack* aSnack) { this->Next = aSnack; };	// 다음 과자 노드를 설정합니다.
+	void setBefore(Snack* aSnack) { this->Before = aSnack; };	//이전 과자 노드를 설정합니다.
 
-	int getID() { return this->ID; };
-	string getName() { return this->Name; };
-	int getStock() { return this->Stock; };
-	int getPrimeCost() { return this->PrimeCost; };
-	float getMargin() { return this->Margin; };
-	string getManufacturer() { return this->Manufacturer; };
-	int getSailCost() { return this->SailCost; };
-	Snack* getNext() { return this->Next; };
-	Snack* getBefore() { return this->Before; };
-
+	int getID() { return this->ID; };	// ID를 리턴합니다.
+	string getName() { return this->Name; };	// Name을 리턴합니다.
+	int getStock() { return this->Stock; };	// Stock을 리턴합니다.
+	int getPrimeCost() { return this->PrimeCost; };	// PrimeCost를 리턴합니다.
+	float getMargin() { return this->Margin; };	// Margin을 리턴합니다.
+	string getManufacturer() { return this->Manufacturer; };	// Manufacturer을 리턴합니다.
+	int getSailCost() { return this->SailCost; };	// SailCost를 리턴합니다. 판매가와 관련된 코드들을 쓸때까지만 해도 SailCost가 틀린 단어인 줄 모르고 있었습니다. 늦게 SaleCost로 바꿀 수 있었지만, 귀찮아서 냅뒀습니다.
+	Snack* getNext() { return this->Next; };	// Next를 리턴합니다.
+	Snack* getBefore() { return this->Before; };	// Before를 리턴합니다.
 
 };
 
-class Drink {
+class Drink {	// Snack 참조.
 
 	int ID, Stock, PrimeCost, SailCost;
 
@@ -79,7 +78,7 @@ public:
 
 };
 
-class Ice {
+class Ice {	// Snack 참조.
 
 	int ID, Stock, PrimeCost, SailCost;
 
@@ -115,7 +114,7 @@ public:
 
 };
 
-class Other {
+class Other {	// Snack 참조.
 
 	int ID, Stock, PrimeCost, SailCost;
 

@@ -20,13 +20,13 @@ Other* makeProd(int, string, int, int, float, int, string);
 int* dispSearch(SnackList*, DrinkList*, IceList*, OtherList*, bool);
 bool initProd(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others, char* firstArg);
 
-bool initProd(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others) {
+bool initProd(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others) {	//Argument가 없을 때, default argument를 넣어 줍니다. 이 함수는 char* firstArg = "product.txt" 처럼 쓸 수 있다는 사실을 모를 때 작성하였습니다.
 
 	return initProd(Snacks, Drinks, Ices, Others, "product.txt");
 
 }
 
-bool initProd(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others, char* firstArg) {
+bool initProd(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others, char* firstArg) {	// 파일을 읽고, 리스트별로 상품 정보를 넣는 함수입니다. 상품이 하나도 없더라도 계속 프로그램을 진행합니다.
 
 	deb("Read product.txt File.");
 
@@ -346,7 +346,7 @@ bool initProd(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 	return true;
 }
 
-void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others) {
+void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others) {	// 물품을 판매하는 과정을 주도하는 함수입니다.  만약 남은 상품이 0개라면, 그 즉시 해당 노드를 삭제하도록 되어 있습니다.
 
 	deb("Sailing Process Started.");
 
@@ -562,7 +562,7 @@ void procSale(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 
 }
 
-void procStock(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others) {
+void procStock(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others) {	// 물품을 입고하는 과정을 주도하는 함수입니다. ID와 Name은 입력하는 즉시 검사하여 동일 상품이 있을 경우 오류를 표시합니다.
 
 	cls();
 
@@ -738,7 +738,7 @@ void procStock(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* O
 
 }
 
-void procModify(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others) {
+void procModify(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others) {	// 물품 정보를 수정하는 과정을 주도하는 함수입니다. 마찬가지로 ID와 Name은 입력하는 즉시 검사합니다.
 
 	con.csSize(140, 30);
 	con.boxOpen();
@@ -969,7 +969,7 @@ void procModify(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 
 }
 
-void procRemove(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others) {
+void procRemove(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others) { // 상품을 삭제하는 과정을 주도하는 함수입니다.
 
 	con.csSize(140, 30);
 	con.boxOpen();

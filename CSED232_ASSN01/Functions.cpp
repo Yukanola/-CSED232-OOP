@@ -21,7 +21,7 @@ void procRemove(SnackList*, DrinkList*, IceList*, OtherList*);
 void endPOS(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others, char* firstArg);
 void dispRecord();
 
-bool dispMenu(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others) {
+bool dispMenu(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others) {	// 메뉴를 표시하고,  사용자가 선택한 기능을 실행합니다.
 
 	static bool sync = 0;
 
@@ -93,7 +93,7 @@ bool dispMenu(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Ot
 
 };
 
-void dispAllProducts(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others) {
+void dispAllProducts(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others) {	// 모든 상품들을 표시하는 함수입니다. List Class 내부의 함수들을 기본적으로 활용합니다.
 
 	cls();
 
@@ -151,13 +151,13 @@ void dispAllProducts(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherL
 
 }
 
-void endPOS(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others) {
+void endPOS(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others) {	// Flows.cpp의 initProd처럼 기본 Argument가 입력되지 않았을 때 기본값 product.txt를 지정해주는 함수입니다. 역시 argument의 default value 지정 기능을 모를 때 작성되었습니다.
 
 	endPOS(Snacks, Drinks, Ices, Others, "product.txt");
 
 }
 
-void endPOS(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others, char* firstArg) {
+void endPOS(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others, char* firstArg) {	// 프로그램을 끝내기 전에 메모리 할당을 해제하는 함수입니다. Destructor를 모를 때 작성되었습니다.
 
 	con.csSize(80, 24);
 
@@ -228,13 +228,13 @@ void endPOS(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Othe
 
 }
 
-Other* makeProd(int id, string name, int stock, int pCost, float margin, int sCost, string man) {
+Other* makeProd(int id, string name, int stock, int pCost, float margin, int sCost, string man) {	// Other 카테고리에 해당하는 상품을 간단히 만들어 리턴합니다.
 
 	return new Other(id, name, stock, pCost, margin, sCost, man);
 
 }
 
-int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others, bool Mode) {
+int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* Others, bool Mode) {	// 상품을 검색하는 함수입니다. Mode 인자로 0을 주면 3번 메뉴(Search)가 되고, 1을 주면 나머지 다른 메뉴에서 상품을 검색할 때 사용하는 함수가 됩니다.
 
 	if (!Mode) {
 
@@ -669,7 +669,7 @@ int* dispSearch(SnackList* Snacks, DrinkList* Drinks, IceList* Ices, OtherList* 
 
 }
 
-void dispRecord() {
+void dispRecord() { // Sell Information을 기록하는 함수입니다. 기존 Sell Info 파일에 이어쓰게 되어 있습니다.
 
 	ifstream Records("sell_info.txt");
 
@@ -721,7 +721,7 @@ void dispRecord() {
 
 }
 
-void initAnn() {
+void initAnn() {	// 프로그램 메뉴를 표시하기 전에 나타나는 안내 메시지를 출력하느 함수입니다.
 
 	con.csSize(80, 24);
 

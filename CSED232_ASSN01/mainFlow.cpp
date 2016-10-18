@@ -11,7 +11,7 @@ void endPOS(SnackList*, DrinkList*, IceList*, OtherList*, char*);
 void endPOS(SnackList*, DrinkList*, IceList*, OtherList*);
 void initAnn();
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv) {	// 메인 함수로, 프로그램의 시작부터 끝까지 프로그램의 흐름이 나타나 있다.
  
 	Kano::init(false);
 

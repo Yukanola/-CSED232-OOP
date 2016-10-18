@@ -4,7 +4,7 @@
 #include "ProductList_Linux.h"
 #endif
 
-void SnackList::Add(Snack* NewProd) {
+void SnackList::Add(Snack* NewProd) {	// 과자 노드를 추가하는 함수입니다.
 
 	deb("Starts to add a snack.");
 
@@ -26,7 +26,7 @@ void SnackList::Add(Snack* NewProd) {
 
 };
 
-void SnackList::Delete(Snack* TargetProd) {
+void SnackList::Delete(Snack* TargetProd) {	// 과자 노드를 제거하는 함수입니다.
 
 	if (this->Amounts == 1) {
 
@@ -67,7 +67,7 @@ void SnackList::Delete(Snack* TargetProd) {
 
 };
 
-void SnackList::dispAllProducts() {
+void SnackList::dispAllProducts() {	// 모든 과자를 출력하는 함수입니다.
 
 	if(isWin)
 		con.setCS(140, 35);
@@ -127,7 +127,7 @@ void SnackList::dispAllProducts() {
 
 };
 
-SnackList* SnackList::getProdsByManufacturer(SnackList* Box, string man) {
+SnackList* SnackList::getProdsByManufacturer(SnackList* Box, string man) {	// 특정 제조사에서 나온 과자 노드들을 과자 리스트의 형태로 반환합니다.
 
 	Snack* TargetSnack = this->Head;
 
@@ -148,7 +148,7 @@ SnackList* SnackList::getProdsByManufacturer(SnackList* Box, string man) {
 
 };
 
-void DrinkList::Add(Drink* NewProd) {
+void DrinkList::Add(Drink* NewProd) {	// Snack 참조.
 
 	if (this->Amounts != 0) {
 
@@ -166,7 +166,7 @@ void DrinkList::Add(Drink* NewProd) {
 
 };
 
-void DrinkList::Delete(Drink* TargetProd) {
+void DrinkList::Delete(Drink* TargetProd) {	// Snack 참조.
 
 	if (this->Amounts == 1) {
 
@@ -207,7 +207,7 @@ void DrinkList::Delete(Drink* TargetProd) {
 
 };
 
-void DrinkList::dispAllProducts() {
+void DrinkList::dispAllProducts() {	// Snack 참조.
 
 	if(isWin)
 		con.setCS(140, 35);
@@ -267,7 +267,7 @@ void DrinkList::dispAllProducts() {
 
 };
 
-DrinkList* DrinkList::getProdsByManufacturer(DrinkList* Box, string man) {
+DrinkList* DrinkList::getProdsByManufacturer(DrinkList* Box, string man) {	// Snack 참조.
 
 	Drink* TargetSnack = this->Head;
 
@@ -288,7 +288,7 @@ DrinkList* DrinkList::getProdsByManufacturer(DrinkList* Box, string man) {
 
 };
 
-void IceList::Add(Ice* NewProd) {
+void IceList::Add(Ice* NewProd) {	// Snack 참조.
 
 	if (this->Amounts != 0) {
 
@@ -306,7 +306,7 @@ void IceList::Add(Ice* NewProd) {
 
 };
 
-void IceList::Delete(Ice* TargetProd) {
+void IceList::Delete(Ice* TargetProd) {	// Snack 참조.
 
 	if (this->Amounts == 1) {
 
@@ -347,7 +347,7 @@ void IceList::Delete(Ice* TargetProd) {
 
 };
 
-void IceList::dispAllProducts() {
+void IceList::dispAllProducts() {	// Snack 참조.
 
 	if(isWin)
 		con.setCS(140, 35);
@@ -407,7 +407,7 @@ void IceList::dispAllProducts() {
 
 };
 
-IceList* IceList::getProdsByManufacturer(IceList* Box, string man) {
+IceList* IceList::getProdsByManufacturer(IceList* Box, string man) {	// Snack 참조.
 
 	Ice* TargetSnack = this->Head;
 
@@ -428,7 +428,7 @@ IceList* IceList::getProdsByManufacturer(IceList* Box, string man) {
 
 };
 
-void OtherList::Add(Other* NewProd) {
+void OtherList::Add(Other* NewProd) {	// Snack 참조.
 
 	if (this->Amounts != 0) {
 
@@ -446,7 +446,7 @@ void OtherList::Add(Other* NewProd) {
 
 };
 
-void OtherList::Delete(Other* TargetProd) {
+void OtherList::Delete(Other* TargetProd) {	// Snack 참조.
 
 	if (this->Amounts == 1) {
 
@@ -487,7 +487,7 @@ void OtherList::Delete(Other* TargetProd) {
 
 };
 
-void OtherList::dispAllProducts() {
+void OtherList::dispAllProducts() {	// Snack 참조.
 
 	if(isWin)
 		con.setCS(140, 35);
@@ -548,7 +548,7 @@ void OtherList::dispAllProducts() {
 
 };
 
-OtherList* OtherList::getProdsByManufacturer(OtherList* Box, string man) {
+OtherList* OtherList::getProdsByManufacturer(OtherList* Box, string man) {	// Snack 참조.
 
 	Other* TargetSnack = this->Head;
 
