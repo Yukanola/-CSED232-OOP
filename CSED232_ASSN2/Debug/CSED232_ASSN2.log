@@ -1,0 +1,8 @@
+﻿  flowVein.cpp
+v:\github\-csed232-oop\csed232_assn2\libkano.cp.h(219): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+v:\github\-csed232-oop\csed232_assn2\libkano.cp.h(237): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+v:\github\-csed232-oop\csed232_assn2\parameter.h(31): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+v:\github\-csed232-oop\csed232_assn2\parameter.h(37): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+v:\github\-csed232-oop\csed232_assn2\parameter.h(43): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+v:\github\-csed232-oop\csed232_assn2\classes.h(147): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  CSED232_ASSN2.vcxproj -> V:\Github\-CSED232-OOP\CSED232_ASSN2\Debug\CSED232_ASSN2.exe
