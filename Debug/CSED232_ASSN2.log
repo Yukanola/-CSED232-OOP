@@ -1,0 +1,2 @@
+﻿flowVein.obj : error LNK2005: "public: class _Q & __thiscall _Q::insert(void)" (?insert@_Q@@QAEAAV1@XZ) already defined in flowDisplay.obj
+V:\Github\-CSED232-OOP\CSED232_ASSN2\Debug\CSED232_ASSN2.exe : fatal error LNK1169: one or more multiply defined symbols found
