@@ -1,0 +1,23 @@
+﻿  flowVein.cpp
+v:\github\-csed232-oop\libkano.cp.h(219): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+v:\github\-csed232-oop\libkano.cp.h(237): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+v:\github\-csed232-oop\libkano.cp.h(416): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+v:\github\-csed232-oop\parameter.h(31): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+v:\github\-csed232-oop\parameter.h(37): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+v:\github\-csed232-oop\parameter.h(43): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+v:\github\-csed232-oop\classes.h(168): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  flowDisplay.cpp
+v:\github\-csed232-oop\libkano.cp.h(219): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+v:\github\-csed232-oop\libkano.cp.h(237): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+v:\github\-csed232-oop\libkano.cp.h(416): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+v:\github\-csed232-oop\parameter.h(31): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+v:\github\-csed232-oop\parameter.h(37): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+v:\github\-csed232-oop\parameter.h(43): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+v:\github\-csed232-oop\classes.h(168): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+v:\github\-csed232-oop\flowdisplay.cpp(29): warning C4305: 'argument': truncation from 'double' to 'float'
+v:\github\-csed232-oop\flowdisplay.cpp(382): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+v:\github\-csed232-oop\flowdisplay.cpp(383): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+v:\github\-csed232-oop\flowdisplay.cpp(421): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+v:\github\-csed232-oop\flowdisplay.cpp(427): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+  Generating Code...
+  CSED232_ASSN2.vcxproj -> V:\Github\-CSED232-OOP\x64\Debug\CSED232_ASSN2.exe

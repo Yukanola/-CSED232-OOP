@@ -413,15 +413,20 @@ void dispInGameEY(int* pos, Env* E) {
 		XY.Y = pos[1] + 3;
 
 	}
-		
-
-	
 
 }
 
-void dispInGameLane(_Q& Q) {
+void dispInGameLane(_Q& Q, Env& E) {
+
+	COORD posStd = { 24 - E.roadX, 4 };
 
 	//Show Left Lane
+
+	for (CarA& A = Q.getAFront(); A.getNext() == NULL; A = A.getNext()) {
+
+		COORD pos = { A.getPosX() + posStd.X, A.getPosY() + posStd.Y };
+
+	}
 
 	//Show Center Lane
 

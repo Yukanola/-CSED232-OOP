@@ -94,10 +94,10 @@ public:
 
 		if (!count)
 			AFront = a;
-		
+
 		a->setBefore(ARear);
 
-		if(count)
+		if (count)
 			ARear->setNext(a);
 
 		ARear = a;
@@ -114,7 +114,7 @@ public:
 			BFront = b;
 
 		b->setBefore(BRear);
-		
+
 		if (count)
 			BRear->setNext(b);
 
@@ -142,99 +142,112 @@ public:
 
 	};
 
-	_Q& operator++(int) {
+	CarA& getAFront() { return *AFront; };
+	CarA& getARear() { return *ARear; };
+	CarB& getBFront() { return *BFront; };
+	CarB& getBRear() { return *BRear; };
+	CarC& getCFront() { return *CFront; };
+	CarC& getCRear() { return *CRear; };
 
-		srand(time(NULL));
+	int* getCount() { return count; };
 
-		int rands = rand() % 7;
-		CarA* a;
-		CarB* b;
-		CarC* c;
+	inline _Q& operator++(int);
 
-		switch (0) {
-
-		case 3:
-		case 0:
-			a = new CarA;
-			operator+=(a);
-			break;
-
-		case 4:
-		case 1:
-			b = new CarB;
-			operator+=(b);
-			break;
-
-		case 5:
-		case 2:
-			c = new CarC;
-			operator+=(c);
-			break;
-
-		case 6:
-			break;
-
-		}
-
-		return *this;
-
-	};
-
-	_Q& operator--(int x) {
-
-		using std::max_element;
-
-		int posYs[3] = { (AFront == NULL) ? 0 : AFront->getPosY(), (BFront == NULL) ? 0 : BFront->getPosY(), (CFront == NULL) ? 0 : CFront->getPosY() };
-
-		switch ((x == -1) ? (int)(posYs - max_element(posYs, posYs + 3)) : x) {
-
-		case 0:
-		{
-
-			CarA* temp = AFront->getNext();
-			delete AFront;
-			AFront = temp->setBefore(NULL);
-			count[0]--;
-
-		}
-
-		break;
-
-		case 1:
-		{
-
-			CarB* temp = BFront->getNext();
-			delete BFront;
-			BFront = temp->setBefore(NULL);
-			count[1]--;
-
-		}
-
-		break;
-
-		case 2:
-		{
-
-			CarC* temp = CFront->getNext();
-			delete CFront;
-			CFront = temp->setBefore(NULL);
-			count[2]--;
-
-		}
-
-		break;
-
-		}
-
-		return *this;
-
-	};
+	inline _Q& operator--(int);
 	
 	_Q& operator--() { return operator--(-1); };
 
 	_Q() : AFront(NULL), ARear(NULL), BFront(NULL), BRear(NULL), CFront(NULL), CRear(NULL) { count[0] = 0; count[1] = 0, count[2] = 0; };
 
-	_Q& insert();
+	inline _Q& insert();
+
+};
+
+_Q& _Q::operator++(int) {
+
+	srand(time(NULL));
+
+	int rands = rand() % 7;
+	CarA* a;
+	CarB* b;
+	CarC* c;
+
+	switch (0) {
+
+	case 3:
+	case 0:
+		a = new CarA;
+		operator+=(a);
+		break;
+
+	case 4:
+	case 1:
+		b = new CarB;
+		operator+=(b);
+		break;
+
+	case 5:
+	case 2:
+		c = new CarC;
+		operator+=(c);
+		break;
+
+	case 6:
+		break;
+
+	}
+
+	return *this;
+
+};
+
+_Q& _Q::operator--(int x) {
+
+	using std::max_element;
+
+	int posYs[3] = { (AFront == NULL) ? 0 : AFront->getPosY(), (BFront == NULL) ? 0 : BFront->getPosY(), (CFront == NULL) ? 0 : CFront->getPosY() };
+
+	switch ((x == -1) ? (int)(posYs - max_element(posYs, posYs + 3)) : x) {
+
+	case 0:
+	{
+
+		CarA* temp = AFront->getNext();
+		delete AFront;
+		AFront = temp->setBefore(NULL);
+		count[0]--;
+
+	}
+
+	break;
+
+	case 1:
+	{
+
+		CarB* temp = BFront->getNext();
+		delete BFront;
+		BFront = temp->setBefore(NULL);
+		count[1]--;
+
+	}
+
+	break;
+
+	case 2:
+	{
+
+		CarC* temp = CFront->getNext();
+		delete CFront;
+		CFront = temp->setBefore(NULL);
+		count[2]--;
+
+	}
+
+	break;
+
+	}
+
+	return *this;
 
 };
 

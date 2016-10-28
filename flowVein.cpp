@@ -16,8 +16,8 @@ void dispInGameBackground(Env*);
 void dispInGameTimeCount();
 void dispInGameScorePanel(int, int);
 void dispInGameEY(int*, Env*);
-void dispInGameLane(_Q&);
-bool procInGame(Env&, _Q&, _M&);
+void dispInGameLane(_Q&, Env&);
+bool procInGame(Env&, _Q&, _M&, int&);
 
 bool procMenu() {
 
@@ -72,6 +72,7 @@ void procGame() {
 
 	Env* Hardness;
 	_Q Q;
+	bool isDied = false;
 
 	int score = 0;
 
@@ -106,21 +107,32 @@ void procGame() {
 	dispInGameEY(M.getPos(), Hardness);
 	dispInGameTimeCount();
 
-	for (clock_t mTime = clock(); clock() - mTime < Hardness->T2; Q++) { //Same 
+	for (;!isDied;) {
 
-		Q.insert();
+		for (clock_t mTime = clock(); (clock() - mTime < Hardness->T2) && !(isDied = !procInGame(*Hardness, Q++, M, score)); Q.insert());
 
-		procInGame(*Hardness, Q, M);
-
-	};
+	}
 
 }
 
-bool procInGame(Env& E, _Q& Q, _M& M) {
+bool procInGameCheckAccident() {
+
+	return false;
+
+};
+
+void procScoreUp(int score) {
+
+	if (Setting::HighestScore < score)
+		Setting::HighestScore = score;
+
+};
+
+bool procInGame(Env& E, _Q& Q, _M& M, int& score) {
 
 	char keyGet;
 	
-	dispInGameLane(Q);
+	dispInGameLane(Q, E);
 
 	for (clock_t mTime = clock(); clock() - mTime < E.T1;) {
 
@@ -143,6 +155,11 @@ bool procInGame(Env& E, _Q& Q, _M& M) {
 				break;
 
 			}
+
+			if (procInGameCheckAccident())
+				return false;
+			else
+				procScoreUp(++score);
 
 		}
 
