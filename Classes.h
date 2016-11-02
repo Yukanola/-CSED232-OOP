@@ -1,25 +1,39 @@
 #pragma once
-#include "libKano.cp.h"
+#include "Core.kano.h"
 #include "Parameter.h"
 #include <algorithm>
 #include <ctime>
 
+static int getRand(int d) { static int X = 0; srand(((X) ? X : time(NULL))); X = rand(); return (X % d); };
+static int getRand(int d, int m) { return getRand(d) - m; };
+static unsigned int regId() { return ++Setting::blockers; };
+
 class Car {
 
 protected:
-	int posX, posY, carW, carH;
+	unsigned int id;
+	int posX, posY, carW, carH, carOW, carOH;
+	bool scoreCounted;
+	COORD prePos;
 
 public:
 	void setPosX(int x) { posX = x; };
 	void setPosY(int y) { posY = y; };
 	void setCarW(int w) { carW = w; };
 	void setCarH(int h) { carH = h; };
+	void setPrePos(int x, int y) { prePos.X = x; prePos.Y = y; };
+	void count() { scoreCounted = true; };
 	int getPosX() { return posX; };
 	int getPosY() { return posY; };
 	int getCarH() { return carH; };
 	int getCarW() { return carW; };
+	int getOCarH() { return carOH; };
+	int getOCarW() { return carOW; };
+	bool isCounted() { return scoreCounted; };
+	COORD getPrePos() { return prePos; };
+	bool decompose() { prePos.X = posX; prePos.Y = posY--; return !(--carH); };
 	Car() {};
-	Car(int x, int y, int w, int h) : posX(x), posY(y), carW(w), carH(h) {};
+	Car(int x, int y, int w, int h) : id(regId()), scoreCounted(false), posX(x), posY(y), carW(w), carH(h), carOH(h), carOW(w) { prePos.X = x; prePos.Y = y; };
 	~Car() {};
 
 };
@@ -35,10 +49,21 @@ public:
 	CarA* getBefore() { return Before; };
 	CarA* setNext(CarA* a) { return (Next = a); };
 	CarA* setBefore(CarA* a) { return (Before = a); };
-	CarA& operator++() { this->posX += 1; return *this; };
-	CarA() : Car(0, 0, 2, 3) {};
+	CarA& behave() { 
+		
+		this->posY += 1;
+		int beX = 2 * getRand(3, 1);
+
+		if (this->posX + beX >= 0 && this->posX + beX < (Setting::E->roadX * 2 - 1 - 2 * this->getCarW()))
+			this->posX += beX;
+	
+		return *this;
+	
+	};
+	CarA() : Next(NULL), Before(NULL), Car(0, -2, 2, 3) {};
+	CarA(int x) : Next(NULL), Before(NULL), Car(x, -2, 2, 3) {};
 	~CarA() {};
-	CarA(CarA* a) : Before(a), Car(0, 0, 2, 3) {};
+	CarA(CarA* a) : Next(NULL), Before(a), Car(0, -2, 2, 3) {};
 
 };
 
@@ -53,10 +78,11 @@ public:
 	CarB* getBefore() { return Before; };
 	CarB* setNext(CarB* b) { return (Next = b); };
 	CarB* setBefore(CarB* b) { return (Before = b); };
-	CarB& operator++() { this->posY += 1; return *this; };
-	CarB() : Car(0, 0, 2, 3) {};
+	CarB& behave() { this->posY += (getRand(3)) ? 1 : 0; return *this; };
+	CarB() : Next(NULL), Before(NULL), Car(0, -2, 2, 2) {};
+	CarB(int x) : Next(NULL), Before(NULL), Car(x, -2, 2, 2) {};
 	~CarB() {};
-	CarB(CarB* b) : Before(b), Car(0, 0, 2, 2) {};
+	CarB(CarB* b) : Next(NULL), Before(b), Car(0, -2, 2, 2) {};
 
 };
 
@@ -71,10 +97,75 @@ public:
 	CarC* getBefore() { return Before; };
 	CarC* setNext(CarC* c) { return (Next = c); };
 	CarC* setBefore(CarC* c) { return (Before = c); };
-	CarC& operator++() { this->posY += 1; this->posX += 1; return *this; };
-	CarC() : Car(0, 0, 2, 3) {};
+	CarC& behave() {
+
+		this->posY += getRand(2);
+
+		int beX = 2* getRand(3, 1);
+
+		if (this->posX + beX >= 0 && this->posX + beX < (Setting::E->roadX * 2 - 1 - 2 * this->getCarW()))
+			this->posX += beX;
+
+		return *this;
+
+	};
+	CarC() : Next(NULL), Before(NULL), Car(0,-2, 3, 2) {};
+	CarC(int x) : Next(NULL), Before(NULL), Car(x, -2, 3, 2) {};
 	~CarC() {};
-	CarC(CarC* c) : Before(c), Car(0, 0, 3, 2) {};
+	CarC(CarC* c) : Next(NULL), Before(c), Car(0, -2, 3, 2) {};
+
+};
+
+
+class __Pixel {
+
+public:
+
+	__Pixel* Next;
+
+	CarA* A;
+	CarB* B;
+	CarC* C;
+
+	bool detAAOA() { return (B != NULL && C != NULL); };
+	bool detAAOB() { return (A != NULL && C != NULL); };
+	bool detAAOC() { return (A != NULL && B != NULL); };
+	void setA(CarA* a) { A = a; };
+
+	__Pixel() : A(NULL), B(NULL), C(NULL), Next(NULL) {};
+
+};
+
+class _Pixel {
+
+	__Pixel* P[41][23];
+	int C;
+
+public:
+
+	__Pixel& getPixel(int x, int y) { /*cout << "[[" << x << "," << y << "]]";*/ return *(P[y][x]); };
+	__Pixel& setPixel(int x, int y, CarA* a) { P[y][x]->setA(a); return *(P[y][x]); }
+	_Pixel(int x, int y) : C(x) {
+
+		using std::endl;
+
+		for (int i = 0; i++ < y;) {
+
+			__Pixel *now;
+
+			for (int j = 0; j++ < x; P[i - 1][j - 1] = now) {
+
+				now = new __Pixel;
+
+				//cout << "i=" << i << ",j=" << j << "p=" << &P[i-1][j-1] << endl;
+
+			}
+
+		}
+
+		con.csPause();
+
+	};
 
 };
 
@@ -88,7 +179,7 @@ class _Q {
 
 public:
 
-	_Q& operator+=(CarA* a) {
+	_Q& add(CarA* a, _Pixel& P) {
 
 		int count = this->count[0]++;
 
@@ -102,11 +193,16 @@ public:
 
 		ARear = a;
 
+		for (int j = 0; j++ < a->getCarH();)
+			for (int k = 0; k++ < a->getCarW();)
+				if (a->getPosY() + j - 1 >= 0)
+					P.getPixel(a->getPosY() + j - 1, a->getPosX() + k - 1).A = a;
+
 		return *this;
 
 	};
 
-	_Q& operator+=(CarB* b) {
+	_Q& add(CarB* b) {
 
 		int count = this->count[1]++;
 
@@ -124,7 +220,7 @@ public:
 
 	};
 
-	_Q& operator+=(CarC* c) {
+	_Q& add(CarC* c) {
 
 		int count = this->count[2]++;
 
@@ -142,54 +238,58 @@ public:
 
 	};
 
-	CarA& getAFront() { return *AFront; };
-	CarA& getARear() { return *ARear; };
-	CarB& getBFront() { return *BFront; };
-	CarB& getBRear() { return *BRear; };
-	CarC& getCFront() { return *CFront; };
-	CarC& getCRear() { return *CRear; };
+	CarA* getAFront() { return AFront; };
+	//CarA* getARear() { return ARear; };
+	CarB* getBFront() { return BFront; };
+	//CarB* getBRear() { return BRear; };
+	CarC* getCFront() { return CFront; };
+	//CarC* getCRear() { return CRear; };
 
 	int* getCount() { return count; };
 
-	inline _Q& operator++(int);
-
-	inline _Q& operator--(int);
-	
-	_Q& operator--() { return operator--(-1); };
+	inline _Q& randomInsert(_Pixel&);
 
 	_Q() : AFront(NULL), ARear(NULL), BFront(NULL), BRear(NULL), CFront(NULL), CRear(NULL) { count[0] = 0; count[1] = 0, count[2] = 0; };
 
-	inline _Q& insert();
+	inline _Q& behave(Setting::Env&, _Pixel&);
 
 };
 
-_Q& _Q::operator++(int) {
+_Q& _Q::randomInsert(_Pixel& P) {
 
 	srand(time(NULL));
+	int x = rand();
 
-	int rands = rand() % 7;
+	srand(x);
+	int rands = rand() % 10;
+
 	CarA* a;
 	CarB* b;
 	CarC* c;
 
+	x = x % (Setting::E->roadX * 2 - 3);
+
 	switch (0) {
 
+	case 7:
 	case 3:
 	case 0:
-		a = new CarA;
-		operator+=(a);
+		a = new CarA(x - (x % 2));
+		add(a, P);
 		break;
 
+	case 8:
 	case 4:
 	case 1:
-		b = new CarB;
-		operator+=(b);
+		b = new CarB(x - (x % 2));
+		add(b);
 		break;
 
+	case 9:
 	case 5:
 	case 2:
-		c = new CarC;
-		operator+=(c);
+		c = new CarC((x = x - 3) - (x % 2));
+		add(c);
 		break;
 
 	case 6:
@@ -201,63 +301,41 @@ _Q& _Q::operator++(int) {
 
 };
 
-_Q& _Q::operator--(int x) {
+_Q& _Q::behave(Setting::Env& E, _Pixel& P) {
 
-	using std::max_element;
-
-	int posYs[3] = { (AFront == NULL) ? 0 : AFront->getPosY(), (BFront == NULL) ? 0 : BFront->getPosY(), (CFront == NULL) ? 0 : CFront->getPosY() };
-
-	switch ((x == -1) ? (int)(posYs - max_element(posYs, posYs + 3)) : x) {
-
-	case 0:
-	{
-
-		CarA* temp = AFront->getNext();
-		delete AFront;
-		AFront = temp->setBefore(NULL);
-		count[0]--;
-
-	}
-
-	break;
-
-	case 1:
-	{
-
-		CarB* temp = BFront->getNext();
-		delete BFront;
-		BFront = temp->setBefore(NULL);
-		count[1]--;
-
-	}
-
-	break;
-
-	case 2:
-	{
-
-		CarC* temp = CFront->getNext();
-		delete CFront;
-		CFront = temp->setBefore(NULL);
-		count[2]--;
-
-	}
-
-	break;
-
-	}
-
-	return *this;
-
-};
-
-_Q& _Q::insert() {
+	bool breakSign = false;
 
 	if (count[0]) {
 
 		CarA* a = AFront;
 
-		for (int i = 0; i++ < count[0]; a = (a++)->getNext());
+		for (int i = 0; i++ < count[0]; a = a->getNext()) {
+
+			a->behave();
+
+			for (int j = 0; j++ < a->getCarH() && !breakSign;)
+				for (int k = 0; k++ < a->getCarW() && !breakSign;)
+					if(a->getPosY() + j - 1 >= 0)
+						if (!P.getPixel(a->getPosX() + k - 1, a->getPosY() + j - 1).detAAOA()) {
+
+							a->setPrePos(a->getPrePos().X, a->getPrePos().Y);
+
+							breakSign = true;
+
+						};
+
+			if (!breakSign)
+				for (int j = 0; j++ < a->getCarH();)
+					for (int k = 0; k++ < a->getCarW();) {
+
+						P.getPixel(a->getPrePos().X + k - 1, a->getPrePos().Y + j - 1).A = NULL;
+						P.getPixel(a->getPosX() + k - 1, a->getPosY() + j - 1).A = a;
+
+					}
+			else
+				breakSign = false;
+
+		}
 
 	}
 
@@ -265,7 +343,7 @@ _Q& _Q::insert() {
 
 		CarB* b = BFront;
 
-		for (int i = 0; i++ < count[1]; b = (b++)->getNext());
+		for (int i = 0; i++ < count[1]; b = b->behave().getNext());
 
 	}
 
@@ -273,7 +351,7 @@ _Q& _Q::insert() {
 
 		CarC* c = CFront;
 
-		for (int i = 0; i++ < count[2]; c = (c++)->getNext());
+		for (int i = 0; i++ < count[2]; c = c->behave().getNext());
 
 	}
 
@@ -286,7 +364,7 @@ class _M : virtual public CarA, virtual public CarB {
 	int Colour;
 
 public:
-	
+
 	void setColor(int c) { Colour = c; };
 	int* getPos() { static int x[2] = { 0, 0 }; x[0] = this->getPosX(); x[1] = this->getPosY(); return x; };
 	_M() : Colour(14) {};

@@ -1,4 +1,5 @@
-#include "libKano.cp.h"
+#include "Core.kano.h"
+#include "WCD.kano.h"
 #include "Parameter.h"
 #include "Classes.h"
 
@@ -60,6 +61,63 @@ void dispMenu(int cursor) {
 	con.printSpaceCenter("3. 게임 종료");
 	cout << endl << endl << endl << endl << endl << endl;
 	if (cursor == 3)
+		Setting::setSelection(false);
+
+	con.printSpaceCenter("┌──────────┐");
+	cout << endl;
+	con.printSpaceCenter("│ 메뉴를 선택하세요. │");
+	cout << endl;
+	con.printSpaceCenter("│                    │");
+	con.printSpaceCenter("│ 선택하려면 [ENTER] │");
+	cout << endl;
+	con.printSpaceCenter("└──────────┘");
+
+}
+
+void dispColorSelection(int cursor) {
+
+	cls();
+
+	con.setCS(Setting::scrSize[0], Setting::scrSize[1]);
+
+	cout << endl << endl << endl << endl << endl
+		<< endl << endl << endl << endl << endl;
+	con.printSpaceCenter("- 난이도 선택 -");
+	cout << endl << endl << endl;
+
+	if (cursor == 1)
+		Setting::setSelection(true);
+	con.printSpaceCenter("1. 아주 쉬움");
+	cout << endl << endl;
+	if (cursor == 1)
+		Setting::setSelection(false);
+
+	if (cursor == 2)
+		Setting::setSelection(true);
+	con.printSpaceCenter("2. 쉬움");
+	cout << endl << endl;
+	if (cursor == 2)
+		Setting::setSelection(false);
+
+	if (cursor == 3)
+		Setting::setSelection(true);
+	con.printSpaceCenter("3. 보통");
+	cout << endl << endl;
+	if (cursor == 3)
+		Setting::setSelection(false);
+
+	if (cursor == 4)
+		Setting::setSelection(true);
+	con.printSpaceCenter("4. 어려움");
+	cout << endl << endl;
+	if (cursor == 4)
+		Setting::setSelection(false);
+
+	if (cursor == 5)
+		Setting::setSelection(true);
+	con.printSpaceCenter("5. 아주 어려움");
+	cout << endl << endl << endl << endl << endl << endl;
+	if (cursor == 5)
 		Setting::setSelection(false);
 
 	con.printSpaceCenter("┌──────────┐");
@@ -135,7 +193,7 @@ void dispInstruction() {
 	cls();
 
 	con.setCS(Setting::scrSize[0], Setting::scrSize[1]);
-	
+
 	cout << endl;
 	con.printSpaceCenter("- 게임 설명 -");
 	cout << endl << endl;
@@ -332,7 +390,7 @@ void dispInGameTimeCount() {
 
 void dispInGameBackground(Env* E) {
 
-	int* ConsoleSize = con.csSize(Setting::scrSize[0], Setting::scrSize[1]);
+	int* ConsoleSize = con.setCS(Setting::scrSize[0], Setting::scrSize[1]);
 	int padding = (((ConsoleSize[0]) - (E->roadX)) / 4) - 1;
 
 	con.boxOpen();
@@ -341,7 +399,7 @@ void dispInGameBackground(Env* E) {
 
 	for (int i = 0; i < E->roadY; i++) {
 
-		for (int j = 0; j < padding-2; j++)
+		for (int j = 0; j < padding - 2; j++)
 			cout << " ";
 
 		printf("%2d", i);
@@ -350,7 +408,7 @@ void dispInGameBackground(Env* E) {
 		cout << "■";
 		Setting::setColor(7);
 		for (int j = 0; j < E->roadX; j++)
-			printf("%2d", j);//cout << "  ";
+			cout << "  ";//printf("%2d", j);
 		Setting::setColor(15);
 		cout << "■";
 		Setting::setColor(7);
@@ -378,7 +436,7 @@ void dispInGameScorePanel(int now, int highest) {
 void dispInGameEY(int* pos, Env* E) {
 
 	int* ConsoleSize = con.setCS(Setting::scrSize[0], Setting::scrSize[1]);
-	int padding = (((ConsoleSize[0]) - (E->roadX)) / 4) + 1;
+	int padding = (((ConsoleSize[0]) - (E->roadX)) / 4);
 	static COORD preXY = { pos[0] + padding, pos[1] + 3 };
 	COORD XY = { pos[0] + padding, pos[1] + 3 };
 
@@ -402,7 +460,7 @@ void dispInGameEY(int* pos, Env* E) {
 	for (int i = 0; i++ < E->EY; XY.X += 2) {
 
 		for (int j = 0; j++ < E->EY; XY.Y += 1) {
-
+			
 			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), XY);
 			Setting::setColor(14);
 			cout << "■";
@@ -418,18 +476,100 @@ void dispInGameEY(int* pos, Env* E) {
 
 void dispInGameLane(_Q& Q, Env& E) {
 
-	COORD posStd = { 24 - E.roadX, 4 };
+	int* ConsoleSize = con.setCS(Setting::scrSize[0], Setting::scrSize[1]);
+	COORD posStd = { (((ConsoleSize[0]) - (E.roadX)) / 4) - 1, 4 };
 
-	//Show Left Lane
+	CarA* A = Q.getAFront();
+	CarB* B = Q.getBFront();
+	CarC* C = Q.getCFront();
 
-	for (CarA& A = Q.getAFront(); A.getNext() == NULL; A = A.getNext()) {
+	
 
-		COORD pos = { A.getPosX() + posStd.X, A.getPosY() + posStd.Y };
+	//Show CarA
 
-	}
+	if (Q.getCount()[0])
+		for (int j = 0; j++ < Q.getCount()[0]; A = A->getNext()) {
 
-	//Show Center Lane
+			for (int i = 0; i++ < A->getOCarW();)
+				for (int j = 0; j++ < A->getOCarH();) {
 
-	//Show Right Lane
+					COORD prePos = A->getPrePos();
+					prePos.X += (2 * i) + posStd.X;
+					prePos.Y += (1 * j) + posStd.Y;
+					SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), prePos);
+					cout << "  ";
+
+				}
+
+			for (int i = 0; i++ < A->getCarW();)
+				for (int j = 0; j++ < A->getCarH();) {
+
+					COORD pos = { A->getPosX() + posStd.X + (i * 2), A->getPosY() + posStd.Y + (j * 1) };
+					SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+					cout << "■";
+
+				}
+
+			A->setPrePos(A->getPosX(), A->getPosY());
+
+		}
+
+	//Show CarB
+
+	if (Q.getCount()[1])
+		for (int j = 0; j++ < Q.getCount()[1]; B = B->getNext()) {
+			
+			for (int i = 0; i++ < B->getOCarW();)
+				for (int j = 0; j++ < B->getOCarH();) {
+
+					COORD prePos = B->getPrePos();
+					prePos.X += (2 * i) + posStd.X;
+					prePos.Y += (1 * j) + posStd.Y;
+					SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), prePos);
+					cout << "  ";
+
+				}
+
+			for (int i = 0; i++ < B->getCarW();)
+				for (int j = 0; j++ < B->getCarH();) {
+
+					COORD pos = { B->getPosX() + posStd.X + (i * 2), B->getPosY() + posStd.Y + (j * 1) };
+					SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+					cout << "■";
+
+				}
+
+			B->setPrePos(B->getPosX(), B->getPosY());
+
+		}
+
+	//Show CarC
+
+	if (Q.getCount()[2])
+		for (int j = 0; j++ < Q.getCount()[2]; C = C->getNext()) {
+
+			for (int i = 0; i++ < C->getOCarW();)
+				for (int j = 0; j++ < C->getOCarH();) {
+
+					COORD prePos = C->getPrePos();
+					prePos.X += (2 * i) + posStd.X;
+					prePos.Y += (1 * j) + posStd.Y;
+					SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), prePos);
+					cout << "  ";
+
+				}
+
+			for (int i = 0; i++ < C->getCarW();)
+				for (int j = 0; j++ < C->getCarH();) {
+
+					COORD pos = { C->getPosX() + posStd.X + (i * 2), C->getPosY() + posStd.Y + (j * 1) };
+					SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+					cout << "■";
+
+				}
+
+			C->setPrePos(C->getPosX(), C->getPosY());
+
+		}
 
 }

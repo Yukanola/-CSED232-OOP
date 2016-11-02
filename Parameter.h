@@ -1,6 +1,5 @@
 #pragma once
-#include "libKano.cp.h"
-#include <vector>
+#include "Core.kano.h"
 
 namespace Key {
 
@@ -15,9 +14,10 @@ namespace Key {
 
 namespace Setting {
 
-	using std::vector;
 	using std::begin;
 	using std::end;
+
+	static unsigned int blockers = 0;
 
 	static const int scrSize[2] = { /*Columns*/48, /*Rows*/43 }; // The number of cols must be 48 or 49.
 
@@ -54,8 +54,10 @@ namespace Setting {
 
 		Env(int ex, int ey, int t1, int t2) : roadX(17), roadY(39), blockAX(3), blockAY(2), blockBX(2), blockBY(2), blockCX(2), blockCY(3), EX(ex), EY(ey), T1(t1), T2(t2) {};
 
-	} VE(2, 2, 500, 4500)/*Player Initial X, Player Initial Y, Ticker 1, Ticker 2*//*, E, M, H, VH*/;
+	} VEASY(2, 2, 500, 4500)/*Player Initial X, Player Initial Y, Ticker 1, Ticker 2*//*, E, M, H, VH*/;
 
 	static int HighestScore = 0;
+
+	static Env* E;
 
 };
