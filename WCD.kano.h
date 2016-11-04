@@ -7,6 +7,7 @@
 
 namespace _Kano {
 
+	static int WCD_Counter = 0;
 	static COORD WCD_position = { 0, 0 };
 	static COORD WCD_window = { 0, 0 };
 
@@ -104,3 +105,5 @@ namespace Kano {
 	};
 
 };
+
+#define debc() cout << "CheckSign(" << _Kano::WCD_Counter++ << ")";

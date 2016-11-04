@@ -1,5 +1,6 @@
 #pragma once
 #include "Core.kano.h"
+#include "WCD.kano.h"
 
 namespace Key {
 
@@ -54,7 +55,12 @@ namespace Setting {
 
 		Env(int ex, int ey, int t1, int t2) : roadX(17), roadY(39), blockAX(3), blockAY(2), blockBX(2), blockBY(2), blockCX(2), blockCY(3), EX(ex), EY(ey), T1(t1), T2(t2) {};
 
-	} VEASY(2, 2, 500, 4500)/*Player Initial X, Player Initial Y, Ticker 1, Ticker 2*//*, E, M, H, VH*/;
+	} /*Player Initial X, Player Initial Y, Ticker 1, Ticker 2*/
+		VEASY(2, 2, 500, 4500),
+		EASY(2, 2, 400, 1600),
+		NORMAL(2, 2, 300, 1500),
+		HARD(3, 3, 200, 1000),
+		VHARD(3, 3, 100, 400);
 
 	static int HighestScore = 0;
 

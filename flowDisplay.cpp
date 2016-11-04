@@ -1,4 +1,4 @@
-#include "Core.kano.h"
+ï»¿#include "Core.kano.h"
 #include "WCD.kano.h"
 #include "Parameter.h"
 #include "Classes.h"
@@ -39,38 +39,38 @@ void dispMenu(int cursor) {
 
 	cout << endl << endl << endl << endl << endl << endl
 		<< endl << endl << endl << endl << endl << endl;
-	con.printSpaceCenter("- ¸Ş´º ¼±ÅÃ -");
+	con.printSpaceCenter("- ë©”ë‰´ ì„ íƒ -");
 	cout << endl << endl << endl;
 
 	if (cursor == 1)
 		Setting::setSelection(true);
-	con.printSpaceCenter("1. °ÔÀÓ ½ÃÀÛ");
+	con.printSpaceCenter("1. ê²Œì„ ì‹œì‘");
 	cout << endl << endl;
 	if (cursor == 1)
 		Setting::setSelection(false);
 
 	if (cursor == 2)
 		Setting::setSelection(true);
-	con.printSpaceCenter("2. °ÔÀÓ ¼³¸í");
+	con.printSpaceCenter("2. ê²Œì„ ì„¤ëª…");
 	cout << endl << endl;
 	if (cursor == 2)
 		Setting::setSelection(false);
 
 	if (cursor == 3)
 		Setting::setSelection(true);
-	con.printSpaceCenter("3. °ÔÀÓ Á¾·á");
+	con.printSpaceCenter("3. ê²Œì„ ì¢…ë£Œ");
 	cout << endl << endl << endl << endl << endl << endl;
 	if (cursor == 3)
 		Setting::setSelection(false);
 
-	con.printSpaceCenter("¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤");
+	con.printSpaceCenter("â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”");
 	cout << endl;
-	con.printSpaceCenter("¦¢ ¸Ş´º¸¦ ¼±ÅÃÇÏ¼¼¿ä. ¦¢");
+	con.printSpaceCenter("â”‚ ë©”ë‰´ë¥¼ ì„ íƒí•˜ì„¸ìš”. â”‚");
 	cout << endl;
-	con.printSpaceCenter("¦¢                    ¦¢");
-	con.printSpaceCenter("¦¢ ¼±ÅÃÇÏ·Á¸é [ENTER] ¦¢");
+	con.printSpaceCenter("â”‚                    â”‚");
+	con.printSpaceCenter("â”‚ ì„ íƒí•˜ë ¤ë©´ [ENTER] â”‚");
 	cout << endl;
-	con.printSpaceCenter("¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥");
+	con.printSpaceCenter("â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜");
 
 }
 
@@ -80,54 +80,52 @@ void dispColorSelection(int cursor) {
 
 	con.setCS(Setting::scrSize[0], Setting::scrSize[1]);
 
-	cout << endl << endl << endl << endl << endl
-		<< endl << endl << endl << endl << endl;
-	con.printSpaceCenter("- ³­ÀÌµµ ¼±ÅÃ -");
+	cout << endl << endl << endl << endl << endl << endl << endl
+		<< endl << endl << endl << endl << endl << endl << endl;
+	con.printSpaceCenter("- ìë™ì°¨ ìƒ‰ìƒ ì„ íƒ -");
 	cout << endl << endl << endl;
 
+	Setting::setColor(12);
+	cout << "     â–   ";
+	Setting::setColor(5);
+	cout << "  â–   ";
+	Setting::setColor(14);
+	cout << "  â–   ";
+	Setting::setColor(10);
+	cout << "  â–   ";
+	Setting::setColor(2);
+	cout << "  â–   ";
+	Setting::setColor(9);
+	cout << "  â–   ";
+	Setting::setColor(11);
+	cout << "  â–      ";
+	Setting::setColor(7);
+	cout << endl << endl;
+
 	if (cursor == 1)
-		Setting::setSelection(true);
-	con.printSpaceCenter("1. ¾ÆÁÖ ½¬¿ò");
-	cout << endl << endl;
-	if (cursor == 1)
-		Setting::setSelection(false);
-
+		con.printSpaceCenter("â†‘                                    ");
 	if (cursor == 2)
-		Setting::setSelection(true);
-	con.printSpaceCenter("2. ½¬¿ò");
-	cout << endl << endl;
-	if (cursor == 2)
-		Setting::setSelection(false);
-
+		con.printSpaceCenter("      â†‘                              ");
 	if (cursor == 3)
-		Setting::setSelection(true);
-	con.printSpaceCenter("3. º¸Åë");
-	cout << endl << endl;
-	if (cursor == 3)
-		Setting::setSelection(false);
-
+		con.printSpaceCenter("            â†‘                        ");
 	if (cursor == 4)
-		Setting::setSelection(true);
-	con.printSpaceCenter("4. ¾î·Á¿ò");
-	cout << endl << endl;
-	if (cursor == 4)
-		Setting::setSelection(false);
-
+		con.printSpaceCenter("                  â†‘                  ");
 	if (cursor == 5)
-		Setting::setSelection(true);
-	con.printSpaceCenter("5. ¾ÆÁÖ ¾î·Á¿ò");
-	cout << endl << endl << endl << endl << endl << endl;
-	if (cursor == 5)
-		Setting::setSelection(false);
+		con.printSpaceCenter("                        â†‘            ");
+	if (cursor == 6)
+		con.printSpaceCenter("                              â†‘      ");
+	if (cursor == 7)
+		con.printSpaceCenter("                                    â†‘");
 
-	con.printSpaceCenter("¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤");
+	cout << endl << endl << endl << endl;
+	con.printSpaceCenter("â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”");
 	cout << endl;
-	con.printSpaceCenter("¦¢ ¸Ş´º¸¦ ¼±ÅÃÇÏ¼¼¿ä. ¦¢");
+	con.printSpaceCenter("â”‚ ìƒ‰ìƒì„ ì„ íƒí•˜ì„¸ìš”. â”‚");
 	cout << endl;
-	con.printSpaceCenter("¦¢                    ¦¢");
-	con.printSpaceCenter("¦¢ ¼±ÅÃÇÏ·Á¸é [ENTER] ¦¢");
+	con.printSpaceCenter("â”‚                    â”‚");
+	con.printSpaceCenter("â”‚ ì„ íƒí•˜ë ¤ë©´ [ENTER] â”‚");
 	cout << endl;
-	con.printSpaceCenter("¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥");
+	con.printSpaceCenter("â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜");
 
 }
 
@@ -139,52 +137,52 @@ void dispHardnessSet(int cursor) {
 
 	cout << endl << endl << endl << endl << endl
 		<< endl << endl << endl << endl << endl;
-	con.printSpaceCenter("- ³­ÀÌµµ ¼±ÅÃ -");
+	con.printSpaceCenter("- ë‚œì´ë„ ì„ íƒ -");
 	cout << endl << endl << endl;
 
 	if (cursor == 1)
 		Setting::setSelection(true);
-	con.printSpaceCenter("1. ¾ÆÁÖ ½¬¿ò");
+	con.printSpaceCenter("1. ì•„ì£¼ ì‰¬ì›€");
 	cout << endl << endl;
 	if (cursor == 1)
 		Setting::setSelection(false);
 
 	if (cursor == 2)
 		Setting::setSelection(true);
-	con.printSpaceCenter("2. ½¬¿ò");
+	con.printSpaceCenter("2. ì‰¬ì›€");
 	cout << endl << endl;
 	if (cursor == 2)
 		Setting::setSelection(false);
 
 	if (cursor == 3)
 		Setting::setSelection(true);
-	con.printSpaceCenter("3. º¸Åë");
+	con.printSpaceCenter("3. ë³´í†µ");
 	cout << endl << endl;
 	if (cursor == 3)
 		Setting::setSelection(false);
 
 	if (cursor == 4)
 		Setting::setSelection(true);
-	con.printSpaceCenter("4. ¾î·Á¿ò");
+	con.printSpaceCenter("4. ì–´ë ¤ì›€");
 	cout << endl << endl;
 	if (cursor == 4)
 		Setting::setSelection(false);
 
 	if (cursor == 5)
 		Setting::setSelection(true);
-	con.printSpaceCenter("5. ¾ÆÁÖ ¾î·Á¿ò");
+	con.printSpaceCenter("5. ì•„ì£¼ ì–´ë ¤ì›€");
 	cout << endl << endl << endl << endl << endl << endl;
 	if (cursor == 5)
 		Setting::setSelection(false);
 
-	con.printSpaceCenter("¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤");
+	con.printSpaceCenter("â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”");
 	cout << endl;
-	con.printSpaceCenter("¦¢ ¸Ş´º¸¦ ¼±ÅÃÇÏ¼¼¿ä. ¦¢");
+	con.printSpaceCenter("â”‚ ë©”ë‰´ë¥¼ ì„ íƒí•˜ì„¸ìš”. â”‚");
 	cout << endl;
-	con.printSpaceCenter("¦¢                    ¦¢");
-	con.printSpaceCenter("¦¢ ¼±ÅÃÇÏ·Á¸é [ENTER] ¦¢");
+	con.printSpaceCenter("â”‚                    â”‚");
+	con.printSpaceCenter("â”‚ ì„ íƒí•˜ë ¤ë©´ [ENTER] â”‚");
 	cout << endl;
-	con.printSpaceCenter("¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥");
+	con.printSpaceCenter("â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜");
 
 }
 
@@ -195,47 +193,47 @@ void dispInstruction() {
 	con.setCS(Setting::scrSize[0], Setting::scrSize[1]);
 
 	cout << endl;
-	con.printSpaceCenter("- °ÔÀÓ ¼³¸í -");
+	con.printSpaceCenter("- ê²Œì„ ì„¤ëª… -");
 	cout << endl << endl;
 	con.boxOpen();
-	con.boxLineCenter("[½ºÅä¸®]");
+	con.boxLineCenter("[ìŠ¤í† ë¦¬]");
 	con.boxLine();
 	con.boxLine();
-	con.boxLine(" ¿À·£¸¸¿¡ µ¿·á ±³¼öµé°ú ÇÇÅ©´ĞÀ» ³ª°£ À±Àº¿µ");
-	con.boxLine("±³¼ö. ÇÏÁö¸¸ È­Àå½Ç °£´Ù´ø ¼ÛÈ²ÁØ ±³¼ö°¡ °©");
-	con.boxLine("ÀÚ±â »ç¶óÁö°í, ÇÑÂüÀ» Ã£¾ÆÇì¸Ş´ø À±Àº¿µ ±³¼ö");
-	con.boxLine("´Â ¼ÛÈ²ÁØ ±³¼ö°¡ Ã¢ÀÇITÀ¶ÇÕ°øÇĞ°úÀÇ ÀÌÁø¼ö");
-	con.boxLine("±³¼ö¿¡°Ô ³³Ä¡´çÇß´Ù´Â »ç½ÇÀ» ¾Ë°ÔµÈ´Ù.");
+	con.boxLine(" ì˜¤ëœë§Œì— ë™ë£Œ êµìˆ˜ë“¤ê³¼ í”¼í¬ë‹‰ì„ ë‚˜ê°„ ìœ¤ì€ì˜");
+	con.boxLine("êµìˆ˜. í•˜ì§€ë§Œ í™”ì¥ì‹¤ ê°„ë‹¤ë˜ ì†¡í™©ì¤€ êµìˆ˜ê°€ ê°‘");
+	con.boxLine("ìê¸° ì‚¬ë¼ì§€ê³ , í•œì°¸ì„ ì°¾ì•„í—¤ë©”ë˜ ìœ¤ì€ì˜ êµìˆ˜");
+	con.boxLine("ëŠ” ì†¡í™©ì¤€ êµìˆ˜ê°€ ì°½ì˜ITìœµí•©ê³µí•™ê³¼ì˜ ì´ì§„ìˆ˜");
+	con.boxLine("êµìˆ˜ì—ê²Œ ë‚©ì¹˜ë‹¹í–ˆë‹¤ëŠ” ì‚¬ì‹¤ì„ ì•Œê²Œëœë‹¤.");
 	con.boxLine();
-	con.boxLineCenter(" \"Èï, ÀÌÁø¼ö µûÀ§! °¡¹ßÀ» ¾º¿öÁÖ°Ú¾î!¢¾\" ");
+	con.boxLineCenter(" \"í¥, ì´ì§„ìˆ˜ ë”°ìœ„! ê°€ë°œì„ ì”Œì›Œì£¼ê² ì–´!â™¥\" ");
 	con.boxLine();
-	con.boxLine(" ±×·¸°Ô À±Àº¿µ ±³¼ö´Â ¼ÛÈ²ÁØ ±³¼ö¸¦ Ã£¾Æ ¶°");
-	con.boxLine("³ª°Ô µÈ´Ù. ÇÏÁö¸¸ ±×·± ±×³à¸¦ ¸·¾Æ¼± °ÍµéÀº");
-	con.boxLine("´Ù¸§ ¾Æ´Ñ ÀÌÁø¼ö ±³¼öÀÇ ºÎÇÏÀÎ Á¤¼ºÁØ ±³¼ö¿Í");
-	con.boxLine("ÇÑ¼öÈñ ±³¼ö, ±èÀçÁØ ±³¼ö, ÇÑ¿í½Å ±³¼ö ±×¸®°í");
-	con.boxLine("±×µéÀÇ ¿¬±¸¿øµéÀÌ¾ú´Ù.");
-	con.boxLine(" À±Àº¿µ ±³¼ö°¡ ¾Ë¾Æº» Èæ¸·Àº ÀÌ·¨´Ù. ÀÌÁø¼ö ");
-	con.boxLine("±³¼ö¿Í ºÎÇÏµéÀº ÄÚµå ³×ÀÓ DELLA, Áï ±èÀºÈñ");
-	con.boxLine("Á¶±³¸¦ Ã¸ÀÚ·Î ÄÄÇ»ÅÍ °øÇĞ°úÀÇ ÀÎÀçµéÀ» »©°¡");
-	con.boxLine("°í ÀÖ¾ú´ø °ÍÀÌ´Ù.");
+	con.boxLine(" ê·¸ë ‡ê²Œ ìœ¤ì€ì˜ êµìˆ˜ëŠ” ì†¡í™©ì¤€ êµìˆ˜ë¥¼ ì°¾ì•„ ë– ");
+	con.boxLine("ë‚˜ê²Œ ëœë‹¤. í•˜ì§€ë§Œ ê·¸ëŸ° ê·¸ë…€ë¥¼ ë§‰ì•„ì„  ê²ƒë“¤ì€");
+	con.boxLine("ë‹¤ë¦„ ì•„ë‹Œ ì´ì§„ìˆ˜ êµìˆ˜ì˜ ë¶€í•˜ì¸ ì •ì„±ì¤€ êµìˆ˜ì™€");
+	con.boxLine("í•œìˆ˜í¬ êµìˆ˜, ê¹€ì¬ì¤€ êµìˆ˜, í•œìš±ì‹  êµìˆ˜ ê·¸ë¦¬ê³ ");
+	con.boxLine("ê·¸ë“¤ì˜ ì—°êµ¬ì›ë“¤ì´ì—ˆë‹¤.");
+	con.boxLine(" ìœ¤ì€ì˜ êµìˆ˜ê°€ ì•Œì•„ë³¸ í‘ë§‰ì€ ì´ë¬ë‹¤. ì´ì§„ìˆ˜ ");
+	con.boxLine("êµìˆ˜ì™€ ë¶€í•˜ë“¤ì€ ì½”ë“œ ë„¤ì„ DELLA, ì¦‰ ê¹€ì€í¬");
+	con.boxLine("ì¡°êµë¥¼ ì²©ìë¡œ ì»´í“¨í„° ê³µí•™ê³¼ì˜ ì¸ì¬ë“¤ì„ ë¹¼ê°€");
+	con.boxLine("ê³  ìˆì—ˆë˜ ê²ƒì´ë‹¤.");
 	con.boxLine();
-	con.boxLineCenter("\"±èÀºÈñ..! °¡¸¸µÎÁö ¾Ê°Ú¾î..!!¢¾¢¾\"");
+	con.boxLineCenter("\"ê¹€ì€í¬..! ê°€ë§Œë‘ì§€ ì•Šê² ì–´..!!â™¥â™¥\"");
 	con.boxLine();
-	con.boxLine(" ¸ğµç »ç½ÇÀ» ¾Ë°í È­°¡ ¸Ó¸® ³¡±îÁö Ä¡¹Ğ¾î ¿À");
-	con.boxLine("¸¥ ±×³à´Â ±×·¸°Ô ±èÀºÈñ Á¶±³¿Í ÀÌÁø¼ö ÆĞ°Å¸®");
-	con.boxLine("¸¦ ÀâÀ¸·¯ ¶°³­´Ù.");
+	con.boxLine(" ëª¨ë“  ì‚¬ì‹¤ì„ ì•Œê³  í™”ê°€ ë¨¸ë¦¬ ëê¹Œì§€ ì¹˜ë°€ì–´ ì˜¤");
+	con.boxLine("ë¥¸ ê·¸ë…€ëŠ” ê·¸ë ‡ê²Œ ê¹€ì€í¬ ì¡°êµì™€ ì´ì§„ìˆ˜ êµìˆ˜");
+	con.boxLine("íŒ¨ê±°ë¦¬ë“¤ì„ ì¡ìœ¼ëŸ¬ ë– ë‚œë‹¤.");
 	con.boxLine();
-	con.boxLine(" ÀÚ, ¿ì¸® °°ÀÌ À±Àº¿µ ±³¼öÀÇ Â÷¸¦ Á¶ÀÛÇÏ¿©");
-	con.boxLine("¿òÁ÷ÀÌ´Â ÀÌÁø¼ö ±³¼ö ºÎÇÏµéÀÇ Â÷¸¦ ÇÇÇØ ¼ÛÈ²");
-	con.boxLine("ÁØ ±³¼ö¸¦ ±¸ÇÏ·¯ °¡ º¸ÀÚ!");
+	con.boxLine(" ì, ìš°ë¦¬ ê°™ì´ ìœ¤ì€ì˜ êµìˆ˜ì˜ ì°¨ë¥¼ ì¡°ì‘í•˜ì—¬");
+	con.boxLine("ì›€ì§ì´ëŠ” ì´ì§„ìˆ˜ êµìˆ˜ ë¶€í•˜ë“¤ì˜ ì°¨ë¥¼ í”¼í•´ ì†¡í™©");
+	con.boxLine("ì¤€ êµìˆ˜ë¥¼ êµ¬í•˜ëŸ¬ ê°€ ë³´ì!");
 	con.boxClose();
 
 	cout << endl;
 
 	con.boxOpen();
-	con.boxLineCenter("[Á¶ÀÛ¹ı]");
+	con.boxLineCenter("[ì¡°ì‘ë²•]");
 	con.boxLine();
-	con.boxLineCenter(" ¡ç/¡æ : À±Àº¿µ ±³¼ö Â÷ ÀÌµ¿");
+	con.boxLineCenter(" â†/â†‘/â†’/â†“ : ìœ¤ì€ì˜ êµìˆ˜ ì°¨ ì´ë™");
 	con.boxClose();
 
 	cout << " [ALERT] ";
@@ -299,11 +297,11 @@ void dispInGameTimeCount() {
 
 		case 3:
 		case 2:
-			cout << "¡á¡á¡á¡á";
+			cout << "â– â– â– â– ";
 			break;
 
 		case 1:
-			cout << "    ¡á  ";
+			cout << "    â–   ";
 			break;
 
 		}
@@ -314,11 +312,11 @@ void dispInGameTimeCount() {
 
 		case 3:
 		case 2:
-			cout << "      ¡á";
+			cout << "      â– ";
 			break;
 
 		case 1:
-			cout << "  ¡á¡á  ";
+			cout << "  â– â–   ";
 			break;
 
 		}
@@ -329,11 +327,11 @@ void dispInGameTimeCount() {
 
 		case 3:
 		case 2:
-			cout << "¡á¡á¡á¡á";
+			cout << "â– â– â– â– ";
 			break;
 
 		case 1:
-			cout << "    ¡á  ";
+			cout << "    â–   ";
 			break;
 
 		}
@@ -343,15 +341,15 @@ void dispInGameTimeCount() {
 		switch (i) {
 
 		case 2:
-			cout << "¡á      ";
+			cout << "â–       ";
 			break;
 
 		case 3:
-			cout << "      ¡á";
+			cout << "      â– ";
 			break;
 
 		case 1:
-			cout << "    ¡á  ";
+			cout << "    â–   ";
 			break;
 
 		}
@@ -362,11 +360,11 @@ void dispInGameTimeCount() {
 
 		case 3:
 		case 2:
-			cout << "¡á¡á¡á¡á";
+			cout << "â– â– â– â– ";
 			break;
 
 		case 1:
-			cout << "  ¡á¡á¡á";
+			cout << "  â– â– â– ";
 			break;
 
 		}
@@ -394,7 +392,7 @@ void dispInGameBackground(Env* E) {
 	int padding = (((ConsoleSize[0]) - (E->roadX)) / 4) - 1;
 
 	con.boxOpen();
-	con.boxLine("ÇöÀç Á¡¼ö :           ÃÖ°í Á¡¼ö :          ");
+	con.boxLine("í˜„ì¬ ì ìˆ˜ :           ìµœê³  ì ìˆ˜ :          ");
 	con.boxClose();
 
 	for (int i = 0; i < E->roadY; i++) {
@@ -405,35 +403,41 @@ void dispInGameBackground(Env* E) {
 		printf("%2d", i);
 
 		Setting::setColor(15);
-		cout << "¡á";
+		cout << "â– ";
 		Setting::setColor(7);
 		for (int j = 0; j < E->roadX; j++)
-			cout << "  ";//printf("%2d", j);
+			//printf("%2d", j);
+			cout << "  ";
 		Setting::setColor(15);
-		cout << "¡á";
+		cout << "â– ";
 		Setting::setColor(7);
 
 		cout << endl;
 
 	}
+	
+	for (int j = 0; j < padding + 2; j++)
+		cout << " ";
+
+	for (int j = 0; j++ < E->roadX; printf("%2d", j - 1));
 
 }
 
 void dispInGameScorePanel(int now, int highest) {
 
-	COORD posNOW = { 14, 1 }, posHIGHEST = { 36, 1 };
+	static const COORD posNOW = { 14, 1 }, posHIGHEST = { 36, 1 };
 
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), posNOW);
 
-	cout << now << " Á¡";
+	cout << now << " ì ";
 
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), posHIGHEST);
 
-	cout << highest << " Á¡";
+	cout << highest << " ì ";
 
 }
 
-void dispInGameEY(int* pos, Env* E) {
+void dispInGameEY(int* pos, Env* E, int c) {
 
 	int* ConsoleSize = con.setCS(Setting::scrSize[0], Setting::scrSize[1]);
 	int padding = (((ConsoleSize[0]) - (E->roadX)) / 4);
@@ -462,8 +466,8 @@ void dispInGameEY(int* pos, Env* E) {
 		for (int j = 0; j++ < E->EY; XY.Y += 1) {
 			
 			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), XY);
-			Setting::setColor(14);
-			cout << "¡á";
+			Setting::setColor(c);
+			cout << "â– ";
 			Setting::setColor(7);
 
 		}
@@ -482,8 +486,6 @@ void dispInGameLane(_Q& Q, Env& E) {
 	CarA* A = Q.getAFront();
 	CarB* B = Q.getBFront();
 	CarC* C = Q.getCFront();
-
-	
 
 	//Show CarA
 
@@ -506,7 +508,7 @@ void dispInGameLane(_Q& Q, Env& E) {
 
 					COORD pos = { A->getPosX() + posStd.X + (i * 2), A->getPosY() + posStd.Y + (j * 1) };
 					SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-					cout << "¡á";
+					cout << "â– ";
 
 				}
 
@@ -535,7 +537,7 @@ void dispInGameLane(_Q& Q, Env& E) {
 
 					COORD pos = { B->getPosX() + posStd.X + (i * 2), B->getPosY() + posStd.Y + (j * 1) };
 					SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-					cout << "¡á";
+					cout << "â– ";
 
 				}
 
@@ -564,12 +566,172 @@ void dispInGameLane(_Q& Q, Env& E) {
 
 					COORD pos = { C->getPosX() + posStd.X + (i * 2), C->getPosY() + posStd.Y + (j * 1) };
 					SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-					cout << "¡á";
+					cout << "â– ";
 
 				}
 
 			C->setPrePos(C->getPosX(), C->getPosY());
 
 		}
+
+}
+
+void dispInGameOopsBox(int color, bool isLeft) {
+
+	static const COORD LeftBoxTopPoint = { 8, 38 };
+	static const COORD LeftBoxMidPoint = { LeftBoxTopPoint.X, LeftBoxTopPoint.Y + 1 };
+	static const COORD LeftBoxBottomPoint = { LeftBoxTopPoint.X, LeftBoxTopPoint.Y + 2 };
+	static const COORD RightBoxTopPoint = { 28, LeftBoxTopPoint.Y };
+	static const COORD RightBoxMidPoint = { RightBoxTopPoint.X, RightBoxTopPoint.Y + 1 };
+	static const COORD RightBoxBottomPoint = { RightBoxTopPoint.X, RightBoxTopPoint.Y + 2 };
+
+	Setting::setColor(color);
+
+	if (isLeft) {
+
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), LeftBoxTopPoint);
+		cout << "â”Œâ”€â”€â”€â”€â”";
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), LeftBoxMidPoint);
+		cout << "â”‚ Oops!! â”‚";
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), LeftBoxBottomPoint);
+		cout << "â””â”€â”€â”€â”€â”˜";
+
+	}
+	else {
+
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), RightBoxTopPoint);
+		cout << "â”Œâ”€â”€â”€â”€â”";
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), RightBoxMidPoint);
+		cout << "â”‚ Oops!! â”‚";
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), RightBoxBottomPoint);
+		cout << "â””â”€â”€â”€â”€â”˜";
+
+	}
+
+	Setting::setColor(7);
+
+}
+
+void dispInGameGAMEOVER(Env& E, _M& M, int now, int highest) {
+
+	using std::cin;
+
+	bool isLeft = (E.roadX < M.getPosX());
+
+	cin.get();
+	
+	for (int i = 0; i++ < 6;) {
+
+		dispInGameOopsBox(12, isLeft);
+		con.csDelay(0.1);
+		dispInGameOopsBox(14, isLeft);
+		con.csDelay(0.2);
+		dispInGameOopsBox(15, isLeft);
+		con.csDelay(0.2);
+		dispInGameOopsBox(14, isLeft);
+		con.csDelay(0.2);
+
+	}
+
+	static const COORD FullBoxStartPoint = { 0,3 };
+	int* ConsoleSize = con.csSize(Setting::scrSize[0], Setting::scrSize[1]);
+
+	con.boxOpen();
+	con.boxLine("ì´ë²ˆ ì ìˆ˜ :           ìµœê³  ì ìˆ˜ :          ");
+	con.boxClose();
+
+	dispInGameScorePanel(now, highest);
+
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), FullBoxStartPoint);
+
+	Setting::setColor(15);
+
+	con.boxOpen();
+	con.boxLine();
+	con.boxLineCenter("[ê²Œì„ ê²°ê³¼]");
+	con.boxLine();
+	con.boxLine();
+	con.boxLine();
+
+	Setting::setSelection(true);
+	
+	if (now && now >= highest) {
+
+		cout
+			<< "                                                " << endl
+			<< " ##    ## ####### ##      ##                    " << endl
+			<< " ###   ## ##      ##  ##  ##                    " << endl
+			<< " ####  ## ##      ##  ##  ##                    " << endl
+			<< " ## ## ## #####   ##  ##  ##                    " << endl
+			<< " ##  #### ##      ##  ##  ##                    " << endl
+			<< " ##   ### ##      ##  ##  ##                    " << endl
+			<< " ##    ## #######  ########                     " << endl
+			<< "                                                " << endl
+			<< " ######  ####### ####    ###  ######  #####  ## " << endl
+			<< " ##   ## ##      ##  ## ##  # ##   ## ##  ## ## " << endl
+			<< " ##   ## ##      ##     ##  # ##   ## ##  ## ## " << endl
+			<< " ######  #####   ##     ##  # ######  ##  ##  # " << endl
+			<< " ## ##   ##      ##     ##  # ## ##   ##  ##    " << endl
+			<< " ##  ##  ##      ##  ## ##  # ##  ##  ##  ## ## " << endl
+			<< " ##   ## ####### #####   ###  ##   ## #####  ## " << endl
+			<< "                                                " << endl;
+
+		/* Because of font problem, this code cannot be used.
+		con.boxLineCenter("â•”â•—â•”â•”â•â•—â•¦ â•¦          ");
+		con.boxLineCenter("â•‘â•‘â•‘â•‘â•£ â•‘â•‘â•‘          ");
+		con.boxLineCenter("â•â•šâ•â•šâ•â•â•šâ•©â•          ");
+		con.boxLineCenter("â•¦â•â•—â•”â•â•—â•”â•â•—â•”â•â•—â•¦â•â•—â•”â•¦â•—â”¬");
+		con.boxLineCenter("â• â•¦â•â•‘â•£ â•‘  â•‘ â•‘â• â•¦â• â•‘â•‘â”‚");
+		con.boxLineCenter("â•©â•šâ•â•šâ•â•â•šâ•â•â•šâ•â•â•©â•šâ•â•â•©â•o");
+		*/
+
+	}
+	else {
+
+		con.boxLine();
+		con.boxLineCenter(" ######      ###    ##     ## ######## ");
+		con.boxLineCenter("##    ##    ## ##   ###   ### ##       ");
+		con.boxLineCenter("##         ##   ##  #### #### ##       ");
+		con.boxLineCenter("##   #### ##     ## ## ### ## ######   ");
+		con.boxLineCenter("##    ##  ######### ##     ## ##       ");
+		con.boxLineCenter("##    ##  ##     ## ##     ## ##       ");
+		con.boxLineCenter(" ######   ##     ## ##     ## ######## ");
+		con.boxLine();
+		con.boxLineCenter(" #######  ##     ## ######## ########  ");
+		con.boxLineCenter("##     ## ##     ## ##       ##     ## ");
+		con.boxLineCenter("##     ## ##     ## ##       ##     ## ");
+		con.boxLineCenter("##     ## ##     ## ######   ########  ");
+		con.boxLineCenter("##     ##  ##   ##  ##       ##   ##   ");
+		con.boxLineCenter("##     ##   ## ##   ##       ##    ##  ");
+		con.boxLineCenter(" #######     ###    ######## ##     ## ");
+		con.boxLine();
+
+	}
+
+	Setting::setSelection(false);
+
+	con.boxLine();
+	con.boxLine();
+	con.boxLine();
+	con.boxLine();
+	con.boxLine();
+	con.boxLine();
+	con.boxLineCenter((now && now >= highest) ? "ì˜¤ìš°~~ ëŒ€ë‹¨í•´ìš”!!!â™¥â™¥â™¥" : "í¥, ë‹¤ì‹œ í•´ìš”!! ì ìˆ˜ê°€ ì´ë”°êµ¬ì•¼...");
+	con.boxLine();
+	con.boxLineCenter("<ENTER> í‚¤ë¥¼ ëˆŒëŸ¬ ë©”ë‰´ë¡œ ëŒì•„ê°€ì„¸ìš”.");
+	con.boxLine();
+	con.boxLine();
+	con.boxLine();
+	con.boxLine();
+	con.boxLine();
+	con.boxClose();
+
+	Setting::setColor(7);
+
+	cout << " [ALERT] <ENTER>í‚¤ë¥¼ ëˆ„ë¥´ì‹­ì‹œì˜¤ . . .";
+
+	Setting::setColor(0);
+
+	cin.get();
 
 }

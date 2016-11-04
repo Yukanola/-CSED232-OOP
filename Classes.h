@@ -1,5 +1,6 @@
 #pragma once
 #include "Core.kano.h"
+#include "WCD.kano.h"
 #include "Parameter.h"
 #include <algorithm>
 #include <ctime>
@@ -11,18 +12,22 @@ static unsigned int regId() { return ++Setting::blockers; };
 class Car {
 
 protected:
+
 	unsigned int id;
 	int posX, posY, carW, carH, carOW, carOH;
-	bool scoreCounted;
+	bool scoreCounted, removeSign;
+
 	COORD prePos;
 
 public:
+
 	void setPosX(int x) { posX = x; };
 	void setPosY(int y) { posY = y; };
 	void setCarW(int w) { carW = w; };
 	void setCarH(int h) { carH = h; };
 	void setPrePos(int x, int y) { prePos.X = x; prePos.Y = y; };
 	void count() { scoreCounted = true; };
+	int getId() { return id; };
 	int getPosX() { return posX; };
 	int getPosY() { return posY; };
 	int getCarH() { return carH; };
@@ -30,10 +35,11 @@ public:
 	int getOCarH() { return carOH; };
 	int getOCarW() { return carOW; };
 	bool isCounted() { return scoreCounted; };
+	bool hasRemoveSign() { return removeSign; };
 	COORD getPrePos() { return prePos; };
-	bool decompose() { prePos.X = posX; prePos.Y = posY--; return !(--carH); };
+	bool decompose() { return !(--carH); };
 	Car() {};
-	Car(int x, int y, int w, int h) : id(regId()), scoreCounted(false), posX(x), posY(y), carW(w), carH(h), carOH(h), carOW(w) { prePos.X = x; prePos.Y = y; };
+	Car(int x, int y, int w, int h) : id(regId()), scoreCounted(false), posX(x), posY(y), carW(w), carH(h), carOH(h), carOW(w), removeSign(false) { prePos.X = x; prePos.Y = y; };
 	~Car() {};
 
 };
@@ -56,6 +62,9 @@ public:
 
 		if (this->posX + beX >= 0 && this->posX + beX < (Setting::E->roadX * 2 - 1 - 2 * this->getCarW()))
 			this->posX += beX;
+
+		if (this->posY + this->carH + 2 > Setting::E->roadY && this->decompose())
+			this->removeSign = true;
 	
 		return *this;
 	
@@ -78,7 +87,16 @@ public:
 	CarB* getBefore() { return Before; };
 	CarB* setNext(CarB* b) { return (Next = b); };
 	CarB* setBefore(CarB* b) { return (Before = b); };
-	CarB& behave() { this->posY += (getRand(3)) ? 1 : 0; return *this; };
+	CarB& behave() {
+
+		this->posY += (getRand(3)) ? 1 : 0;
+		
+		if (this->posY + this->carH + 2 > Setting::E->roadY && this->decompose())
+			this->removeSign = true;
+
+		return *this;
+	
+	};
 	CarB() : Next(NULL), Before(NULL), Car(0, -2, 2, 2) {};
 	CarB(int x) : Next(NULL), Before(NULL), Car(x, -2, 2, 2) {};
 	~CarB() {};
@@ -106,6 +124,9 @@ public:
 		if (this->posX + beX >= 0 && this->posX + beX < (Setting::E->roadX * 2 - 1 - 2 * this->getCarW()))
 			this->posX += beX;
 
+		if (this->posY + this->carH + 2 > Setting::E->roadY && this->decompose())
+			this->removeSign = true;
+
 		return *this;
 
 	};
@@ -115,7 +136,6 @@ public:
 	CarC(CarC* c) : Next(NULL), Before(c), Car(0, -2, 3, 2) {};
 
 };
-
 
 class __Pixel {
 
@@ -127,10 +147,32 @@ public:
 	CarB* B;
 	CarC* C;
 
-	bool detAAOA() { return (B != NULL && C != NULL); };
-	bool detAAOB() { return (A != NULL && C != NULL); };
-	bool detAAOC() { return (A != NULL && B != NULL); };
+	bool detAAOA(CarA* a) { return ((A != NULL && A != a) || B != NULL || C != NULL); };
+	bool detAAOB(CarB* b) { return (A != NULL || (B != NULL && B != b) || C != NULL); };
+	bool detAAOC(CarC* c) { return (A != NULL || B != NULL || (C != NULL && C != c)); };
+	bool detect() { 
+
+		if (A != NULL) {
+
+			cout << "A(" << A->getId() << ")->";
+
+		} else if (C != NULL) {
+
+			cout << "C(" << C->getId() << ")->";
+
+		} else if(B != NULL) {
+
+			cout << "B(" << B->getId() << ")->";
+
+		}
+
+		return (A != NULL || B != NULL || C != NULL);
+
+	};
+
 	void setA(CarA* a) { A = a; };
+	void setB(CarB* b) { B = b; };
+	void setC(CarC* c) { C = c; };
 
 	__Pixel() : A(NULL), B(NULL), C(NULL), Next(NULL) {};
 
@@ -138,13 +180,17 @@ public:
 
 class _Pixel {
 
-	__Pixel* P[41][23];
+	__Pixel* P[38][20]; // P[y][x]
 	int C;
 
 public:
 
-	__Pixel& getPixel(int x, int y) { /*cout << "[[" << x << "," << y << "]]";*/ return *(P[y][x]); };
-	__Pixel& setPixel(int x, int y, CarA* a) { P[y][x]->setA(a); return *(P[y][x]); }
+	__Pixel& getPixel(int x, int y) { return *(P[y][x]); };
+
+	__Pixel& setPixel(int x, int y, CarA* a) { P[y][x]->setA(a); return *(P[y][x]); };
+	__Pixel& setPixel(int x, int y, CarB* b) { P[y][x]->setB(b); return *(P[y][x]); };
+	__Pixel& setPixel(int x, int y, CarC* c) { P[y][x]->setC(c); return *(P[y][x]); };
+	
 	_Pixel(int x, int y) : C(x) {
 
 		using std::endl;
@@ -153,21 +199,26 @@ public:
 
 			__Pixel *now;
 
-			for (int j = 0; j++ < x; P[i - 1][j - 1] = now) {
-
+			for (int j = 0; j++ < x; P[i - 1][j - 1] = now)
 				now = new __Pixel;
-
-				//cout << "i=" << i << ",j=" << j << "p=" << &P[i-1][j-1] << endl;
-
-			}
 
 		}
 
-		con.csPause();
+	};
+
+	~_Pixel() {
+
+
 
 	};
 
 };
+
+namespace Setting {
+
+	static _Pixel* P;
+
+}
 
 class _Q {
 
@@ -202,7 +253,7 @@ public:
 
 	};
 
-	_Q& add(CarB* b) {
+	_Q& add(CarB* b, _Pixel& P) {
 
 		int count = this->count[1]++;
 
@@ -216,11 +267,16 @@ public:
 
 		BRear = b;
 
+		for (int j = 0; j++ < b->getCarH();)
+			for (int k = 0; k++ < b->getCarW();)
+				if (b->getPosY() + j - 1 >= 0)
+					P.getPixel(b->getPosY() + j - 1, b->getPosX() + k - 1).B = b;
+
 		return *this;
 
 	};
 
-	_Q& add(CarC* c) {
+	_Q& add(CarC* c, _Pixel& P) {
 
 		int count = this->count[2]++;
 
@@ -234,16 +290,18 @@ public:
 
 		CRear = c;
 
+		for (int j = 0; j++ < c->getCarH();)
+			for (int k = 0; k++ < c->getCarW();)
+				if (c->getPosY() + j - 1 >= 0)
+					P.getPixel(c->getPosY() + j - 1, c->getPosX() + k - 1).C = c;
+
 		return *this;
 
 	};
 
 	CarA* getAFront() { return AFront; };
-	//CarA* getARear() { return ARear; };
 	CarB* getBFront() { return BFront; };
-	//CarB* getBRear() { return BRear; };
 	CarC* getCFront() { return CFront; };
-	//CarC* getCRear() { return CRear; };
 
 	int* getCount() { return count; };
 
@@ -252,6 +310,136 @@ public:
 	_Q() : AFront(NULL), ARear(NULL), BFront(NULL), BRear(NULL), CFront(NULL), CRear(NULL) { count[0] = 0; count[1] = 0, count[2] = 0; };
 
 	inline _Q& behave(Setting::Env&, _Pixel&);
+
+	inline _Q& remove(CarA *a);
+	inline _Q& remove(CarB *b);
+	inline _Q& remove(CarC *c);
+
+};
+
+_Q& _Q::remove(CarA* a) {
+
+	if (a->getBefore() != NULL)
+		a->getBefore()->setNext(a->getNext());
+
+	if (a->getNext() != NULL)
+		a->getNext()->setBefore(a->getBefore());
+
+	if (a == this->AFront)
+		this->AFront = a->getNext();
+	if (a == this->ARear)
+		this->ARear = a->getBefore();
+
+	this->count[0]--;
+
+	COORD LastLeft = { (((Setting::scrSize[0]) - (Setting::E->roadX)) / 4) - 2, 2 + Setting::E->roadY };
+
+	COORD LastRight = { Setting::scrSize[0] - (((Setting::scrSize[0]) - (Setting::E->roadX)) / 4), 2 + Setting::E->roadY };
+
+	COORD XY = { LastLeft.X + a->getPosX(), LastLeft.Y };
+
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), XY);
+
+	for (int i = -1; i++ <= a->getCarW();)
+		cout << "  ";
+
+	/*for (int i = 0; i++ < a->getCarW();)
+		for (int j = 0; j++ < a->getCarH();)
+			if (Setting::P->getPixel(a->getPosX() + i * 2 + 5, a->getPosY() + j - 1).A == a)
+				Setting::P->setPixel(a->getPosX() + i * 2 + 5, a->getPosY() + j - 1, (CarA*) NULL);
+				*/
+
+
+	Setting::setColor(15);
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), LastLeft);
+	cout << "бс";
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), LastRight);
+	cout << "бс";
+	Setting::setColor(7);
+
+	delete a;
+
+	return *this;
+
+};
+
+_Q& _Q::remove(CarB* b) {
+
+	if (b->getBefore() != NULL)
+		b->getBefore()->setNext(b->getNext());
+
+	if (b->getNext() != NULL)
+		b->getNext()->setBefore(b->getBefore());
+
+	if (b == this->BFront)
+		this->BFront = b->getNext();
+	if (b == this->BRear)
+		this->BRear = b->getBefore();
+
+	this->count[1]--;
+
+	COORD LastLeft = { (((Setting::scrSize[0]) - (Setting::E->roadX)) / 4) - 2, 2 + Setting::E->roadY };
+
+	COORD LastRight = { Setting::scrSize[0] - (((Setting::scrSize[0]) - (Setting::E->roadX)) / 4), 2 + Setting::E->roadY };
+
+	COORD XY = { LastLeft.X + b->getPosX(), LastLeft.Y };
+
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), XY);
+
+	for (int i = -1; i++ <= b->getCarW();)
+		cout << "  ";
+
+
+	Setting::setColor(15);
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), LastLeft);
+	cout << "бс";
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), LastRight);
+	cout << "бс";
+	Setting::setColor(7);
+
+	delete b;
+
+	return *this;
+
+};
+
+_Q& _Q::remove(CarC* c) {
+
+	if (c->getBefore() != NULL)
+		c->getBefore()->setNext(c->getNext());
+
+	if (c->getNext() != NULL)
+		c->getNext()->setBefore(c->getBefore());
+
+	if (c == this->CFront)
+		this->CFront = c->getNext();
+	if (c == this->CRear)
+		this->CRear = c->getBefore();
+
+	this->count[2]--;
+
+	COORD LastLeft = { (((Setting::scrSize[0]) - (Setting::E->roadX)) / 4) - 2, 2 + Setting::E->roadY };
+
+	COORD LastRight = { Setting::scrSize[0] - (((Setting::scrSize[0]) - (Setting::E->roadX)) / 4), 2 + Setting::E->roadY };
+
+	COORD XY = { LastLeft.X + c->getPosX(), LastLeft.Y };
+
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), XY);
+
+	for (int i = -1; i++ <= c->getCarW();)
+		cout << "  ";
+
+
+	Setting::setColor(15);
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), LastLeft);
+	cout << "бс";
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), LastRight);
+	cout << "бс";
+	Setting::setColor(7);
+
+	delete c;
+
+	return *this;
 
 };
 
@@ -282,14 +470,14 @@ _Q& _Q::randomInsert(_Pixel& P) {
 	case 4:
 	case 1:
 		b = new CarB(x - (x % 2));
-		add(b);
+		add(b, P);
 		break;
 
 	case 9:
 	case 5:
 	case 2:
 		c = new CarC((x = x - 3) - (x % 2));
-		add(c);
+		add(c, P);
 		break;
 
 	case 6:
@@ -307,33 +495,63 @@ _Q& _Q::behave(Setting::Env& E, _Pixel& P) {
 
 	if (count[0]) {
 
-		CarA* a = AFront;
+		CarA *a = AFront, *tempA;
 
-		for (int i = 0; i++ < count[0]; a = a->getNext()) {
+		for (int i = 0; i++ < count[0];) {
 
-			a->behave();
+			if (a->behave().hasRemoveSign()) {
 
-			for (int j = 0; j++ < a->getCarH() && !breakSign;)
-				for (int k = 0; k++ < a->getCarW() && !breakSign;)
-					if(a->getPosY() + j - 1 >= 0)
-						if (!P.getPixel(a->getPosX() + k - 1, a->getPosY() + j - 1).detAAOA()) {
+				tempA = a;
 
-							a->setPrePos(a->getPrePos().X, a->getPrePos().Y);
+				a = a->getNext();
 
-							breakSign = true;
+				this->remove(tempA);
 
-						};
+			}
+			else {
 
-			if (!breakSign)
-				for (int j = 0; j++ < a->getCarH();)
-					for (int k = 0; k++ < a->getCarW();) {
+				for (int j = 0; j++ < a->getCarH() && !breakSign;)
+					for (int k = 0; k++ < a->getCarW() && !breakSign;)
+						if (a->getPosY() + j - 1 >= 0)
+							if (P.getPixel(a->getPosX() + k * 2 + 5, a->getPosY() + j - 1).detAAOA(a)) {
 
-						P.getPixel(a->getPrePos().X + k - 1, a->getPrePos().Y + j - 1).A = NULL;
-						P.getPixel(a->getPosX() + k - 1, a->getPosY() + j - 1).A = a;
+								a->setPosX(a->getPrePos().X);
+								a->setPosY(a->getPrePos().Y);
 
-					}
-			else
-				breakSign = false;
+								breakSign = true;
+
+							};
+
+				//debc();
+
+				if (!breakSign)
+					for (int j = 0; j++ < a->getCarH();)
+						for (int k = 0; k++ < a->getCarW();) {
+
+							//debc();
+
+							if (a->getPrePos().Y + j - 1 >= 0)
+								P.getPixel(a->getPrePos().X + k * 2 + 5, a->getPrePos().Y + j - 1).A = NULL;
+							if (a->getPosY() + j - 1 >= 0)
+								P.getPixel(a->getPosX() + k * 2 + 5, a->getPosY() + j - 1).A = a;
+
+							//debc();
+
+							
+							//COORD temp = { a->getPosX() + 2 * k + 5, a->getPosY() + j - 1 };
+							//SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), temp);
+							//printf("%2d", a->getId());
+							
+
+						}
+				else
+					breakSign = false;
+
+				//debc();
+
+				a = a->getNext();
+
+			}
 
 		}
 
@@ -341,17 +559,101 @@ _Q& _Q::behave(Setting::Env& E, _Pixel& P) {
 
 	if (count[1]) {
 
-		CarB* b = BFront;
+		CarB *b = BFront, *tempB;
 
-		for (int i = 0; i++ < count[1]; b = b->behave().getNext());
+		for (int i = 0; i++ < count[1];) {
+
+			if (b->behave().hasRemoveSign()) {
+
+				tempB = b;
+
+				b = b->getNext();
+
+				this->remove(tempB);
+
+			}
+			else {
+
+				for (int j = 0; j++ < b->getCarH() && !breakSign;)
+					for (int k = 0; k++ < b->getCarW() && !breakSign;)
+						if (b->getPosY() + j - 1 >= 0)
+							if (P.getPixel(b->getPosX() + k * 2 + 5, b->getPosY() + j - 1).detAAOB(b)) {
+
+								b->setPosX(b->getPrePos().X);
+								b->setPosY(b->getPrePos().Y);
+
+								breakSign = true;
+
+							};
+
+				if (!breakSign)
+					for (int j = 0; j++ < b->getCarH();)
+						for (int k = 0; k++ < b->getCarW();) {
+
+							if (b->getPrePos().Y + j - 1 >= 0)
+								P.getPixel(b->getPrePos().X + k * 2 + 5, b->getPrePos().Y + j - 1).B = NULL;
+							if (b->getPosY() + j - 1 >= 0)
+								P.getPixel(b->getPosX() + k * 2 + 5, b->getPosY() + j - 1).B = b;
+
+						}
+				else
+					breakSign = false;
+
+				b = b->getNext();
+
+			}
+
+		}
 
 	}
 
 	if (count[2]) {
 
-		CarC* c = CFront;
+		CarC *c = CFront, *tempC;
 
-		for (int i = 0; i++ < count[2]; c = c->behave().getNext());
+		for (int i = 0; i++ < count[2];) {
+
+			if (c->behave().hasRemoveSign()) {
+
+				tempC = c;
+
+				c = c->getNext();
+
+				this->remove(tempC);
+
+			}
+			else {
+
+				for (int j = 0; j++ < c->getCarH() && !breakSign;)
+					for (int k = 0; k++ < c->getCarW() && !breakSign;)
+						if (c->getPosY() + j - 1 >= 0)
+							if (P.getPixel(c->getPosX() + k * 2 + 5, c->getPosY() + j - 1).detAAOC(c)) {
+
+								c->setPosX(c->getPrePos().X);
+								c->setPosY(c->getPrePos().Y);
+
+								breakSign = true;
+
+							};
+
+				if (!breakSign)
+					for (int j = 0; j++ < c->getCarH();)
+						for (int k = 0; k++ < c->getCarW();) {
+
+							if (c->getPrePos().Y + j - 1 >= 0)
+								P.getPixel(c->getPrePos().X + 2 * k + 5, c->getPrePos().Y + j - 1).C = NULL;
+							if (c->getPosY() + j + - 1 >= 0)
+								P.getPixel(c->getPosX() + 2 * k + 5, c->getPosY() + j - 1).C = c;
+
+						}
+				else
+					breakSign = false;
+
+				c = c->getNext();
+
+			}
+
+		}
 
 	}
 
@@ -366,9 +668,9 @@ class _M : virtual public CarA, virtual public CarB {
 public:
 
 	void setColor(int c) { Colour = c; };
+	int getColor() { return Colour; };
 	int* getPos() { static int x[2] = { 0, 0 }; x[0] = this->getPosX(); x[1] = this->getPosY(); return x; };
-	_M() : Colour(14) {};
-	_M(int posX, int posY) : Colour(14) { this->setPosX(posX); this->setPosY(posY); };
+	_M(int posX, int posY, int c) : Colour(c) { this->setPosX(posX); this->setPosY(posY); };
 	~_M() {};
 
 };
