@@ -18,7 +18,7 @@ namespace Setting {
 	using std::begin;
 	using std::end;
 
-	static string verSign = " Alpha 4.0"; // This must be with 10 characters.
+	static string verSign = " Alpha 4.8"; // This must be with 10 characters.
 
 	static unsigned int blockers = 0;
 

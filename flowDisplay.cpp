@@ -390,7 +390,7 @@ void dispInGameTimeCount() {
 void dispInGameBackground(Env* E) {
 
 	int* ConsoleSize = con.setCS(Setting::scrSize[0], Setting::scrSize[1]);
-	int padding = (((ConsoleSize[0]) - (E->roadX) * 2) / 2);
+	int padding = (((Setting::scrSize[0]) - (E->roadX * 2) - 4) / 2); // I subtracted 4 because of two walls.
 
 	con.boxOpen();
 	con.boxLine("현재 점수 :           최고 점수 :          ");
@@ -404,13 +404,13 @@ void dispInGameBackground(Env* E) {
 		printf("%2d", i);
 
 		Setting::setColor(15);
-		cout << "■";
+		cout << "□";
 		Setting::setColor(7);
 		for (int j = 0; j < E->roadX; j++)
 			//printf("%2d", j);
 			cout << "  ";
 		Setting::setColor(15);
-		cout << "■";
+		cout << "□";
 		Setting::setColor(7);
 
 		cout << endl;
@@ -440,8 +440,7 @@ void dispInGameScorePanel(int now, int highest) {
 
 void dispInGameEY(int* pos, Env* E, int c) {
 
-	int* ConsoleSize = con.setCS(Setting::scrSize[0], Setting::scrSize[1]);
-	int padding = (((ConsoleSize[0]) - (E->roadX) * 2) / 2);
+	int padding = (((Setting::scrSize[0]) - (E->roadX * 2)) / 2);
 	static COORD preXY = { pos[0] * 2 + padding, pos[1] + 3 };
 	COORD XY = { pos[0] * 2 + padding, pos[1] + 3 };
 
@@ -481,8 +480,8 @@ void dispInGameEY(int* pos, Env* E, int c) {
 
 void dispInGameLane(_L& L, Env& E) {
 
-	int* ConsoleSize = con.setCS(Setting::scrSize[0], Setting::scrSize[1]);
-	COORD posStd = { (((ConsoleSize[0]) - (E.roadX) * 2) / 2) + 2, 4 };
+	int temp = (((Setting::scrSize[0]) - (E.roadX * 2) + 2) / 2); // Because of the left wall, I subtracted 2.
+	COORD posStd = { temp, 3 };
 
 	CarA* A = L.getAFront();
 	CarB* B = L.getBFront();
@@ -491,25 +490,35 @@ void dispInGameLane(_L& L, Env& E) {
 	//Show CarA
 
 	if (L.getCount()[0])
-		for (int j = 0; j++ < L.getCount()[0]; A = A->getNext()) {
+		for (int k = 0; k++ < L.getCount()[0]; A = A->getNext()) {
 
-			for (int i = 0; i++ < A->getOCarW();)
-				for (int j = 0; j++ < A->getOCarH();) {
+			for (int i = 0; i < A->getOCarW(); i++)
+				for (int j = 0; j < A->getOCarH(); j++) {
 
 					COORD prePos = A->getPrePos();
-					prePos.X += (2 * (i - 1)) + posStd.X;
-					prePos.Y += (1 * (j - 1)) + posStd.Y;
-					SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), prePos);
-					cout << "  ";
+					prePos.X += (2 * i) + posStd.X;
+					prePos.Y += (1 * j) + posStd.Y;
+					
+					if (prePos.Y > 2) {
+
+						SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), prePos);
+						cout << "  ";
+
+					}
 
 				}
 
-			for (int i = 0; i++ < A->getCarW();)
-				for (int j = 0; j++ < A->getCarH();) {
+			for (int i = 0; i < A->getCarW(); i++)
+				for (int j = 0; j < A->getCarH(); j++) {
 
-					COORD pos = { A->getRealPosX() + posStd.X + ((i - 1) * 2), A->getPosY() + posStd.Y + ((j - 1) * 1) };
-					SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-					cout << "■";
+					COORD pos = { A->getRealPosX() + posStd.X + (i * 2), A->getPosY() + posStd.Y + (j * 1) };
+
+					if (pos.Y > 2) {
+
+						SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+						cout << "■";
+
+					}
 
 				}
 
@@ -520,25 +529,35 @@ void dispInGameLane(_L& L, Env& E) {
 	//Show CarB
 
 	if (L.getCount()[1])
-		for (int j = 0; j++ < L.getCount()[1]; B = B->getNext()) {
+		for (int k = 0; k++ < L.getCount()[1]; B = B->getNext()) {
 
-			for (int i = 0; i++ < B->getOCarW();)
-				for (int j = 0; j++ < B->getOCarH();) {
+			for (int i = 0; i < B->getOCarW(); i++)
+				for (int j = 0; j < B->getOCarH(); j++) {
 
 					COORD prePos = B->getPrePos();
-					prePos.X += (2 * (i - 1)) + posStd.X;
-					prePos.Y += (1 * (j - 1)) + posStd.Y;
-					SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), prePos);
-					cout << "  ";
+					prePos.X += (2 * i) + posStd.X;
+					prePos.Y += (1 * j) + posStd.Y;
+
+					if (prePos.Y > 2) {
+
+						SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), prePos);
+						cout << "  ";
+
+					}
 
 				}
 
-			for (int i = 0; i++ < B->getCarW();)
-				for (int j = 0; j++ < B->getCarH();) {
+			for (int i = 0; i < B->getCarW(); i++)
+				for (int j = 0; j < B->getCarH(); j++) {
 
-					COORD pos = { B->getRealPosX() + posStd.X + ((i - 1) * 2), B->getPosY() + posStd.Y + ((j - 1) * 1) };
-					SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-					cout << "■";
+					COORD pos = { B->getRealPosX() + posStd.X + (i * 2), B->getPosY() + posStd.Y + (j * 1) };
+
+					if (pos.Y > 2) {
+
+						SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+						cout << "■";
+
+					}
 
 				}
 
@@ -549,25 +568,35 @@ void dispInGameLane(_L& L, Env& E) {
 	//Show CarC
 
 	if (L.getCount()[2])
-		for (int j = 0; j++ < L.getCount()[2]; C = C->getNext()) {
+		for (int k = 0; k++ < L.getCount()[2]; C = C->getNext()) {
 
-			for (int i = 0; i++ < C->getOCarW();)
-				for (int j = 0; j++ < C->getOCarH();) {
+			for (int i = 0; i < C->getOCarW();i++)
+				for (int j = 0; j < C->getOCarH();j++) {
 
 					COORD prePos = C->getPrePos();
-					prePos.X += (2 * (i - 1)) + posStd.X;
-					prePos.Y += (1 * (j - 1)) + posStd.Y;
-					SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), prePos);
-					cout << "  ";
+					prePos.X += (2 * i) + posStd.X;
+					prePos.Y += (1 * j) + posStd.Y;
+
+					if (prePos.Y > 2) {
+
+						SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), prePos);
+						cout << "  ";
+
+					}
 
 				}
 
-			for (int i = 0; i++ < C->getCarW();)
-				for (int j = 0; j++ < C->getCarH();) {
+			for (int i = 0; i < C->getCarW(); i++)
+				for (int j = 0; j < C->getCarH(); j++) {
 
-					COORD pos = { C->getRealPosX() + posStd.X + ((i - 1) * 2), C->getPosY() + posStd.Y + ((j - 1) * 1) };
-					SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-					cout << "■";
+					COORD pos = { C->getRealPosX() + posStd.X + (i * 2), C->getPosY() + posStd.Y + (j * 1) };
+
+					if (pos.Y > 2) {
+
+						SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+						cout << "■";
+
+					}
 
 				}
 
@@ -628,7 +657,7 @@ void dispInGameGAMEOVER(Env& E, _M& M, int now, int highest) {
 		dispInGameOopsBox(14, isLeft);
 		con.csDelay(0.2);
 		dispInGameOopsBox(15, isLeft);
-		con.csDelay(0.2);
+		con.csDelay(0.1);
 		dispInGameOopsBox(14, isLeft);
 		con.csDelay(0.2);
 

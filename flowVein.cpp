@@ -165,18 +165,21 @@ bool procInGameCheckAccident(_Pixel& P, _M& M) {
 		for (int j = 0; j < Setting::E->EY; j++)
 			if (P.getPixel(M.getPosX() + i, j + M.getPosY()).detect()) {
 
-				//cout << "[" << i * 2 + M.getPosX() + 4 << "," << j + M.getPosY() + + 2 << "]";
+				//cout << "[" << M.getPosX() + i << "," << j + M.getPosY() << "]";
 
 				return true;
 
 			}
-			/*else {
+			/*
+			else {
 
-				COORD temp = { i * 2 + M.getPosX() + 4, j + M.getPosY() + 2 };
+				int pad = (((Setting::scrSize[0]) - (E->roadX * 2)) / 2);
+				COORD temp = { (M.getPosX() + i) * 2 + pad, (M.getPosY() + j) + 3 };
 				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), temp);
 				cout << "OO";
 
-			}*/
+			}
+			*/
 
 	return false;
 
@@ -254,7 +257,7 @@ bool procInGame(Env& E, _L& L, _M& M, _Pixel& P, int& score) {
 				break;
 
 			case KEY_RIGHT:
-				if (M.getPosX() < E.roadX)
+				if (M.getPosX() < E.roadX - E.EX)
 					M.setPosX(M.getPosX() + 1);
 				dispInGameEY(M.getPos(), &E, M.getColor());
 				break;

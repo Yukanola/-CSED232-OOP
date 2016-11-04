@@ -30,6 +30,7 @@ public:
 	int getId() { return id; };
 	int getPosX() { return posX; };
 	int getRealPosX() { return (posX * 2) - 1; };
+	int getPrePosXAAOP() { return ((prePos.X + 1) / 2); };
 	int getPosY() { return posY; };
 	int getCarH() { return carH; };
 	int getCarW() { return carW; };
@@ -61,10 +62,10 @@ public:
 		this->posY += 1;
 		int beX = getRand(3, 1);
 
-		if (this->posX + beX >= 0 && this->posX + beX <= (Setting::E->roadX - this->getCarW() + 1))
+		if (this->posX + beX >= 0 && this->posX + beX <= (Setting::E->roadX - this->getCarW()))
 			this->posX += beX;
 
-		if (this->posY + this->carH + 2 > Setting::E->roadY && this->decompose())
+		if (this->posY + this->carH > Setting::E->roadY && this->decompose())
 			this->removeSign = true;
 	
 		return *this;
@@ -92,7 +93,7 @@ public:
 
 		this->posY += (getRand(3)) ? 1 : 0;
 		
-		if (this->posY + this->carH + 2 > Setting::E->roadY && this->decompose())
+		if (this->posY + this->carH > Setting::E->roadY && this->decompose())
 			this->removeSign = true;
 
 		return *this;
@@ -122,10 +123,10 @@ public:
 
 		int beX = getRand(3, 1);
 
-		if (this->posX + beX >= 0 && this->posX + beX <= (Setting::E->roadX - this->getCarW() + 1))
+		if (this->posX + beX >= 0 && this->posX + beX <= (Setting::E->roadX - this->getCarW()))
 			this->posX += beX;
 
-		if (this->posY + this->carH + 2 > Setting::E->roadY && this->decompose())
+		if (this->posY + this->carH > Setting::E->roadY && this->decompose())
 			this->removeSign = true;
 
 		return *this;
@@ -141,8 +142,6 @@ public:
 class __Pixel {
 
 public:
-
-	__Pixel* Next;
 
 	CarA* A;
 	CarB* B;
@@ -177,13 +176,13 @@ public:
 	void setB(CarB* b) { B = b; };
 	void setC(CarC* c) { C = c; };
 
-	__Pixel() : A(NULL), B(NULL), C(NULL), Next(NULL) {};
+	__Pixel() : A(NULL), B(NULL), C(NULL) {};
 
 };
 
 class _Pixel {
 
-	__Pixel* P[38][20]; // P[y][x]
+	__Pixel* P[40][22]; // P[y][x]
 	int C;
 
 public:
@@ -335,9 +334,9 @@ _L& _L::remove(CarA* a) {
 
 	this->count[0]--;
 
-	COORD LastLeft = { (((Setting::scrSize[0]) - (E->roadX) * 2) / 2) - 2, 2 + Setting::E->roadY };
+	COORD LastLeft = { (((Setting::scrSize[0]) - (Setting::E->roadX) * 2) / 2) - 2, 2 + Setting::E->roadY };
 
-	COORD LastRight = { Setting::scrSize[0] - (((Setting::scrSize[0]) - (E->roadX) * 2) / 2), 2 + Setting::E->roadY };
+	COORD LastRight = { Setting::scrSize[0] - (((Setting::scrSize[0]) - (Setting::E->roadX) * 2) / 2), 2 + Setting::E->roadY };
 
 	COORD XY = { LastLeft.X + a->getRealPosX(), LastLeft.Y };
 
@@ -346,18 +345,15 @@ _L& _L::remove(CarA* a) {
 	for (int i = -1; i++ <= a->getCarW();)
 		cout << "  ";
 
-	/*for (int i = 0; i++ < a->getCarW();)
-		for (int j = 0; j++ < a->getCarH();)
-			if (Setting::P->getPixel(a->getPosX() + i * 2 + 5, a->getPosY() + j - 1).A == a)
-				Setting::P->setPixel(a->getPosX() + i * 2 + 5, a->getPosY() + j - 1, (CarA*) NULL);
-				*/
-
+	for (int i = 0; i < Setting::E->roadX; i++)
+		if(Setting::P->getPixel(i, Setting::E->roadY - 1).A == a)
+			Setting::P->setPixel(i, Setting::E->roadY - 1, (CarA*) NULL);
 
 	Setting::setColor(15);
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), LastLeft);
-	cout << "бс";
+	cout << "бр";
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), LastRight);
-	cout << "бс";
+	cout << "бр";
 	Setting::setColor(7);
 
 	delete a;
@@ -381,9 +377,9 @@ _L& _L::remove(CarB* b) {
 
 	this->count[1]--;
 
-	COORD LastLeft = { (((Setting::scrSize[0]) - (E->roadX) * 2) / 2) - 2, 2 + Setting::E->roadY };
+	COORD LastLeft = { (((Setting::scrSize[0]) - (Setting::E->roadX) * 2) / 2) - 2, 2 + Setting::E->roadY };
 
-	COORD LastRight = { Setting::scrSize[0] - (((Setting::scrSize[0]) - (E->roadX) * 2) / 2), 2 + Setting::E->roadY };
+	COORD LastRight = { Setting::scrSize[0] - (((Setting::scrSize[0]) - (Setting::E->roadX) * 2) / 2), 2 + Setting::E->roadY };
 
 	COORD XY = { LastLeft.X + b->getRealPosX(), LastLeft.Y };
 
@@ -392,12 +388,15 @@ _L& _L::remove(CarB* b) {
 	for (int i = -1; i++ <= b->getCarW();)
 		cout << "  ";
 
+	for (int i = 0; i < Setting::E->roadX; i++)
+		if (Setting::P->getPixel(i, Setting::E->roadY - 1).B == b)
+			Setting::P->setPixel(i, Setting::E->roadY - 1, (CarB*)NULL);
 
 	Setting::setColor(15);
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), LastLeft);
-	cout << "бс";
+	cout << "бр";
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), LastRight);
-	cout << "бс";
+	cout << "бр";
 	Setting::setColor(7);
 
 	delete b;
@@ -421,9 +420,9 @@ _L& _L::remove(CarC* c) {
 
 	this->count[2]--;
 
-	COORD LastLeft = { (((Setting::scrSize[0]) - (E->roadX) * 2) / 2) - 2, 2 + Setting::E->roadY };
+	COORD LastLeft = { (((Setting::scrSize[0]) - (Setting::E->roadX) * 2) / 2) - 2, 2 + Setting::E->roadY };
 
-	COORD LastRight = { Setting::scrSize[0] - (((Setting::scrSize[0]) - (E->roadX) * 2) / 2), 2 + Setting::E->roadY };
+	COORD LastRight = { Setting::scrSize[0] - (((Setting::scrSize[0]) - (Setting::E->roadX) * 2) / 2), 2 + Setting::E->roadY };
 
 	COORD XY = { LastLeft.X + c->getRealPosX(), LastLeft.Y };
 
@@ -432,12 +431,15 @@ _L& _L::remove(CarC* c) {
 	for (int i = -1; i++ <= c->getCarW();)
 		cout << "  ";
 
+	for (int i = 0; i < Setting::E->roadX; i++)
+		if (Setting::P->getPixel(i, Setting::E->roadY - 1).C == c)
+			Setting::P->setPixel(i, Setting::E->roadY - 1, (CarC*)NULL);
 
 	Setting::setColor(15);
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), LastLeft);
-	cout << "бс";
+	cout << "бр";
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), LastRight);
-	cout << "бс";
+	cout << "бр";
 	Setting::setColor(7);
 
 	delete c;
@@ -458,12 +460,12 @@ _L& _L::randomInsert(_Pixel& P) {
 	CarB* b;
 	CarC* c;
 
-	switch (0) {
+	switch (rands) {
 
 	case 7:
 	case 3:
 	case 0:
-		a = new CarA((x % Setting::E->roadX));
+		a = new CarA((x % (Setting::E->roadX - 1)));
 		add(a, P);
 		break;
 
@@ -471,14 +473,14 @@ _L& _L::randomInsert(_Pixel& P) {
 	case 8:
 	case 4:
 	case 1:
-		b = new CarB((x % Setting::E->roadX));
+		b = new CarB((x % (Setting::E->roadX - 1)));
 		add(b, P);
 		break;
 
 	case 9:
 	case 5:
 	case 2:
-		c = new CarC((x % (Setting::E->roadX - 1)));
+		c = new CarC((x % (Setting::E->roadX - 2)));
 		add(c, P);
 		break;
 
@@ -512,44 +514,41 @@ _L& _L::behave(Setting::Env& E, _Pixel& P) {
 			}
 			else {
 
-				for (int j = 0; j++ < a->getCarH() && !breakSign;)
-					for (int k = 0; k++ < a->getCarW() && !breakSign;)
-						if (a->getPosY() + j - 1 >= 0)
-							if (P.getPixel(a->getPosX() + k * 2 + 5, a->getPosY() + j - 1).detAAOA(a)) {
+				for (int j = 0; j < a->getCarH() && !breakSign; j++)
+					for (int k = 0; k < a->getCarW() && !breakSign; k++)
+						if (a->getPosY() + j >= 0)
+							if (P.getPixel(a->getPosX() + k, a->getPosY() + j).detAAOA(a)) {
 
-								a->setPosX(a->getPrePos().X);
+								a->setPosX(a->getPrePosXAAOP());
 								a->setPosY(a->getPrePos().Y);
 
 								breakSign = true;
 
 							};
 
-				//debc();
+				if (!breakSign) {
 
-				if (!breakSign)
-					for (int j = 0; j++ < a->getCarH();)
-						for (int k = 0; k++ < a->getCarW();) {
+					for (int j = 0; j < a->getCarH(); j++)
+						for (int k = 0; k < a->getCarW(); k++)
+							if (a->getPrePos().Y + j >= 0)
+								P.getPixel(a->getPrePosXAAOP() + k, a->getPrePos().Y + j).A = NULL;
 
-							//debc();
+					for (int j = 0; j < a->getCarH(); j++)
+						for (int k = 0; k < a->getCarW(); k++)
+							if (a->getPosY() + j >= 0) {
 
-							if (a->getPrePos().Y + j - 1 >= 0)
-								P.getPixel(a->getPrePos().X + k * 2 + 5, a->getPrePos().Y + j - 1).A = NULL;
-							if (a->getPosY() + j - 1 >= 0)
-								P.getPixel(a->getPosX() + k * 2 + 5, a->getPosY() + j - 1).A = a;
+								int pad = (((Setting::scrSize[0]) - (E.roadX * 2)) / 2);
+								/*COORD temp = { (a->getPosX() + k) * 2 + pad, (a->getPosY() + j) + 3 };
+								SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), temp);
+								cout << "XX";*/
 
-							//debc();
+								P.getPixel(a->getPosX() + k, a->getPosY() + j).A = a;
 
-							
-							//COORD temp = { a->getPosX() + 2 * k + 5, a->getPosY() + j - 1 };
-							//SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), temp);
-							//printf("%2d", a->getId());
-							
+							}
 
-						}
+				}
 				else
 					breakSign = false;
-
-				//debc();
 
 				a = a->getNext();
 
@@ -576,28 +575,36 @@ _L& _L::behave(Setting::Env& E, _Pixel& P) {
 			}
 			else {
 
-				for (int j = 0; j++ < b->getCarH() && !breakSign;)
-					for (int k = 0; k++ < b->getCarW() && !breakSign;)
-						if (b->getPosY() + j - 1 >= 0)
-							if (P.getPixel(b->getPosX() + k * 2 + 5, b->getPosY() + j - 1).detAAOB(b)) {
+				for (int j = 0; j < b->getCarH() && !breakSign; j++)
+					for (int k = 0; k < b->getCarW() && !breakSign; k++)
+						if (b->getPosY() + j >= 0)
+							if (P.getPixel(b->getPosX() + k, b->getPosY() + j).detAAOB(b)) {
 
-								b->setPosX(b->getPrePos().X);
+								b->setPosX(b->getPrePosXAAOP());
 								b->setPosY(b->getPrePos().Y);
 
 								breakSign = true;
 
 							};
 
-				if (!breakSign)
-					for (int j = 0; j++ < b->getCarH();)
-						for (int k = 0; k++ < b->getCarW();) {
+				if (!breakSign) {
 
-							if (b->getPrePos().Y + j - 1 >= 0)
-								P.getPixel(b->getPrePos().X + k * 2 + 5, b->getPrePos().Y + j - 1).B = NULL;
-							if (b->getPosY() + j - 1 >= 0)
-								P.getPixel(b->getPosX() + k * 2 + 5, b->getPosY() + j - 1).B = b;
+					for (int j = 0; j < b->getCarH(); j++)
+						for (int k = 0; k < b->getCarW(); k++)
+							if (b->getPrePos().Y + j >= 0)
+								P.getPixel(b->getPrePosXAAOP() + k, b->getPrePos().Y + j).B = NULL;
 
-						}
+					for (int j = 0; j < b->getCarH(); j++)
+						for (int k = 0; k < b->getCarW(); k++)
+							if (b->getPosY() + j >= 0) {
+
+								int pad = (((Setting::scrSize[0]) - (E.roadX * 2)) / 2);
+
+								P.getPixel(b->getPosX() + k, b->getPosY() + j).B = b;
+
+							}
+
+				}
 				else
 					breakSign = false;
 
@@ -626,28 +633,36 @@ _L& _L::behave(Setting::Env& E, _Pixel& P) {
 			}
 			else {
 
-				for (int j = 0; j++ < c->getCarH() && !breakSign;)
-					for (int k = 0; k++ < c->getCarW() && !breakSign;)
-						if (c->getPosY() + j - 1 >= 0)
-							if (P.getPixel(c->getPosX() + k * 2 + 5, c->getPosY() + j - 1).detAAOC(c)) {
+				for (int j = 0; j < c->getCarH() && !breakSign; j++)
+					for (int k = 0; k < c->getCarW() && !breakSign; k++)
+						if (c->getPosY() + j >= 0)
+							if (P.getPixel(c->getPosX() + k, c->getPosY() + j).detAAOC(c)) {
 
-								c->setPosX(c->getPrePos().X);
+								c->setPosX(c->getPrePosXAAOP());
 								c->setPosY(c->getPrePos().Y);
 
 								breakSign = true;
 
 							};
 
-				if (!breakSign)
-					for (int j = 0; j++ < c->getCarH();)
-						for (int k = 0; k++ < c->getCarW();) {
+				if (!breakSign) {
 
-							if (c->getPrePos().Y + j - 1 >= 0)
-								P.getPixel(c->getPrePos().X + 2 * k + 5, c->getPrePos().Y + j - 1).C = NULL;
-							if (c->getPosY() + j + - 1 >= 0)
-								P.getPixel(c->getPosX() + 2 * k + 5, c->getPosY() + j - 1).C = c;
+					for (int j = 0; j < c->getCarH(); j++)
+						for (int k = 0; k < c->getCarW(); k++)
+							if (c->getPrePos().Y + j >= 0)
+								P.getPixel(c->getPrePosXAAOP() + k, c->getPrePos().Y + j).C = NULL;
 
-						}
+					for (int j = 0; j < c->getCarH(); j++)
+						for (int k = 0; k < c->getCarW(); k++)
+							if (c->getPosY() + j >= 0) {
+
+								int pad = (((Setting::scrSize[0]) - (E.roadX * 2)) / 2);
+
+								P.getPixel(c->getPosX() + k, c->getPosY() + j).C = c;
+
+							}
+
+				}
 				else
 					breakSign = false;
 
