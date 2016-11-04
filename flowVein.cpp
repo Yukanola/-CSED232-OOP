@@ -17,8 +17,8 @@ void dispInGameBackground(Env*);
 void dispInGameTimeCount();
 void dispInGameScorePanel(int, int);
 void dispInGameEY(int*, Env*, int);
-void dispInGameLane(_Q&, Env&);
-bool procInGame(Env&, _Q&, _M&, _Pixel&, int&);
+void dispInGameLane(_L&, Env&);
+bool procInGame(Env&, _L&, _M&, _Pixel&, int&);
 void dispColorSelection(int);
 void dispInGameGAMEOVER(Env&, _M&, int, int);
 
@@ -101,7 +101,7 @@ void procGame() {
 	using std::endl;
 
 	Env* Hardness;
-	_Q Q;
+	_L L;
 
 	bool isDied = false;
 
@@ -139,21 +139,21 @@ void procGame() {
 
 	for (; !procSetEYColor(color););
 
-	_M M((Hardness->roadX) - (Hardness->EX) + 2 * (Hardness->roadX % 2), 37 - (Setting::hardness * 5), color);
-	_Pixel Pixel(2 * Hardness->roadX + 1, Hardness->roadY + 1);
+	_M M(((Hardness->roadX - Hardness->EX) / 2) + (Hardness->roadX % 2), 39 - (Setting::hardness * 5) - Hardness->EY, color);
+	_Pixel Pixel(Hardness->roadX + 1, Hardness->roadY + 1);
 
 	Setting::P = &Pixel;
 
-	Q.randomInsert(Pixel);
+	L.randomInsert(Pixel);
 	dispInGameBackground(Hardness);
 	dispInGameScorePanel(score, Setting::HighestScore);
 	dispInGameEY(M.getPos(), Hardness, M.getColor());
 	dispInGameTimeCount();
 
-	for (; !isDied; Q.randomInsert(Pixel))
-		for (clock_t mTime = clock(); (clock() - mTime < Hardness->T2) && !(isDied = !procInGame(*Hardness, Q, M, Pixel, score)); Q.behave(*Hardness, Pixel));
+	for (; !isDied; L.randomInsert(Pixel))
+		for (clock_t mTime = clock(); (clock() - mTime < Hardness->T2) && !(isDied = !procInGame(*Hardness, L, M, Pixel, score)); L.behave(*Hardness, Pixel));
 
-	dispInGameLane(Q, *Hardness);
+	dispInGameLane(L, *Hardness);
 	dispInGameEY(M.getPos(), Hardness, M.getColor());
 	dispInGameGAMEOVER(*Hardness, M, score, Setting::HighestScore);
 
@@ -161,11 +161,11 @@ void procGame() {
 
 bool procInGameCheckAccident(_Pixel& P, _M& M) {
 
-	for (int i = 0; ++i - 1 < Setting::E->EX;)
-		for (int j = 0; ++j - 1 < Setting::E->EY;)
-			if (P.getPixel(i * 2 + M.getPosX() + 4, j + M.getPosY() - 3).detect()) {
+	for (int i = 0; i < Setting::E->EX; i++)
+		for (int j = 0; j < Setting::E->EY; j++)
+			if (P.getPixel(M.getPosX() + i, j + M.getPosY()).detect()) {
 
-				cout << "[" << i * 2 + M.getPosX() + 4 << "," << j + M.getPosY() + + 2 << "]";
+				//cout << "[" << i * 2 + M.getPosX() + 4 << "," << j + M.getPosY() + + 2 << "]";
 
 				return true;
 
@@ -193,30 +193,30 @@ int procCheckHighscore(int score) {
 
 };
 
-int procCheckScore(_Q& Q, _M& M, int& score) { 
+int procCheckScore(_L& L, _M& M, int& score) { 
 
-	CarA* A = Q.getAFront();
-	CarB* B = Q.getBFront();
-	CarC* C = Q.getCFront();
+	CarA* A = L.getAFront();
+	CarB* B = L.getBFront();
+	CarC* C = L.getCFront();
 
-	for (int i = 0; i++ < Q.getCount()[0]; A = A->getNext())
-		if (A->getPosY() >= M.getPosY() + Setting::E->EY - 2 && !A->isCounted()) {
+	for (int i = 0; i++ < L.getCount()[0]; A = A->getNext())
+		if (A->getPosY() >= M.getPosY() + Setting::E->EY && !A->isCounted()) {
 			
 			A->count();
 			score++;
 
 		}
 
-	for (int i = 0; i++ < Q.getCount()[1]; B = B->getNext())
-		if (B->getPosY() >= M.getPosY() + Setting::E->EY - 2 && !B->isCounted()) {
+	for (int i = 0; i++ < L.getCount()[1]; B = B->getNext())
+		if (B->getPosY() >= M.getPosY() + Setting::E->EY&& !B->isCounted()) {
 
 			B->count();
 			score++;
 
 		}
 
-	for (int i = 0; i++ < Q.getCount()[2]; C = C->getNext())
-		if (C->getPosY() >= M.getPosY() + Setting::E->EY - 2 && !C->isCounted()) {
+	for (int i = 0; i++ < L.getCount()[2]; C = C->getNext())
+		if (C->getPosY() >= M.getPosY() + Setting::E->EY&& !C->isCounted()) {
 
 			C->count();
 			score++;
@@ -227,16 +227,16 @@ int procCheckScore(_Q& Q, _M& M, int& score) {
 
 }
 
-bool procInGame(Env& E, _Q& Q, _M& M, _Pixel& P, int& score) {
+bool procInGame(Env& E, _L& L, _M& M, _Pixel& P, int& score) {
 
 	char keyGet;
 
 	if (procInGameCheckAccident(P, M))
 		return false;
 	else
-		procCheckScore(Q, M, score);
+		procCheckScore(L, M, score);
 
-	dispInGameLane(Q, E);
+	dispInGameLane(L, E);
 	dispInGameEY(M.getPos(), &E, M.getColor());
 
 	for (clock_t mTime = clock(); clock() - mTime < E.T1;) {
@@ -248,14 +248,14 @@ bool procInGame(Env& E, _Q& Q, _M& M, _Pixel& P, int& score) {
 			switch (keyGet) {
 
 			case KEY_LEFT:
-				if (M.getPosX() > 1)
-					M.setPosX(M.getPosX() - 2);
+				if (M.getPosX() > 0)
+					M.setPosX(M.getPosX() - 1);
 				dispInGameEY(M.getPos(), &E, M.getColor());
 				break;
 
 			case KEY_RIGHT:
-				if (M.getPosX() < (E.roadX * 2 - 3))
-					M.setPosX(M.getPosX() + 2);
+				if (M.getPosX() < E.roadX)
+					M.setPosX(M.getPosX() + 1);
 				dispInGameEY(M.getPos(), &E, M.getColor());
 				break;
 
@@ -266,7 +266,7 @@ bool procInGame(Env& E, _Q& Q, _M& M, _Pixel& P, int& score) {
 				break;
 
 			case KEY_DOWN:
-				if (M.getPosY() < E.roadY - 2)
+				if (M.getPosY() < E.roadY - E.EY)
 					M.setPosY(M.getPosY() + 1);
 				dispInGameEY(M.getPos(), &E, M.getColor());
 				break;
@@ -276,7 +276,7 @@ bool procInGame(Env& E, _Q& Q, _M& M, _Pixel& P, int& score) {
 			if (procInGameCheckAccident(P, M))
 				return false;
 			else
-				procCheckScore(Q, M, score);
+				procCheckScore(L, M, score);
 
 		}
 

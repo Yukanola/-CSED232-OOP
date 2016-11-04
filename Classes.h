@@ -29,6 +29,7 @@ public:
 	void count() { scoreCounted = true; };
 	int getId() { return id; };
 	int getPosX() { return posX; };
+	int getRealPosX() { return (posX * 2) - 1; };
 	int getPosY() { return posY; };
 	int getCarH() { return carH; };
 	int getCarW() { return carW; };
@@ -39,7 +40,7 @@ public:
 	COORD getPrePos() { return prePos; };
 	bool decompose() { return !(--carH); };
 	Car() {};
-	Car(int x, int y, int w, int h) : id(regId()), scoreCounted(false), posX(x), posY(y), carW(w), carH(h), carOH(h), carOW(w), removeSign(false) { prePos.X = x; prePos.Y = y; };
+	Car(int x, int y, int w, int h) : id(regId()), scoreCounted(false), posX(x), posY(y), carW(w), carH(h), carOH(h), carOW(w), removeSign(false) { prePos.X = (2 * x) - 1; prePos.Y = y; };
 	~Car() {};
 
 };
@@ -58,9 +59,9 @@ public:
 	CarA& behave() { 
 		
 		this->posY += 1;
-		int beX = 2 * getRand(3, 1);
+		int beX = getRand(3, 1);
 
-		if (this->posX + beX >= 0 && this->posX + beX < (Setting::E->roadX * 2 - 1 - 2 * this->getCarW()))
+		if (this->posX + beX >= 0 && this->posX + beX <= (Setting::E->roadX - this->getCarW() + 1))
 			this->posX += beX;
 
 		if (this->posY + this->carH + 2 > Setting::E->roadY && this->decompose())
@@ -69,10 +70,10 @@ public:
 		return *this;
 	
 	};
-	CarA() : Next(NULL), Before(NULL), Car(0, -2, 2, 3) {};
-	CarA(int x) : Next(NULL), Before(NULL), Car(x, -2, 2, 3) {};
+	CarA() : Next(NULL), Before(NULL), Car(0, -3, 2, 3) {};
+	CarA(int x) : Next(NULL), Before(NULL), Car(x, -3, 2, 3) {};
 	~CarA() {};
-	CarA(CarA* a) : Next(NULL), Before(a), Car(0, -2, 2, 3) {};
+	CarA(CarA* a) : Next(NULL), Before(a), Car(0, -3, 2, 3) {};
 
 };
 
@@ -110,7 +111,7 @@ class CarC : virtual public Car {
 
 public:
 
-	void moveXY(int z) { this->posY += z; this->posX += z; };
+	void moveXY(int x, int y) { this->posY += y; this->posX += x; };
 	CarC* getNext() { return Next; };
 	CarC* getBefore() { return Before; };
 	CarC* setNext(CarC* c) { return (Next = c); };
@@ -119,9 +120,9 @@ public:
 
 		this->posY += getRand(2);
 
-		int beX = 2* getRand(3, 1);
+		int beX = getRand(3, 1);
 
-		if (this->posX + beX >= 0 && this->posX + beX < (Setting::E->roadX * 2 - 1 - 2 * this->getCarW()))
+		if (this->posX + beX >= 0 && this->posX + beX <= (Setting::E->roadX - this->getCarW() + 1))
 			this->posX += beX;
 
 		if (this->posY + this->carH + 2 > Setting::E->roadY && this->decompose())
@@ -150,8 +151,9 @@ public:
 	bool detAAOA(CarA* a) { return ((A != NULL && A != a) || B != NULL || C != NULL); };
 	bool detAAOB(CarB* b) { return (A != NULL || (B != NULL && B != b) || C != NULL); };
 	bool detAAOC(CarC* c) { return (A != NULL || B != NULL || (C != NULL && C != c)); };
-	bool detect() { 
+	bool detect() {
 
+		/*
 		if (A != NULL) {
 
 			cout << "A(" << A->getId() << ")->";
@@ -165,6 +167,7 @@ public:
 			cout << "B(" << B->getId() << ")->";
 
 		}
+		*/
 
 		return (A != NULL || B != NULL || C != NULL);
 
@@ -220,7 +223,7 @@ namespace Setting {
 
 }
 
-class _Q {
+class _L {
 
 	int count[3];
 
@@ -230,7 +233,7 @@ class _Q {
 
 public:
 
-	_Q& add(CarA* a, _Pixel& P) {
+	_L& add(CarA* a, _Pixel& P) {
 
 		int count = this->count[0]++;
 
@@ -244,16 +247,16 @@ public:
 
 		ARear = a;
 
-		for (int j = 0; j++ < a->getCarH();)
-			for (int k = 0; k++ < a->getCarW();)
+		for (int j = 0; j++ < a->getOCarH();)
+			for (int k = 0; k++ < a->getOCarW();)
 				if (a->getPosY() + j - 1 >= 0)
-					P.getPixel(a->getPosY() + j - 1, a->getPosX() + k - 1).A = a;
+					P.getPixel(a->getPosX() + k - 1, a->getPosY() + j - 1).A = a;
 
 		return *this;
 
 	};
 
-	_Q& add(CarB* b, _Pixel& P) {
+	_L& add(CarB* b, _Pixel& P) {
 
 		int count = this->count[1]++;
 
@@ -267,16 +270,16 @@ public:
 
 		BRear = b;
 
-		for (int j = 0; j++ < b->getCarH();)
-			for (int k = 0; k++ < b->getCarW();)
+		for (int j = 0; j++ < b->getOCarH();)
+			for (int k = 0; k++ < b->getOCarW();)
 				if (b->getPosY() + j - 1 >= 0)
-					P.getPixel(b->getPosY() + j - 1, b->getPosX() + k - 1).B = b;
+					P.getPixel(b->getPosX() + k - 1, b->getPosY() + j - 1).B = b;
 
 		return *this;
 
 	};
 
-	_Q& add(CarC* c, _Pixel& P) {
+	_L& add(CarC* c, _Pixel& P) {
 
 		int count = this->count[2]++;
 
@@ -290,10 +293,10 @@ public:
 
 		CRear = c;
 
-		for (int j = 0; j++ < c->getCarH();)
-			for (int k = 0; k++ < c->getCarW();)
+		for (int j = 0; j++ < c->getOCarH();)
+			for (int k = 0; k++ < c->getOCarW();)
 				if (c->getPosY() + j - 1 >= 0)
-					P.getPixel(c->getPosY() + j - 1, c->getPosX() + k - 1).C = c;
+					P.getPixel(c->getPosX() + k - 1, c->getPosY() + j - 1).C = c;
 
 		return *this;
 
@@ -305,19 +308,19 @@ public:
 
 	int* getCount() { return count; };
 
-	inline _Q& randomInsert(_Pixel&);
+	inline _L& randomInsert(_Pixel&);
 
-	_Q() : AFront(NULL), ARear(NULL), BFront(NULL), BRear(NULL), CFront(NULL), CRear(NULL) { count[0] = 0; count[1] = 0, count[2] = 0; };
+	_L() : AFront(NULL), ARear(NULL), BFront(NULL), BRear(NULL), CFront(NULL), CRear(NULL) { count[0] = 0; count[1] = 0, count[2] = 0; };
 
-	inline _Q& behave(Setting::Env&, _Pixel&);
+	inline _L& behave(Setting::Env&, _Pixel&);
 
-	inline _Q& remove(CarA *a);
-	inline _Q& remove(CarB *b);
-	inline _Q& remove(CarC *c);
+	inline _L& remove(CarA *a);
+	inline _L& remove(CarB *b);
+	inline _L& remove(CarC *c);
 
 };
 
-_Q& _Q::remove(CarA* a) {
+_L& _L::remove(CarA* a) {
 
 	if (a->getBefore() != NULL)
 		a->getBefore()->setNext(a->getNext());
@@ -332,11 +335,11 @@ _Q& _Q::remove(CarA* a) {
 
 	this->count[0]--;
 
-	COORD LastLeft = { (((Setting::scrSize[0]) - (Setting::E->roadX)) / 4) - 2, 2 + Setting::E->roadY };
+	COORD LastLeft = { (((Setting::scrSize[0]) - (E->roadX) * 2) / 2) - 2, 2 + Setting::E->roadY };
 
-	COORD LastRight = { Setting::scrSize[0] - (((Setting::scrSize[0]) - (Setting::E->roadX)) / 4), 2 + Setting::E->roadY };
+	COORD LastRight = { Setting::scrSize[0] - (((Setting::scrSize[0]) - (E->roadX) * 2) / 2), 2 + Setting::E->roadY };
 
-	COORD XY = { LastLeft.X + a->getPosX(), LastLeft.Y };
+	COORD XY = { LastLeft.X + a->getRealPosX(), LastLeft.Y };
 
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), XY);
 
@@ -363,7 +366,7 @@ _Q& _Q::remove(CarA* a) {
 
 };
 
-_Q& _Q::remove(CarB* b) {
+_L& _L::remove(CarB* b) {
 
 	if (b->getBefore() != NULL)
 		b->getBefore()->setNext(b->getNext());
@@ -378,11 +381,11 @@ _Q& _Q::remove(CarB* b) {
 
 	this->count[1]--;
 
-	COORD LastLeft = { (((Setting::scrSize[0]) - (Setting::E->roadX)) / 4) - 2, 2 + Setting::E->roadY };
+	COORD LastLeft = { (((Setting::scrSize[0]) - (E->roadX) * 2) / 2) - 2, 2 + Setting::E->roadY };
 
-	COORD LastRight = { Setting::scrSize[0] - (((Setting::scrSize[0]) - (Setting::E->roadX)) / 4), 2 + Setting::E->roadY };
+	COORD LastRight = { Setting::scrSize[0] - (((Setting::scrSize[0]) - (E->roadX) * 2) / 2), 2 + Setting::E->roadY };
 
-	COORD XY = { LastLeft.X + b->getPosX(), LastLeft.Y };
+	COORD XY = { LastLeft.X + b->getRealPosX(), LastLeft.Y };
 
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), XY);
 
@@ -403,7 +406,7 @@ _Q& _Q::remove(CarB* b) {
 
 };
 
-_Q& _Q::remove(CarC* c) {
+_L& _L::remove(CarC* c) {
 
 	if (c->getBefore() != NULL)
 		c->getBefore()->setNext(c->getNext());
@@ -418,11 +421,11 @@ _Q& _Q::remove(CarC* c) {
 
 	this->count[2]--;
 
-	COORD LastLeft = { (((Setting::scrSize[0]) - (Setting::E->roadX)) / 4) - 2, 2 + Setting::E->roadY };
+	COORD LastLeft = { (((Setting::scrSize[0]) - (E->roadX) * 2) / 2) - 2, 2 + Setting::E->roadY };
 
-	COORD LastRight = { Setting::scrSize[0] - (((Setting::scrSize[0]) - (Setting::E->roadX)) / 4), 2 + Setting::E->roadY };
+	COORD LastRight = { Setting::scrSize[0] - (((Setting::scrSize[0]) - (E->roadX) * 2) / 2), 2 + Setting::E->roadY };
 
-	COORD XY = { LastLeft.X + c->getPosX(), LastLeft.Y };
+	COORD XY = { LastLeft.X + c->getRealPosX(), LastLeft.Y };
 
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), XY);
 
@@ -443,40 +446,39 @@ _Q& _Q::remove(CarC* c) {
 
 };
 
-_Q& _Q::randomInsert(_Pixel& P) {
+_L& _L::randomInsert(_Pixel& P) {
 
 	srand(time(NULL));
 	int x = rand();
 
 	srand(x);
-	int rands = rand() % 10;
+	int rands = rand() % 11;
 
 	CarA* a;
 	CarB* b;
 	CarC* c;
-
-	x = x % (Setting::E->roadX * 2 - 3);
 
 	switch (0) {
 
 	case 7:
 	case 3:
 	case 0:
-		a = new CarA(x - (x % 2));
+		a = new CarA((x % Setting::E->roadX));
 		add(a, P);
 		break;
 
+	case 10:
 	case 8:
 	case 4:
 	case 1:
-		b = new CarB(x - (x % 2));
+		b = new CarB((x % Setting::E->roadX));
 		add(b, P);
 		break;
 
 	case 9:
 	case 5:
 	case 2:
-		c = new CarC((x = x - 3) - (x % 2));
+		c = new CarC((x % (Setting::E->roadX - 1)));
 		add(c, P);
 		break;
 
@@ -489,7 +491,7 @@ _Q& _Q::randomInsert(_Pixel& P) {
 
 };
 
-_Q& _Q::behave(Setting::Env& E, _Pixel& P) {
+_L& _L::behave(Setting::Env& E, _Pixel& P) {
 
 	bool breakSign = false;
 
@@ -664,13 +666,14 @@ _Q& _Q::behave(Setting::Env& E, _Pixel& P) {
 class _M : virtual public CarA, virtual public CarB {
 
 	int Colour;
+	int idioPosSys[2];
 
 public:
 
 	void setColor(int c) { Colour = c; };
 	int getColor() { return Colour; };
-	int* getPos() { static int x[2] = { 0, 0 }; x[0] = this->getPosX(); x[1] = this->getPosY(); return x; };
-	_M(int posX, int posY, int c) : Colour(c) { this->setPosX(posX); this->setPosY(posY); };
+	int* getPos() { idioPosSys[0] = this->getPosX(); idioPosSys[1] = this->getPosY(); return idioPosSys; };
+	_M(int posX, int posY, int c) : Colour(c) { this->setPosX(posX); this->setPosY(posY); this->idioPosSys[0] = 0; this->idioPosSys[1] = 0; };
 	~_M() {};
 
 };

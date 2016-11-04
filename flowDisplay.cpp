@@ -4,6 +4,7 @@
 #include "Classes.h"
 
 using namespace Setting;
+using _Kano::con;
 using std::cout;
 using std::endl;
 
@@ -22,7 +23,7 @@ void dispSplash() {
 		<< endl << "     //        //    / / //    | |  //   | |    "
 		<< endl << "    ((____/ / //    / / //     | | //    | |    " << endl
 		<< endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl
-		<< endl << "                                       Alpha    " << endl << endl
+		<< endl << "                                  " + Setting::verSign + "    " << endl << endl
 		<< endl << "                                                ";
 
 	deb("Splash has been displayed.");
@@ -389,7 +390,7 @@ void dispInGameTimeCount() {
 void dispInGameBackground(Env* E) {
 
 	int* ConsoleSize = con.setCS(Setting::scrSize[0], Setting::scrSize[1]);
-	int padding = (((ConsoleSize[0]) - (E->roadX)) / 4) - 1;
+	int padding = (((ConsoleSize[0]) - (E->roadX) * 2) / 2);
 
 	con.boxOpen();
 	con.boxLine("현재 점수 :           최고 점수 :          ");
@@ -440,9 +441,9 @@ void dispInGameScorePanel(int now, int highest) {
 void dispInGameEY(int* pos, Env* E, int c) {
 
 	int* ConsoleSize = con.setCS(Setting::scrSize[0], Setting::scrSize[1]);
-	int padding = (((ConsoleSize[0]) - (E->roadX)) / 4);
-	static COORD preXY = { pos[0] + padding, pos[1] + 3 };
-	COORD XY = { pos[0] + padding, pos[1] + 3 };
+	int padding = (((ConsoleSize[0]) - (E->roadX) * 2) / 2);
+	static COORD preXY = { pos[0] * 2 + padding, pos[1] + 3 };
+	COORD XY = { pos[0] * 2 + padding, pos[1] + 3 };
 
 	int preY = preXY.Y;
 
@@ -459,7 +460,7 @@ void dispInGameEY(int* pos, Env* E, int c) {
 
 	}
 
-	preXY.X = pos[0] + padding, preXY.Y = pos[1] + 3;
+	preXY.X = pos[0] * 2 + padding, preXY.Y = pos[1] + 3;
 
 	for (int i = 0; i++ < E->EY; XY.X += 2) {
 
@@ -478,26 +479,26 @@ void dispInGameEY(int* pos, Env* E, int c) {
 
 }
 
-void dispInGameLane(_Q& Q, Env& E) {
+void dispInGameLane(_L& L, Env& E) {
 
 	int* ConsoleSize = con.setCS(Setting::scrSize[0], Setting::scrSize[1]);
-	COORD posStd = { (((ConsoleSize[0]) - (E.roadX)) / 4) - 1, 4 };
+	COORD posStd = { (((ConsoleSize[0]) - (E.roadX) * 2) / 2) + 2, 4 };
 
-	CarA* A = Q.getAFront();
-	CarB* B = Q.getBFront();
-	CarC* C = Q.getCFront();
+	CarA* A = L.getAFront();
+	CarB* B = L.getBFront();
+	CarC* C = L.getCFront();
 
 	//Show CarA
 
-	if (Q.getCount()[0])
-		for (int j = 0; j++ < Q.getCount()[0]; A = A->getNext()) {
+	if (L.getCount()[0])
+		for (int j = 0; j++ < L.getCount()[0]; A = A->getNext()) {
 
 			for (int i = 0; i++ < A->getOCarW();)
 				for (int j = 0; j++ < A->getOCarH();) {
 
 					COORD prePos = A->getPrePos();
-					prePos.X += (2 * i) + posStd.X;
-					prePos.Y += (1 * j) + posStd.Y;
+					prePos.X += (2 * (i - 1)) + posStd.X;
+					prePos.Y += (1 * (j - 1)) + posStd.Y;
 					SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), prePos);
 					cout << "  ";
 
@@ -506,27 +507,27 @@ void dispInGameLane(_Q& Q, Env& E) {
 			for (int i = 0; i++ < A->getCarW();)
 				for (int j = 0; j++ < A->getCarH();) {
 
-					COORD pos = { A->getPosX() + posStd.X + (i * 2), A->getPosY() + posStd.Y + (j * 1) };
+					COORD pos = { A->getRealPosX() + posStd.X + ((i - 1) * 2), A->getPosY() + posStd.Y + ((j - 1) * 1) };
 					SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 					cout << "■";
 
 				}
 
-			A->setPrePos(A->getPosX(), A->getPosY());
+			A->setPrePos(A->getRealPosX(), A->getPosY());
 
 		}
 
 	//Show CarB
 
-	if (Q.getCount()[1])
-		for (int j = 0; j++ < Q.getCount()[1]; B = B->getNext()) {
-			
+	if (L.getCount()[1])
+		for (int j = 0; j++ < L.getCount()[1]; B = B->getNext()) {
+
 			for (int i = 0; i++ < B->getOCarW();)
 				for (int j = 0; j++ < B->getOCarH();) {
 
 					COORD prePos = B->getPrePos();
-					prePos.X += (2 * i) + posStd.X;
-					prePos.Y += (1 * j) + posStd.Y;
+					prePos.X += (2 * (i - 1)) + posStd.X;
+					prePos.Y += (1 * (j - 1)) + posStd.Y;
 					SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), prePos);
 					cout << "  ";
 
@@ -535,27 +536,27 @@ void dispInGameLane(_Q& Q, Env& E) {
 			for (int i = 0; i++ < B->getCarW();)
 				for (int j = 0; j++ < B->getCarH();) {
 
-					COORD pos = { B->getPosX() + posStd.X + (i * 2), B->getPosY() + posStd.Y + (j * 1) };
+					COORD pos = { B->getRealPosX() + posStd.X + ((i - 1) * 2), B->getPosY() + posStd.Y + ((j - 1) * 1) };
 					SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 					cout << "■";
 
 				}
 
-			B->setPrePos(B->getPosX(), B->getPosY());
+			B->setPrePos(B->getRealPosX(), B->getPosY());
 
 		}
 
 	//Show CarC
 
-	if (Q.getCount()[2])
-		for (int j = 0; j++ < Q.getCount()[2]; C = C->getNext()) {
+	if (L.getCount()[2])
+		for (int j = 0; j++ < L.getCount()[2]; C = C->getNext()) {
 
 			for (int i = 0; i++ < C->getOCarW();)
 				for (int j = 0; j++ < C->getOCarH();) {
 
 					COORD prePos = C->getPrePos();
-					prePos.X += (2 * i) + posStd.X;
-					prePos.Y += (1 * j) + posStd.Y;
+					prePos.X += (2 * (i - 1)) + posStd.X;
+					prePos.Y += (1 * (j - 1)) + posStd.Y;
 					SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), prePos);
 					cout << "  ";
 
@@ -564,13 +565,13 @@ void dispInGameLane(_Q& Q, Env& E) {
 			for (int i = 0; i++ < C->getCarW();)
 				for (int j = 0; j++ < C->getCarH();) {
 
-					COORD pos = { C->getPosX() + posStd.X + (i * 2), C->getPosY() + posStd.Y + (j * 1) };
+					COORD pos = { C->getRealPosX() + posStd.X + ((i - 1) * 2), C->getPosY() + posStd.Y + ((j - 1) * 1) };
 					SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 					cout << "■";
 
 				}
 
-			C->setPrePos(C->getPosX(), C->getPosY());
+			C->setPrePos(C->getRealPosX(), C->getPosY());
 
 		}
 
@@ -616,7 +617,7 @@ void dispInGameGAMEOVER(Env& E, _M& M, int now, int highest) {
 
 	using std::cin;
 
-	bool isLeft = (E.roadX < M.getPosX());
+	bool isLeft = ((E.roadX / 2) < M.getPosX());
 
 	cin.get();
 	
