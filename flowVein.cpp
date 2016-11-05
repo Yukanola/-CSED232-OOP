@@ -5,7 +5,7 @@
 #include <conio.h>
 
 using std::cin;
-using namespace Key;
+using namespace Keys;
 using namespace Setting;
 
 void dispMenu(int);
@@ -30,9 +30,11 @@ bool procMenu() {
 	int lastKey = 0;
 	dispMenu(menuCode);
 
-	for (cin.clear(); !(_kbhit() && (lastKey = getch()) && (lastKey == KEY_UP || lastKey == KEY_DOWN || lastKey == ENTER)););
+	Setting::wannaESC = false;
 
-	if (lastKey != ENTER) {
+	for (cin.clear(); !(_kbhit() && (lastKey = getch()) && (lastKey == KEY_UP || lastKey == KEY_DOWN || lastKey == KEY_ENTER)););
+
+	if (lastKey != KEY_ENTER) {
 
 		if (lastKey == KEY_DOWN && menuCode != 3)
 			menuCode++;
@@ -78,15 +80,18 @@ int procSetEYColor(int& color) {
 	static int colorNumber = 1;
 	dispColorSelection(colorNumber);
 
-	for (cin.clear(); !(_kbhit() && (lastKey = getch()) && (lastKey == KEY_LEFT || lastKey == KEY_RIGHT || lastKey == ENTER)););
+	for (cin.clear(); !(_kbhit() && (lastKey = getch()) && (lastKey == KEY_LEFT || lastKey == KEY_RIGHT || lastKey == KEY_ENTER || lastKey == KEY_ESC)););
 
-	if (lastKey != ENTER) {
+	if (lastKey != KEY_ENTER) {
 
 		if (lastKey == KEY_RIGHT && colorNumber != 7)
 			colorNumber++;
 
 		if (lastKey == KEY_LEFT && colorNumber != 1)
 			colorNumber--;
+
+		if (lastKey == KEY_ESC)
+			return (Setting::wannaESC = true);
 
 		return 0;
 
@@ -108,6 +113,9 @@ void procGame() {
 	int score = 0;
 
 	for (; !procSetHardness(););
+
+	if (Setting::wannaESC)
+		return;
 
 	cls();
 
@@ -139,6 +147,9 @@ void procGame() {
 
 	for (; !procSetEYColor(color););
 
+	if (Setting::wannaESC)
+		return;
+
 	_M M(((Hardness->roadX - Hardness->EX) / 2) + (Hardness->roadX % 2), 39 - (Setting::hardness * 5) - Hardness->EY, color);
 	_Pixel Pixel(Hardness->roadX + 1, Hardness->roadY + 1);
 
@@ -157,20 +168,18 @@ void procGame() {
 	dispInGameEY(M.getPos(), Hardness, M.getColor());
 	dispInGameGAMEOVER(*Hardness, M, score, Setting::HighestScore);
 
+	L.X();
+	
 };
 
 bool procInGameCheckAccident(_Pixel& P, _M& M) {
 
 	for (int i = 0; i < Setting::E->EX; i++)
 		for (int j = 0; j < Setting::E->EY; j++)
-			if (P.getPixel(M.getPosX() + i, j + M.getPosY()).detect()) {
-
-				//cout << "[" << M.getPosX() + i << "," << j + M.getPosY() << "]";
-
+			if (P.getPixel(M.getPosX() + i, j + M.getPosY()).detect())
 				return true;
 
-			}
-			/*
+			/* For checking character's real position
 			else {
 
 				int pad = (((Setting::scrSize[0]) - (E->roadX * 2)) / 2);
@@ -296,15 +305,18 @@ int procSetHardness() {
 	int lastKey = 0;
 	dispHardnessSet(Setting::hardness);
 
-	for (cin.clear(); !(_kbhit() && (lastKey = getch()) && (lastKey == KEY_UP || lastKey == KEY_DOWN || lastKey == ENTER)););
+	for (cin.clear(); !(_kbhit() && (lastKey = getch()) && (lastKey == KEY_UP || lastKey == KEY_DOWN || lastKey == KEY_ENTER || lastKey == KEY_ESC)););
 
-	if (lastKey != ENTER) {
+	if (lastKey != KEY_ENTER) {
 
 		if (lastKey == KEY_DOWN && hardness != 5)
 			Setting::hardness++;
 
 		if (lastKey == KEY_UP && hardness != 1)
 			Setting::hardness--;
+
+		if (lastKey == KEY_ESC)
+			return (Setting::wannaESC = true);
 
 		return 0;
 

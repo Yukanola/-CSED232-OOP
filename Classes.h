@@ -150,40 +150,21 @@ public:
 	bool detAAOA(CarA* a) { return ((A != NULL && A != a) || B != NULL || C != NULL); };
 	bool detAAOB(CarB* b) { return (A != NULL || (B != NULL && B != b) || C != NULL); };
 	bool detAAOC(CarC* c) { return (A != NULL || B != NULL || (C != NULL && C != c)); };
-	bool detect() {
-
-		/*
-		if (A != NULL) {
-
-			cout << "A(" << A->getId() << ")->";
-
-		} else if (C != NULL) {
-
-			cout << "C(" << C->getId() << ")->";
-
-		} else if(B != NULL) {
-
-			cout << "B(" << B->getId() << ")->";
-
-		}
-		*/
-
-		return (A != NULL || B != NULL || C != NULL);
-
-	};
+	bool detect() { return (A != NULL || B != NULL || C != NULL); };
 
 	void setA(CarA* a) { A = a; };
 	void setB(CarB* b) { B = b; };
 	void setC(CarC* c) { C = c; };
 
 	__Pixel() : A(NULL), B(NULL), C(NULL) {};
+	~__Pixel() {};
 
 };
 
 class _Pixel {
 
 	__Pixel* P[40][22]; // P[y][x]
-	int C;
+	int C, R;
 
 public:
 
@@ -193,7 +174,7 @@ public:
 	__Pixel& setPixel(int x, int y, CarB* b) { P[y][x]->setB(b); return *(P[y][x]); };
 	__Pixel& setPixel(int x, int y, CarC* c) { P[y][x]->setC(c); return *(P[y][x]); };
 	
-	_Pixel(int x, int y) : C(x) {
+	_Pixel(int x, int y) : C(x), R(y) {
 
 		using std::endl;
 
@@ -210,7 +191,8 @@ public:
 
 	~_Pixel() {
 
-
+		for (int i = 0; i++ < this->R;)
+			for (int j = 0; j++ < this->C; delete P[i - 1][j - 1]);
 
 	};
 
@@ -310,6 +292,38 @@ public:
 	inline _L& randomInsert(_Pixel&);
 
 	_L() : AFront(NULL), ARear(NULL), BFront(NULL), BRear(NULL), CFront(NULL), CRear(NULL) { count[0] = 0; count[1] = 0, count[2] = 0; };
+	
+	inline void X() {
+
+		CarA *A = this->AFront, *tempA;
+		CarB *B = this->BFront, *tempB;
+		CarC *C = this->CFront, *tempC;
+
+		for (int i = 0; i < this->count[0]; i++) {
+
+			tempA = A;
+			A = A->getNext();
+			delete tempA;
+
+		}
+
+		for (int i = 0; i < this->count[1]; i++) {
+
+			tempB = B;
+			B = B->getNext();
+			delete tempB;
+
+		}
+
+		for (int i = 0; i < this->count[2]; i++) {
+
+			tempC = C;
+			C = C->getNext();
+			delete tempC;
+
+		}
+
+	};
 
 	inline _L& behave(Setting::Env&, _Pixel&);
 
@@ -538,9 +552,12 @@ _L& _L::behave(Setting::Env& E, _Pixel& P) {
 							if (a->getPosY() + j >= 0) {
 
 								int pad = (((Setting::scrSize[0]) - (E.roadX * 2)) / 2);
-								/*COORD temp = { (a->getPosX() + k) * 2 + pad, (a->getPosY() + j) + 3 };
+
+								/* For checking blocker's real position
+								COORD temp = { (a->getPosX() + k) * 2 + pad, (a->getPosY() + j) + 3 };
 								SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), temp);
-								cout << "XX";*/
+								cout << "XX";
+								*/
 
 								P.getPixel(a->getPosX() + k, a->getPosY() + j).A = a;
 

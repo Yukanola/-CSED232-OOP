@@ -2,14 +2,14 @@
 #include "Core.kano.h"
 #include "WCD.kano.h"
 
-namespace Key {
+namespace Keys {
 
 	static const int KEY_UP = 72;
 	static const int KEY_DOWN = 80;
 	static const int KEY_LEFT = 75;
 	static const int KEY_RIGHT = 77;
-	static const int ENTER = 13;
-	static const int ESC = 27;
+	static const int KEY_ENTER = 13;
+	static const int KEY_ESC = 27;
 
 }
 
@@ -18,7 +18,9 @@ namespace Setting {
 	using std::begin;
 	using std::end;
 
-	static string verSign = " Alpha 4.8"; // This must be with 10 characters.
+	static bool wannaESC = false;
+
+	static string verSign = "  Beta 1.1"; // This must be with 10 characters.
 
 	static unsigned int blockers = 0;
 

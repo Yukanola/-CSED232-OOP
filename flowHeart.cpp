@@ -15,7 +15,7 @@ int main(int argc, char** argv) {
 
 	deb("Set Console Title.");
 
-	SetConsoleTitle(_T("OOPA CHAR Alpha"));
+	SetConsoleTitle(_T("OOPA CHAR Beta"));
 
 	deb("Turn off default console cursor.");
 
@@ -54,13 +54,15 @@ int main(int argc, char** argv) {
 	- [SOLVED] prePos만 실제 X, Y를 따른다. 단, 원점의 기준은 Pixel과 같다.
 	- [SOLVED] 우측 벽이 파괴되지 않도록 해야 한다.
 	- [SOLVED] 가로 길이가 3 이상인 Blocker들에 대해서, 가장 왼쪽에서 생성될 때 벽을 넘지 못하도록 해야 한다.
+	- [SOLVED] 주석을 제거하고, 각종 숫자를 제거해야 한다.
+	- [SOLVED] 게임을 하고 돌아왔을 때, "- 메뉴 선택 -" 이라는 문구가 표시되어야 한다.
+	- [SOLVED] 화면의 색을 일정하게 유지해야 한다.
+	- [SOLVED] 모든 new에 대해서 delete를 시켜주어야 한다. (Destructor)
+	- [SOLVED] 게임 설정 중 ESC를 눌러 메인 메뉴로 나갈 수 있어야 한다.
 
-	- 모든 new에 대해서 delete를 시켜주어야 한다. (Destructor)
 	- 도로 너비가 바뀌어도 작동해야 한다.
 	- WCD 함수를 완성시켜야 한다.
 	- Game Class를 만들어야 한다.
-	- 주석을 제거하고, 각종 숫자를 제거해야 한다.
-	- 게임을 하고 돌아왔을 때, "- 메뉴 선택 -" 이라는 문구가 표시되어야 한다.
 
 	TOPIC LIST
 

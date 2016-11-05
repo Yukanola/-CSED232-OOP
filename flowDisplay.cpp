@@ -38,6 +38,8 @@ void dispMenu(int cursor) {
 
 	con.setCS(Setting::scrSize[0], Setting::scrSize[1]);
 
+	Setting::setColor(15);
+
 	cout << endl << endl << endl << endl << endl << endl
 		<< endl << endl << endl << endl << endl << endl;
 	con.printSpaceCenter("- 메뉴 선택 -");
@@ -80,6 +82,8 @@ void dispColorSelection(int cursor) {
 	cls();
 
 	con.setCS(Setting::scrSize[0], Setting::scrSize[1]);
+
+	Setting::setColor(7);
 
 	cout << endl << endl << endl << endl << endl << endl << endl
 		<< endl << endl << endl << endl << endl << endl << endl;
@@ -124,9 +128,15 @@ void dispColorSelection(int cursor) {
 	con.printSpaceCenter("│ 색상을 선택하세요. │");
 	cout << endl;
 	con.printSpaceCenter("│                    │");
+	cout << endl;
 	con.printSpaceCenter("│ 선택하려면 [ENTER] │");
 	cout << endl;
 	con.printSpaceCenter("└──────────┘");
+
+	Setting::setColor(7);
+	cout << endl << endl << endl << endl << endl << endl << endl
+		<< endl << endl << endl << endl << endl << endl << endl
+		<< " [INFO] <ESC> 키를 눌러 메뉴로 돌아가세요." << endl;
 
 }
 
@@ -135,6 +145,8 @@ void dispHardnessSet(int cursor) {
 	cls();
 
 	con.setCS(Setting::scrSize[0], Setting::scrSize[1]);
+
+	Setting::setColor(15);
 
 	cout << endl << endl << endl << endl << endl
 		<< endl << endl << endl << endl << endl;
@@ -184,6 +196,11 @@ void dispHardnessSet(int cursor) {
 	con.printSpaceCenter("│ 선택하려면 [ENTER] │");
 	cout << endl;
 	con.printSpaceCenter("└──────────┘");
+
+	Setting::setColor(7);
+	cout << endl << endl << endl << endl << endl
+		<< endl << endl << endl << endl << endl
+		<< " [INFO] <ESC> 키를 눌러 메뉴로 돌아가세요." << endl;
 
 }
 
@@ -274,7 +291,7 @@ void dispEndSplash() {
 
 	Setting::setColor(15);
 
-	con.printSpaceRight("Game by KANOLA. Ltd.     ");
+	con.printSpaceRight("Game by KANOLA.     ");
 
 	Setting::setColor(8);
 
@@ -398,16 +415,16 @@ void dispInGameBackground(Env* E) {
 
 	for (int i = 0; i < E->roadY; i++) {
 
-		for (int j = 0; j < padding - 2; j++)
+		for (int j = 0; j < padding/* - 2 /*For checking y-coordinate.*/; j++)
 			cout << " ";
 
-		printf("%2d", i);
+		//printf("%2d", i); //For checking y-coordinate.
 
 		Setting::setColor(15);
 		cout << "□";
 		Setting::setColor(7);
 		for (int j = 0; j < E->roadX; j++)
-			//printf("%2d", j);
+			//printf("%2d", j); //For checking x-coordinate more accurately.
 			cout << "  ";
 		Setting::setColor(15);
 		cout << "□";
@@ -417,10 +434,14 @@ void dispInGameBackground(Env* E) {
 
 	}
 	
+	/* For checking x-coordinate.
+	
 	for (int j = 0; j < padding + 2; j++)
 		cout << " ";
 
 	for (int j = 0; j++ < E->roadX; printf("%2d", j - 1));
+
+	*/
 
 }
 
@@ -647,8 +668,6 @@ void dispInGameGAMEOVER(Env& E, _M& M, int now, int highest) {
 	using std::cin;
 
 	bool isLeft = ((E.roadX / 2) < M.getPosX());
-
-	cin.get();
 	
 	for (int i = 0; i++ < 6;) {
 
@@ -763,5 +782,7 @@ void dispInGameGAMEOVER(Env& E, _M& M, int now, int highest) {
 	Setting::setColor(0);
 
 	cin.get();
+
+	Setting::setColor(15);
 
 }
