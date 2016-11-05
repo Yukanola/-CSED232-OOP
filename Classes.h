@@ -1,6 +1,6 @@
 #pragma once
 #include "Core.kano.h"
-#include "WCD.kano.h"
+//#include "WCD.kano.h"
 #include "Parameter.h"
 #include <algorithm>
 #include <ctime>

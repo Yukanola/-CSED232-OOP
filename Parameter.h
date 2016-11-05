@@ -1,6 +1,6 @@
 #pragma once
 #include "Core.kano.h"
-#include "WCD.kano.h"
+//#include "WCD.kano.h"
 
 namespace Keys {
 
@@ -20,7 +20,7 @@ namespace Setting {
 
 	static bool wannaESC = false;
 
-	static string verSign = "  Beta 1.2"; // This must be with 10 characters.
+	static string verSign = "Public 1.0"; // This must be with 10 characters.
 
 	static unsigned int blockers = 0;
 

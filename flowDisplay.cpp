@@ -1,5 +1,5 @@
 ﻿#include "Core.kano.h"
-#include "WCD.kano.h"
+//#include "WCD.kano.h"
 #include "Parameter.h"
 #include "Classes.h"
 
@@ -298,6 +298,8 @@ void dispEndSplash() {
 	con.printSpaceRight("(20160087)     ");
 
 	Setting::setColor(7);
+
+	con.csDelay(1);
 
 	cout << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << " [ALERT] ";
 

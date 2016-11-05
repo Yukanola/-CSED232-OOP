@@ -1,5 +1,5 @@
 #include "Core.kano.h"
-#include "WCD.kano.h"
+//#include "WCD.kano.h"
 #include "Parameter.h"
 #include "Classes.h"
 #include <conio.h>

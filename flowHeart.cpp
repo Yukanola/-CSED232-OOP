@@ -1,5 +1,5 @@
 #include "Core.kano.h"
-#include "WCD.kano.h"
+//#include "WCD.kano.h"
 #include "Parameter.h"
 #include <tchar.h>
 
@@ -11,11 +11,13 @@ void dispEndSplash();
 int main(int argc, char** argv) {
 
 	Kano::Core_init(false);
-	Kano::WCD_init(Setting::scrSize[0], Setting::scrSize[1]);
+	//Kano::WCD_init(Setting::scrSize[0], Setting::scrSize[1]); //Extension's role is ended.
+
+	con.csSize(Setting::scrSize[0], Setting::scrSize[1]);
 
 	deb("Set Console Title.");
 
-	SetConsoleTitle(_T("OOPA CHAR Beta"));
+	SetConsoleTitle(_T("OOPA CHAR Public"));
 
 	deb("Turn off default console cursor.");
 
