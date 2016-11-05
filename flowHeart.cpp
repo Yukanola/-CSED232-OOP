@@ -59,6 +59,7 @@ int main(int argc, char** argv) {
 	- [SOLVED] 화면의 색을 일정하게 유지해야 한다.
 	- [SOLVED] 모든 new에 대해서 delete를 시켜주어야 한다. (Destructor)
 	- [SOLVED] 게임 설정 중 ESC를 눌러 메인 메뉴로 나갈 수 있어야 한다.
+	- [SOLVED] 게임 결과 화면을 더욱 풍성하게 만들어야 한다.
 
 	- 도로 너비가 바뀌어도 작동해야 한다.
 	- WCD 함수를 완성시켜야 한다.

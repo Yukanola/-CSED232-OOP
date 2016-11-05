@@ -667,7 +667,12 @@ void dispInGameGAMEOVER(Env& E, _M& M, int now, int highest) {
 
 	using std::cin;
 
+	static const string lv2S[5] = { "  아주 쉬움", "       쉬움", "       보통", "     어려움", "아주 어려움" };
+
 	bool isLeft = ((E.roadX / 2) < M.getPosX());
+
+	time_t nowTime = time(NULL);
+	struct tm* nowATime = localtime(&nowTime);
 	
 	for (int i = 0; i++ < 6;) {
 
@@ -763,13 +768,35 @@ void dispInGameGAMEOVER(Env& E, _M& M, int now, int highest) {
 	con.boxLine();
 	con.boxLine();
 	con.boxLine();
+
+	cout << "│     ";
+	
+	Setting::setColor(7);
+	cout << "색상: ";
+
+	Setting::setColor(M.getColor());
+	cout << "■■■";
+
+	Setting::setColor(7);
+	cout << "  난이도 : ";
+
+	Setting::setColor(15);
+	cout << lv2S[E.code - 1] << "     │" << endl << "│   ";
+
+	Setting::setColor(8);
+	if (now && now >= highest)
+		printf("(%4d년 %2d월 %2d일 %2d시 %2d분 %2d초 달성)", nowATime->tm_year + 1900, nowATime->tm_mon + 1, nowATime->tm_mday, nowATime->tm_hour, nowATime->tm_min, nowATime->tm_sec);
+	else
+		printf("(%4d년 %2d월 %2d일 %2d시 %2d분 %2d초 기록)", nowATime->tm_year + 1900, nowATime->tm_mon + 1, nowATime->tm_mday, nowATime->tm_hour, nowATime->tm_min, nowATime->tm_sec);
+
+	Setting::setColor(15);
+	cout << "   │";
+
 	con.boxLine();
 	con.boxLine();
 	con.boxLineCenter((now && now >= highest) ? "오우~~ 대단해요!!!♥♥♥" : "흥, 다시 해요!! 점수가 이따구야...");
 	con.boxLine();
 	con.boxLineCenter("<ENTER> 키를 눌러 메뉴로 돌아가세요.");
-	con.boxLine();
-	con.boxLine();
 	con.boxLine();
 	con.boxLine();
 	con.boxLine();

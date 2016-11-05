@@ -1,37 +1,4 @@
-﻿  flowHeart.cpp
-v:\github\-csed232-oop\core.kano.h(220): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-v:\github\-csed232-oop\core.kano.h(238): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-v:\github\-csed232-oop\core.kano.h(417): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-v:\github\-csed232-oop\wcd.kano.h(57): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-v:\github\-csed232-oop\wcd.kano.h(101): warning C4005: 'deb': macro redefinition
-  v:\github\-csed232-oop\core.kano.h(445): note: see previous definition of 'deb'
-v:\github\-csed232-oop\parameter.h(36): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
-v:\github\-csed232-oop\parameter.h(42): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
-v:\github\-csed232-oop\parameter.h(48): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
-  Generating Code...
-  Compiling...
-  flowVein.cpp
-v:\github\-csed232-oop\core.kano.h(220): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-v:\github\-csed232-oop\core.kano.h(238): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
-v:\github\-csed232-oop\core.kano.h(417): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-v:\github\-csed232-oop\wcd.kano.h(57): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-v:\github\-csed232-oop\wcd.kano.h(101): warning C4005: 'deb': macro redefinition
-  v:\github\-csed232-oop\core.kano.h(445): note: see previous definition of 'deb'
-v:\github\-csed232-oop\parameter.h(36): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
-v:\github\-csed232-oop\parameter.h(42): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
-v:\github\-csed232-oop\parameter.h(48): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
-v:\github\-csed232-oop\classes.h(8): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-v:\github\-csed232-oop\classes.h(351): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-v:\github\-csed232-oop\classes.h(353): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-v:\github\-csed232-oop\classes.h(355): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-v:\github\-csed232-oop\classes.h(394): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-v:\github\-csed232-oop\classes.h(396): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-v:\github\-csed232-oop\classes.h(398): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-v:\github\-csed232-oop\classes.h(437): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-v:\github\-csed232-oop\classes.h(439): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-v:\github\-csed232-oop\classes.h(441): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-v:\github\-csed232-oop\classes.h(467): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  flowDisplay.cpp
+﻿  flowDisplay.cpp
 v:\github\-csed232-oop\core.kano.h(220): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
 v:\github\-csed232-oop\core.kano.h(238): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
 v:\github\-csed232-oop\core.kano.h(417): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
@@ -59,9 +26,42 @@ v:\github\-csed232-oop\flowdisplay.cpp(505): warning C4838: conversion from 'int
 v:\github\-csed232-oop\flowdisplay.cpp(535): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
 v:\github\-csed232-oop\flowdisplay.cpp(574): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
 v:\github\-csed232-oop\flowdisplay.cpp(613): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-v:\github\-csed232-oop\flowdisplay.cpp(675): warning C4305: 'argument': truncation from 'double' to 'float'
-v:\github\-csed232-oop\flowdisplay.cpp(677): warning C4305: 'argument': truncation from 'double' to 'float'
-v:\github\-csed232-oop\flowdisplay.cpp(679): warning C4305: 'argument': truncation from 'double' to 'float'
-v:\github\-csed232-oop\flowdisplay.cpp(681): warning C4305: 'argument': truncation from 'double' to 'float'
+v:\github\-csed232-oop\flowdisplay.cpp(680): warning C4305: 'argument': truncation from 'double' to 'float'
+v:\github\-csed232-oop\flowdisplay.cpp(682): warning C4305: 'argument': truncation from 'double' to 'float'
+v:\github\-csed232-oop\flowdisplay.cpp(684): warning C4305: 'argument': truncation from 'double' to 'float'
+v:\github\-csed232-oop\flowdisplay.cpp(686): warning C4305: 'argument': truncation from 'double' to 'float'
+  Generating Code...
+  Compiling...
+  flowVein.cpp
+v:\github\-csed232-oop\core.kano.h(220): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+v:\github\-csed232-oop\core.kano.h(238): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+v:\github\-csed232-oop\core.kano.h(417): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+v:\github\-csed232-oop\wcd.kano.h(57): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+v:\github\-csed232-oop\wcd.kano.h(101): warning C4005: 'deb': macro redefinition
+  v:\github\-csed232-oop\core.kano.h(445): note: see previous definition of 'deb'
+v:\github\-csed232-oop\parameter.h(36): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+v:\github\-csed232-oop\parameter.h(42): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+v:\github\-csed232-oop\parameter.h(48): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+v:\github\-csed232-oop\classes.h(8): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+v:\github\-csed232-oop\classes.h(351): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+v:\github\-csed232-oop\classes.h(353): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+v:\github\-csed232-oop\classes.h(355): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+v:\github\-csed232-oop\classes.h(394): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+v:\github\-csed232-oop\classes.h(396): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+v:\github\-csed232-oop\classes.h(398): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+v:\github\-csed232-oop\classes.h(437): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+v:\github\-csed232-oop\classes.h(439): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+v:\github\-csed232-oop\classes.h(441): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
+v:\github\-csed232-oop\classes.h(467): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  flowHeart.cpp
+v:\github\-csed232-oop\core.kano.h(220): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+v:\github\-csed232-oop\core.kano.h(238): warning C4800: 'int': forcing value to bool 'true' or 'false' (performance warning)
+v:\github\-csed232-oop\core.kano.h(417): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+v:\github\-csed232-oop\wcd.kano.h(57): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+v:\github\-csed232-oop\wcd.kano.h(101): warning C4005: 'deb': macro redefinition
+  v:\github\-csed232-oop\core.kano.h(445): note: see previous definition of 'deb'
+v:\github\-csed232-oop\parameter.h(36): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+v:\github\-csed232-oop\parameter.h(42): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+v:\github\-csed232-oop\parameter.h(48): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
   Generating Code...
   ASSN_2.vcxproj -> V:\Github\-CSED232-OOP\x64\Debug\ASSN_2.exe

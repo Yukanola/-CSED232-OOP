@@ -20,7 +20,7 @@ namespace Setting {
 
 	static bool wannaESC = false;
 
-	static string verSign = "  Beta 1.1"; // This must be with 10 characters.
+	static string verSign = "  Beta 1.2"; // This must be with 10 characters.
 
 	static unsigned int blockers = 0;
 
@@ -55,16 +55,16 @@ namespace Setting {
 
 	public:
 
-		const int roadX, roadY, blockAX, blockBX, blockCX, blockAY, blockBY, blockCY, EX, EY, T1, T2;
+		const int roadX, roadY, blockAX, blockBX, blockCX, blockAY, blockBY, blockCY, EX, EY, T1, T2, code;
 
-		Env(int ex, int ey, int t1, int t2) : roadX(17), roadY(39), blockAX(3), blockAY(2), blockBX(2), blockBY(2), blockCX(2), blockCY(3), EX(ex), EY(ey), T1(t1), T2(t2) {};
+		Env(int ex, int ey, int t1, int t2, int c) : roadX(17), roadY(39), blockAX(3), blockAY(2), blockBX(2), blockBY(2), blockCX(2), blockCY(3), EX(ex), EY(ey), T1(t1), T2(t2), code(c) {};
 
 	} /*Player Initial Width, Player Initial Height, Ticker 1, Ticker 2*/
-		VEASY(2, 2, 500, 4500),
-		EASY(2, 2, 400, 1600),
-		NORMAL(2, 2, 300, 1500),
-		HARD(3, 3, 200, 1000),
-		VHARD(3, 3, 100, 400);
+		VEASY(2, 2, 500, 4500, 1),
+		EASY(2, 2, 400, 1600, 2),
+		NORMAL(2, 2, 300, 1500, 3),
+		HARD(3, 3, 200, 1000, 4),
+		VHARD(3, 3, 100, 300, 5);
 
 	static int HighestScore = 0;
 

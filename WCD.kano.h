@@ -1,4 +1,4 @@
-// Windows Console Debugging Extension 1.0 for Kano Compact Library.
+// Windows Console Debugging Extension 1.0.0161105.0 for Kano Compact Library.
 // Copyright Kanola 2016. Compatible for Windows.
 
 #pragma once
