@@ -150,7 +150,6 @@
     <ClInclude Include="Classes.h" />
     <ClInclude Include="Core.kano.h" />
     <ClInclude Include="Parameter.h" />
-    <ClInclude Include="WCD.kano.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -32,9 +32,6 @@
     <ClInclude Include="Parameter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WCD.kano.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Core.kano.h">
       <Filter>Header Files</Filter>
     </ClInclude>

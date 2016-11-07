@@ -1,8 +1,7 @@
 #pragma once
 #include "Core.kano.h"
-//#include "WCD.kano.h"
 
-namespace Keys {
+namespace Keys { //게임에 사용된 각종 키값을 모아 놓은 Namespace입니다.
 
 	static const int KEY_UP = 72;
 	static const int KEY_DOWN = 80;
@@ -10,17 +9,26 @@ namespace Keys {
 	static const int KEY_RIGHT = 77;
 	static const int KEY_ENTER = 13;
 	static const int KEY_ESC = 27;
+	static const int KEY_W = 119;
+	static const int KEY_WW = 87;
+	static const int KEY_A = 97;
+	static const int KEY_AA = 65;
+	static const int KEY_S = 115;
+	static const int KEY_SS = 83;
+	static const int KEY_D = 100;
+	static const int KEY_DD = 68;
+	static const int KEY_F1 = 59;
 
 }
 
-namespace Setting {
+namespace Setting { //게임에서 필요한 여러가지 데이터나, 자주 쓰이는 함수를 모아 놓은 Namespace입니다.
 
 	using std::begin;
 	using std::end;
 
 	static bool wannaESC = false;
 
-	static string verSign = "Public 1.0"; // This must be with 10 characters.
+	static string verSign = "Public 1.2"; // This must be with 10 characters.
 
 	static unsigned int blockers = 0;
 
@@ -64,7 +72,8 @@ namespace Setting {
 		EASY(2, 2, 400, 1600, 2),
 		NORMAL(2, 2, 300, 1500, 3),
 		HARD(3, 3, 200, 1000, 4),
-		VHARD(3, 3, 100, 300, 5);
+		VHARD(3, 3, 100, 300, 5),
+		HIDDEN(1, 1, 30, 60, 6);
 
 	static int HighestScore = 0;
 

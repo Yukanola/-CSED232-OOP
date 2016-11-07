@@ -1,5 +1,4 @@
 ﻿#include "Core.kano.h"
-//#include "WCD.kano.h"
 #include "Parameter.h"
 #include "Classes.h"
 
@@ -8,7 +7,7 @@ using _Kano::con;
 using std::cout;
 using std::endl;
 
-void dispSplash() {
+void dispSplash() { //스플래쉬 화면을 출력하는 함수입니다.
 
 	cout << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl << endl
 		<< endl << "      //   ) ) //   ) ) //   ) ) // | |         "
@@ -32,7 +31,7 @@ void dispSplash() {
 
 }
 
-void dispMenu(int cursor) {
+void dispMenu(int cursor) { //메뉴 화면을 출력하는 함수입니다.
 
 	cls();
 
@@ -77,7 +76,7 @@ void dispMenu(int cursor) {
 
 }
 
-void dispColorSelection(int cursor) {
+void dispColorSelection(int cursor) { //캐릭터 색상을 선택하는 화면을 출력하는 함수입니다.
 
 	cls();
 
@@ -140,7 +139,7 @@ void dispColorSelection(int cursor) {
 
 }
 
-void dispHardnessSet(int cursor) {
+void dispHardnessSet(int cursor) { //난이도 선택 화면을 출력하는 함수입니다.
 
 	cls();
 
@@ -184,7 +183,13 @@ void dispHardnessSet(int cursor) {
 	if (cursor == 5)
 		Setting::setSelection(true);
 	con.printSpaceCenter("5. 아주 어려움");
-	cout << endl << endl << endl << endl << endl << endl;
+	cout << endl << endl;
+
+	Setting::setColor(8);
+	con.printSpaceCenter("[F1] HIDDEN");
+	Setting::setColor(15);
+
+	cout << endl << endl << endl << endl;
 	if (cursor == 5)
 		Setting::setSelection(false);
 
@@ -199,12 +204,13 @@ void dispHardnessSet(int cursor) {
 
 	Setting::setColor(7);
 	cout << endl << endl << endl << endl << endl
-		<< endl << endl << endl << endl << endl
+		<< endl << endl << endl << endl
+		<< " [INFO] \"어려움\" 난이도 까지는 인간적입니다." << endl
 		<< " [INFO] <ESC> 키를 눌러 메뉴로 돌아가세요." << endl;
 
 }
 
-void dispInstruction() {
+void dispInstruction() { //게임 설명 화면을 출력하는 함수입니다.
 
 	cls();
 
@@ -223,7 +229,7 @@ void dispInstruction() {
 	con.boxLine("는 송황준 교수가 창의IT융합공학과의 이진수");
 	con.boxLine("교수에게 납치당했다는 사실을 알게된다.");
 	con.boxLine();
-	con.boxLineCenter(" \"흥, 이진수 따위! 가발을 씌워주겠어!♥\" ");
+	con.boxLineCenter(" \"흥, 이진수 교수! 가발을 씌워주겠어!♥\" ");
 	con.boxLine();
 	con.boxLine(" 그렇게 윤은영 교수는 송황준 교수를 찾아 떠");
 	con.boxLine("나게 된다. 하지만 그런 그녀를 막아선 것들은");
@@ -235,7 +241,7 @@ void dispInstruction() {
 	con.boxLine("조교를 첩자로 컴퓨터 공학과의 인재들을 빼가");
 	con.boxLine("고 있었던 것이다.");
 	con.boxLine();
-	con.boxLineCenter("\"김은희..! 가만두지 않겠어..!!♥♥\"");
+	con.boxLineCenter("\"김은희 조교..! 가만두지 않겠어..!!♥♥\"");
 	con.boxLine();
 	con.boxLine(" 모든 사실을 알고 화가 머리 끝까지 치밀어 오");
 	con.boxLine("른 그녀는 그렇게 김은희 조교와 이진수 교수");
@@ -251,7 +257,7 @@ void dispInstruction() {
 	con.boxOpen();
 	con.boxLineCenter("[조작법]");
 	con.boxLine();
-	con.boxLineCenter(" ←/↑/→/↓ : 윤은영 교수 차 이동");
+	con.boxLineCenter(" ←/↑/→/↓/A/W/S/D : 윤은영 교수 차 이동");
 	con.boxClose();
 
 	cout << " [ALERT] ";
@@ -260,7 +266,7 @@ void dispInstruction() {
 
 }
 
-void dispEndSplash() {
+void dispEndSplash() { //종료 스플래쉬를 출력하는 함수입니다.
 
 	cls();
 
@@ -305,7 +311,7 @@ void dispEndSplash() {
 
 }
 
-void dispInGameTimeCount() {
+void dispInGameTimeCount() { //게임 시작 직전, 3초 카운트를 출력하는 함수입니다.
 
 	static const COORD Point1 = { 20, 18 }, Point2 = { 20, 19 }, Point3 = { 20, 20 }, Point4 = { 20, 21 }, Point5 = { 20, 22 };
 
@@ -406,7 +412,7 @@ void dispInGameTimeCount() {
 
 }
 
-void dispInGameBackground(Env* E) {
+void dispInGameBackground(Env* E) { //게임 시작 전, 점수판과 도로를 출력하는 함수입니다.
 
 	int* ConsoleSize = con.setCS(Setting::scrSize[0], Setting::scrSize[1]);
 	int padding = (((Setting::scrSize[0]) - (E->roadX * 2) - 4) / 2); // I subtracted 4 because of two walls.
@@ -447,7 +453,7 @@ void dispInGameBackground(Env* E) {
 
 }
 
-void dispInGameScorePanel(int now, int highest) {
+void dispInGameScorePanel(int now, int highest) { //게임 진행 도중, 점수 현황을 출력하는 함수입니다.
 
 	static const COORD posNOW = { 14, 1 }, posHIGHEST = { 36, 1 };
 
@@ -461,7 +467,7 @@ void dispInGameScorePanel(int now, int highest) {
 
 }
 
-void dispInGameEY(int* pos, Env* E, int c) {
+void dispInGameEY(int* pos, Env* E, int c) { //게임 진행 도중, 캐릭터를 출력하는 함수입니다.
 
 	int padding = (((Setting::scrSize[0]) - (E->roadX * 2)) / 2);
 	static COORD preXY = { pos[0] * 2 + padding, pos[1] + 3 };
@@ -501,7 +507,7 @@ void dispInGameEY(int* pos, Env* E, int c) {
 
 }
 
-void dispInGameLane(_L& L, Env& E) {
+void dispInGameLane(_L& L, Env& E) { //게임 진행 도중, 방해물들을 출력하는 함수입니다.
 
 	int temp = (((Setting::scrSize[0]) - (E.roadX * 2) + 2) / 2); // Because of the left wall, I subtracted 2.
 	COORD posStd = { temp, 3 };
@@ -629,7 +635,7 @@ void dispInGameLane(_L& L, Env& E) {
 
 }
 
-void dispInGameOopsBox(int color, bool isLeft) {
+void dispInGameOopsBox(int color, bool isLeft) { //캐릭터가 방해물과 충돌 시, Oops 메시지를 출력하는 함수입니다.
 
 	static const COORD LeftBoxTopPoint = { 8, 38 };
 	static const COORD LeftBoxMidPoint = { LeftBoxTopPoint.X, LeftBoxTopPoint.Y + 1 };
@@ -665,11 +671,11 @@ void dispInGameOopsBox(int color, bool isLeft) {
 
 }
 
-void dispInGameGAMEOVER(Env& E, _M& M, int now, int highest) {
+void dispInGameGAMEOVER(Env& E, _M& M, int now, int highest) { //게임 오버 화면을 출력하는 함수입니다.
 
 	using std::cin;
 
-	static const string lv2S[5] = { "  아주 쉬움", "       쉬움", "       보통", "     어려움", "아주 어려움" };
+	static const string lv2S[6] = { "  아주 쉬움", "       쉬움", "       보통", "     어려움", "아주 어려움", "     HIDDEN" };
 
 	bool isLeft = ((E.roadX / 2) < M.getPosX());
 
@@ -723,13 +729,13 @@ void dispInGameGAMEOVER(Env& E, _M& M, int now, int highest) {
 			<< " ##   ### ##      ##  ##  ##                    " << endl
 			<< " ##    ## #######  ########                     " << endl
 			<< "                                                " << endl
-			<< " ######  ####### ####    ###  ######  #####  ## " << endl
+			<< " ######  #######   ##    ###  ######  #####  ## " << endl
 			<< " ##   ## ##      ##  ## ##  # ##   ## ##  ## ## " << endl
 			<< " ##   ## ##      ##     ##  # ##   ## ##  ## ## " << endl
 			<< " ######  #####   ##     ##  # ######  ##  ##  # " << endl
 			<< " ## ##   ##      ##     ##  # ## ##   ##  ##    " << endl
 			<< " ##  ##  ##      ##  ## ##  # ##  ##  ##  ## ## " << endl
-			<< " ##   ## ####### #####   ###  ##   ## #####  ## " << endl
+			<< " ##   ## #######   ###   ###  ##   ## #####  ## " << endl
 			<< "                                                " << endl;
 
 		/* Because of font problem, this code cannot be used.

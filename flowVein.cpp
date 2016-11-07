@@ -1,8 +1,8 @@
 #include "Core.kano.h"
-//#include "WCD.kano.h"
 #include "Parameter.h"
 #include "Classes.h"
 #include <conio.h>
+#include <tchar.h>
 
 using std::cin;
 using namespace Keys;
@@ -22,7 +22,7 @@ bool procInGame(Env&, _L&, _M&, _Pixel&, int&);
 void dispColorSelection(int);
 void dispInGameGAMEOVER(Env&, _M&, int, int);
 
-bool procMenu() {
+bool procMenu() { //메뉴 부분 흐름을 담당하는 함수입니다.
 
 	deb("Menu process started.");
 
@@ -32,14 +32,14 @@ bool procMenu() {
 
 	Setting::wannaESC = false;
 
-	for (cin.clear(); !(_kbhit() && (lastKey = getch()) && (lastKey == KEY_UP || lastKey == KEY_DOWN || lastKey == KEY_ENTER)););
+	for (cin.clear(); !(_kbhit() && (lastKey = getch()) && (lastKey == KEY_W || lastKey == KEY_WW || lastKey == KEY_S || lastKey == KEY_SS || lastKey == KEY_UP || lastKey == KEY_DOWN || lastKey == KEY_ENTER)););
 
 	if (lastKey != KEY_ENTER) {
 
-		if (lastKey == KEY_DOWN && menuCode != 3)
+		if ((lastKey == KEY_DOWN || lastKey == KEY_S || lastKey == KEY_SS) && menuCode != 3)
 			menuCode++;
 
-		if (lastKey == KEY_UP && menuCode != 1)
+		if ((lastKey == KEY_UP || lastKey == KEY_W || lastKey == KEY_WW) && menuCode != 1)
 			menuCode--;
 
 		return true;
@@ -71,7 +71,7 @@ bool procMenu() {
 
 }
 
-int procSetEYColor(int& color) {
+int procSetEYColor(int& color) { //캐릭터의 색을 정하는 흐름을 담당하는 함수입니다.
 
 	deb("Color selection process started.");
 
@@ -80,14 +80,14 @@ int procSetEYColor(int& color) {
 	static int colorNumber = 1;
 	dispColorSelection(colorNumber);
 
-	for (cin.clear(); !(_kbhit() && (lastKey = getch()) && (lastKey == KEY_LEFT || lastKey == KEY_RIGHT || lastKey == KEY_ENTER || lastKey == KEY_ESC)););
+	for (cin.clear(); !(_kbhit() && (lastKey = getch()) && (lastKey == KEY_A || lastKey == KEY_AA || lastKey == KEY_D || lastKey == KEY_DD || lastKey == KEY_LEFT || lastKey == KEY_RIGHT || lastKey == KEY_ENTER || lastKey == KEY_ESC)););
 
 	if (lastKey != KEY_ENTER) {
 
-		if (lastKey == KEY_RIGHT && colorNumber != 7)
+		if ((lastKey == KEY_RIGHT || lastKey == KEY_D || lastKey == KEY_DD) && colorNumber != 7)
 			colorNumber++;
 
-		if (lastKey == KEY_LEFT && colorNumber != 1)
+		if ((lastKey == KEY_LEFT || lastKey == KEY_A || lastKey == KEY_AA) && colorNumber != 1)
 			colorNumber--;
 
 		if (lastKey == KEY_ESC)
@@ -101,7 +101,7 @@ int procSetEYColor(int& color) {
 
 }
 
-void procGame() {
+void procGame() { //게임의 시작부터 끝까지를 담당하는 함수입니다. 긴 주기를 담당합니다.
 
 	using std::endl;
 
@@ -120,6 +120,11 @@ void procGame() {
 	cls();
 
 	switch (Setting::hardness) {
+
+	case 6:
+		Hardness = Setting::E = &HIDDEN;
+		SetConsoleTitle(_T("OOPA CHAR HIDDEN MODE!!"));
+		break;
 
 	case 1:
 		Hardness = Setting::E = &VEASY;
@@ -150,7 +155,7 @@ void procGame() {
 	if (Setting::wannaESC)
 		return;
 
-	_M M(((Hardness->roadX - Hardness->EX) / 2) + (Hardness->roadX % 2), 39 - (Setting::hardness * 5) - Hardness->EY, color);
+	_M M(((Hardness->roadX - Hardness->EX) / 2) + (Hardness->roadX % 2), 34 - Hardness->EY, color);
 	_Pixel Pixel(Hardness->roadX + 1, Hardness->roadY + 1);
 
 	Setting::P = &Pixel;
@@ -169,10 +174,18 @@ void procGame() {
 	dispInGameGAMEOVER(*Hardness, M, score, Setting::HighestScore);
 
 	L.X();
+
+	if (Setting::hardness == 6) {
+
+		SetConsoleTitle(_T("OOPA CHAR Public Handin"));
+
+		Setting::hardness = 1;
+
+	}
 	
 };
 
-bool procInGameCheckAccident(_Pixel& P, _M& M) {
+bool procInGameCheckAccident(_Pixel& P, _M& M) { //게임 진행 중, 사고 여부를 판단하는 함수입니다.
 
 	for (int i = 0; i < Setting::E->EX; i++)
 		for (int j = 0; j < Setting::E->EY; j++)
@@ -194,7 +207,7 @@ bool procInGameCheckAccident(_Pixel& P, _M& M) {
 
 };
 
-int procCheckHighscore(int score) {
+int procCheckHighscore(int score) { //게임 진행 중, 하이스코어를 확인하고 갱신하는 함수입니다.
 
 	if (Setting::HighestScore < score)
 		Setting::HighestScore = score;
@@ -205,7 +218,7 @@ int procCheckHighscore(int score) {
 
 };
 
-int procCheckScore(_L& L, _M& M, int& score) { 
+int procCheckScore(_L& L, _M& M, int& score) { //게임 진행 중, 스코어를 올려주는 역할을 담당하는 함수입니다.
 
 	CarA* A = L.getAFront();
 	CarB* B = L.getBFront();
@@ -239,7 +252,7 @@ int procCheckScore(_L& L, _M& M, int& score) {
 
 }
 
-bool procInGame(Env& E, _L& L, _M& M, _Pixel& P, int& score) {
+bool procInGame(Env& E, _L& L, _M& M, _Pixel& P, int& score) { //짧은 주기를 담당하는 함수입니다.
 
 	char keyGet;
 
@@ -259,24 +272,32 @@ bool procInGame(Env& E, _L& L, _M& M, _Pixel& P, int& score) {
 
 			switch (keyGet) {
 
+			case KEY_A:
+			case KEY_AA:
 			case KEY_LEFT:
 				if (M.getPosX() > 0)
 					M.setPosX(M.getPosX() - 1);
 				dispInGameEY(M.getPos(), &E, M.getColor());
 				break;
 
+			case KEY_D:
+			case KEY_DD:
 			case KEY_RIGHT:
 				if (M.getPosX() < E.roadX - E.EX)
 					M.setPosX(M.getPosX() + 1);
 				dispInGameEY(M.getPos(), &E, M.getColor());
 				break;
 
+			case KEY_W:
+			case KEY_WW:
 			case KEY_UP:
 				if (M.getPosY() > 0)
 					M.setPosY(M.getPosY() - 1);
 				dispInGameEY(M.getPos(), &E, M.getColor());
 				break;
 
+			case KEY_S:
+			case KEY_SS:
 			case KEY_DOWN:
 				if (M.getPosY() < E.roadY - E.EY)
 					M.setPosY(M.getPosY() + 1);
@@ -298,16 +319,18 @@ bool procInGame(Env& E, _L& L, _M& M, _Pixel& P, int& score) {
 
 };
 
-int procSetHardness() {
+int procSetHardness() { //난이도 설정 흐름을 담당하는 함수입니다.
 
 	deb("Hardness selection process started.");
 
 	int lastKey = 0;
 	dispHardnessSet(Setting::hardness);
 
-	for (cin.clear(); !(_kbhit() && (lastKey = getch()) && (lastKey == KEY_UP || lastKey == KEY_DOWN || lastKey == KEY_ENTER || lastKey == KEY_ESC)););
+	for (cin.clear(); !(_kbhit() && (lastKey = getch()) && (lastKey == KEY_F1 || lastKey == KEY_UP || lastKey == KEY_DOWN || lastKey == KEY_ENTER || lastKey == KEY_ESC)););
 
-	if (lastKey != KEY_ENTER) {
+	if (lastKey == KEY_F1)
+		Setting::hardness = 6;
+	else if (lastKey != KEY_ENTER) {
 
 		if (lastKey == KEY_DOWN && hardness != 5)
 			Setting::hardness++;
