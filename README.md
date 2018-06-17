@@ -9,10 +9,10 @@ All data are stored in each branches.
 |**Branch Name**|**Content**|
 |:-------------|:---------|
 |master|This readme|
-|Assignment-01-Handin|Handin version of assignment 1|
-|Assignment-01|Developed raw version of assignment 1|
-|Assignment-02-Handin|Handin version of assignment 2|
-|Assignemnt-02|Developed raw version of assignment 2|
+|Assignment-01-Handin|handin version of assignment 1 (POS(point of sale) program)|
+|Assignment-01|developed raw version of assignment 1 (POS(point of sale) program)|
+|Assignment-02-Handin|handin version of assignment 2 (retro arcade game)|
+|Assignemnt-02|developed raw version of assignment 2 (retro arcade game)|
 
 ## What is dev/handin version?
 
