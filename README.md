@@ -1,4 +1,4 @@
-# CSED232 - Object Oriented Programming Assignments
+# Object Oriented Programming Assignments
 
 This is assignment repository for POSTECH CSED232 on 2016 Fall Semester.
 
